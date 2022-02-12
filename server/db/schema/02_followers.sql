@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS followers CASCADE;
+
+CREATE TABLE followers (
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  follower_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
