@@ -1,0 +1,38 @@
+@import "../../styles/variables.scss";
+
+.navbar {
+  width: 82vw;
+  background-color: darken($white, 10%);
+  height: 5rem;
+  display: flex;
+  justify-content: flex-end;
+
+  &__button {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+
+  &__button &__icon {
+    margin: 0 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    border: solid black 1px;
+    border-radius: 50%;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+
+    &__name {
+      margin: 0 1rem 0 0.5rem;
+    }
+  }
+    
+  &__user &__avatar {
+    width: 2rem;
+    height: 2rem;
+  }
+
+}
