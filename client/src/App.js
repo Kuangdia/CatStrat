@@ -1,10 +1,10 @@
 import './App.scss';
-import Sidebar from "./components/Sidebar"
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <main className="App layout">
-      <Sidebar />
+      <Dashboard />
     </main>
   );
 }

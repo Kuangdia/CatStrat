@@ -1,4 +1,6 @@
+import ListTabs from "./ListTabs";
 import "./Sidebar.scss";
+
 
 export default function Sidebar(props) {
 
@@ -6,18 +8,15 @@ export default function Sidebar(props) {
     <section className="sidebar">
       <div className="sidebar__head">
         <img 
-            className="sidebar--centered"
+            className="sidebar--centered sidebar__logo"
             src="logo192.png"
             alt="CatStrat"
         />
-        <h1 className="sidebar__title">CatStrat</h1>
+        <p className="sidebar__title">CatStrat</p>
       </div>
-      <hr className="sidebar_separator sidebar--centered" />
-      <hr />
+      <hr className="sidebar__separator sidebar--centered"/>
       <nav className="siderbar__menu">
-        <h2>button1</h2>
-        <h2>button2</h2>
-        <h2>button3</h2>
+        <ListTabs wow="yes" />
       </nav>
 
     </section>
