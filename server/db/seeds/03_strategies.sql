@@ -6,4 +6,4 @@ VALUES
 
 INSERT INTO strategies (strategy_name, description, custom, active, upvotes, downvotes) 
 VALUES 
-('Custom trading', 'I made this custom trading strategy that uses psychic powers.', true, true, 10, 4);
+('Custom trading', 'I made this custom trading strategy that uses psychic powers.', true, true, 10, 4); 
