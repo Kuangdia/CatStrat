@@ -100,5 +100,5 @@ app.post("/login", (req, res) => {
 
 // connect to PORT
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });
