@@ -1,6 +1,7 @@
 import "./Navbar.scss";
 
 import FaceIcon from '@mui/icons-material/Face';
+
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 

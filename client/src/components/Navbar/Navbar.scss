@@ -1,8 +1,8 @@
 @import "../../styles/variables.scss";
 
 .navbar {
-  width: 82vw;
-  background-color: darken($white, 10%);
+  width: 100%;
+  background-color: lighten($navbar-background, 15%);
   height: 5rem;
   display: flex;
   justify-content: flex-end;
@@ -36,9 +36,10 @@
     }
     button {
       padding: 0 1.8rem 0 0;
+      color: black;
       margin: 0;
       border: none;
-      background-color: darken($white, 10%);
+      background-color: lighten($navbar-background, 15%);
     }
   }
 
