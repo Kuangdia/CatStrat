@@ -4,8 +4,12 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Landing from './pages/Landing';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import axios from 'axios'
+import React from 'react';
+import { useEffect } from 'react';
 
 function App() {
+
   return (
     <Router>
       <Routes>
