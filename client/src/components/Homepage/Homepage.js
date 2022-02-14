@@ -5,6 +5,7 @@ import "./homepage.scss";
 import { gsap, Power3 } from 'gsap';
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import HomeNavbar from "./HomeNav";
 
 function Homepage() {
   let navigate = useNavigate();
@@ -47,12 +48,14 @@ function Homepage() {
     gsap.to(phoneImage, { duration: 2.5, x: 1300, y: 0, ease: Power3.easeOut, autoAlpha: 1 })
 
     //Content Animation
-    gsap.from([headlineFirst.children, headlineSecond.children, headlineThird.children], { duration: 1, y: 80, stagger: { each: 0.15, ease: Power3.easeOut }, delay: .8 })
-    gsap.from(contentP, { duration: 1, y: 40, opacity: 0, ease: Power3.easeOut, delay: 1.6 })
+    gsap.from([headlineFirst.children, headlineSecond.children, headlineThird.children], { duration: 1, y: 100, stagger: { each: 0.15, ease: Power3.easeOut }, delay: .8 })
+    gsap.from(contentP, { duration: 1, y: 40, opacity: 0, ease: Power3.easeOut, delay: 1.8 })
     gsap.from(contentButton, { duration: 1, y: 40, opacity: 0, ease: Power3.easeOut, delay: 2 })
   })
 
   return (
+  <>
+    <HomeNavbar />
     <div className="hero" ref={el => app = el}>
       <div className="container">
         <div className="hero-inner">
@@ -91,6 +94,7 @@ function Homepage() {
         </div>
       </div>
     </div>
+  </>  
   );
 }
 
