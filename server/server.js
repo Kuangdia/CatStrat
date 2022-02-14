@@ -122,7 +122,6 @@ app.post("/strategies", (req, res) => {
   .query(`SELECT strategies.*, users_strategies.* FROM strategies JOIN users_strategies ON strategy_id = strategies.id WHERE users_strategies.user_id = $1`, [userID])
   .then((result) => {
     console.log("res post", result.rows)
-    console.log("second")
     res.send(result.rows);
   })
   .catch((err) => {
