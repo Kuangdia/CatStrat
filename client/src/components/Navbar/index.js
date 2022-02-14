@@ -1,5 +1,5 @@
 import "./Navbar.scss";
-import { IoLogoOctocat } from 'react-icons/fa';
+// import { IoLogoOctocat } from 'react-icons/fa';
 import FaceIcon from '@mui/icons-material/Face';
 
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -14,7 +14,7 @@ export default function Navbar(props) {
           <button>
             <NotificationsNoneIcon className="navbar__icon" />
           </button>
-          <p>+<span>666</span></p>
+          <p>+666</p>
         </div>
 
         <div className="navbar__coin">
@@ -28,7 +28,7 @@ export default function Navbar(props) {
       </div>
 
       <div className="navbar__user">
-        <IoLogoOctocat className="navbar__avatar navbar__icon" />
+        <FaceIcon className="navbar__avatar navbar__icon" />
         <p className="navbar__user__name">Allen</p>
       </div>
     </section>
