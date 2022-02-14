@@ -32,6 +32,25 @@ app.use(cors({
   credentials: true
 }));
 
+//routes
+
+// register
+app.post("/register", (req, res) => {
+  const email = req.body.email;
+  const username = req.body.username;
+  const password = req.body.password;
+  const bracket = req.body.bracket;
+  
+
+  db.query(`INSERT INTO users (username, password, email, money_bracket) VALUES ($1, $2, $3, $4)`, [username, bcrypt.hashSync(password, 10), email, bracket])
+  .then((response) => {
+    console.log("res", response);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+})
+
 app.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
