@@ -3,6 +3,8 @@ import { IoLogoOctocat } from 'react-icons/io';
 import FaceIcon from '@mui/icons-material/Face';
 
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { Badge } from '@mui/material';
 
 
 export default function Navbar(props) {
@@ -12,9 +14,11 @@ export default function Navbar(props) {
 
         <div className="navbar__notice">
           <button>
-            <NotificationsNoneIcon className="navbar__icon"/>
+          <Badge badgeContent={4} color="success">
+            {/* <NotificationsNoneIcon className="navbar__icon"/> */}
+            <NotificationsIcon className="navbar__icon"/>
+          </Badge>
           </button>
-          <p>+666</p>
         </div>
 
         <div className="navbar__coin">

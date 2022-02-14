@@ -45,6 +45,14 @@
     }
   }
 
+  &__badge {
+    margin-top: 2px;
+    background-color: red;
+    min-width: 15px;
+    min-height: 10px;
+    margin-right: 5px;
+  }
+
   &__coin {
     display: flex;
     align-items: center;
