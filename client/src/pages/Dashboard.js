@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import "./Dashboard.scss";
+import "../components/Dashboard/Dashboard.scss";
 
 export default function Dashboard(props) {
   const userID = localStorage.getItem('userID')
@@ -21,6 +21,8 @@ export default function Dashboard(props) {
         console.log(err);
       });
     }
+
+    
 
   }, [])
 
