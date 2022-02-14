@@ -1,8 +1,8 @@
 @import "../../styles/variables.scss";
 
 .navbar {
-  width: 82vw;
-  background-color: darken($white, 10%);
+  width: 100%;
+  background-color: lighten($navbar-background, 15%);
   height: 5rem;
   display: flex;
   justify-content: flex-end;
@@ -23,11 +23,13 @@
     margin-right: 0.5rem;;
     p {
       margin: 0;
+      padding-top: 1.5px;
+      padding-left: 2px;
       position: absolute;
       right: 0;
       top: 0;
       border: solid red 1px;
-      border-radius: 40%;
+      border-radius: 50%;
       background-color: red;
       font-size: small;
       color: $white;
@@ -36,10 +38,10 @@
     }
     button {
       padding: 0 1.8rem 0 0;
+      color: black;
       margin: 0;
       border: none;
-      color: black;
-      background-color: darken($white, 10%);
+      background-color: lighten($navbar-background, 15%);
     }
   }
 

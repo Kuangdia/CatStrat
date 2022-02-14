@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import "./Dashboard.scss";
+import "../components/Dashboard/Dashboard.scss";
 
 export default function Dashboard(props) {
   const userID = localStorage.getItem('userID')
@@ -11,18 +11,26 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     
-    Axios.defaults.withCredentials = true;
+    // Axios.defaults.withCredentials = true;
 
     if (userID) {
-      console.log("first")
       Axios.post('http://localhost:8080/strategies', {userID})
-      .then(response => console.log(response))
+      .then((response) => {
+        console.log(response)
+        setData(response)
+      })
       .catch((err) => {
         console.log(err);
       });
     }
 
+    
+
   }, [])
+
+  // const log = () => {
+  //   console.log(data)
+  // }
 
   // const getStrat = () => {
   //   console.log("clicked")
@@ -38,15 +46,11 @@ export default function Dashboard(props) {
 
   return(
     <>
-      <div className="dash-container">
       <main className="layout">
         <Sidebar />
         <Navbar />
       </main>
-        <div className="get">
-          {/* <button onClick={getStrat}>Button</button> */}
-        </div>
-      </div>
+      {/* <button onClick={log}></button> */}
     </>
   );
 }

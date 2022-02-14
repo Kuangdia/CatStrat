@@ -1,40 +1,57 @@
-// load .env data into process.env
+// Load .env data into process.env
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 8080;
 const express = require('express');
-const app = express();
-const cors = require('cors');
+const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
+const cors = require('cors');
 const session = require('express-session');
 const jwt = require('jsonwebtoken')
+
+// Environment variables
+const {PORT, ENVIRONMENT, DEV_URL} = process.env;
 
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
-db.connect();
+db.connect((err) => {
+    console.log('Connected to db');
+    if (err) {
+        return console.log('Error with db connection:' , err)
+    }
+});
+
+// Middleware
+const app = express();
+app.use(cors({
+    origin: [DEV_URL],
+    methods: ["GET", "POST", "DELETE"],
+    credentials: true
+  }));
+app.use(morgan(ENVIRONMENT));
 
 // allows api to parse json // both .json works but you need to use one
 app.use(express.json());
-// app.use(bodyParser.json())
+// app.use(bodyParser.json());
 
 // allow api to receive data from client app // can use either
 // app.use(express.urlencoded({extended: true}))
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// must add this if you use cookies/session
-app.use(cors({
-  origin: ["http://localhost:3000"],
-  methods: ["GET", "POST", "DELETE"],
-  credentials: true
-}));
 
-//routes
+// Require routes
+const dashboardRoutes = require('./routes/dashboard');
 
-// register
+// Routes
+app.use('/dashboard', dashboardRoutes(db));
+
+app.get('/', (req,res) => {
+    res.json({greetings: 'hello'});
+})
+
 app.post("/register", (req, res) => {
   const email = req.body.email;
   const username = req.body.username;
@@ -50,6 +67,7 @@ app.post("/register", (req, res) => {
     console.log(err);
   });
 })
+
 
 app.post("/login", (req, res) => {
   const username = req.body.username;
@@ -104,7 +122,6 @@ app.post("/strategies", (req, res) => {
   .query(`SELECT strategies.*, users_strategies.* FROM strategies JOIN users_strategies ON strategy_id = strategies.id WHERE users_strategies.user_id = $1`, [userID])
   .then((result) => {
     console.log("res post", result.rows)
-    console.log("second")
     res.send(result.rows);
   })
   .catch((err) => {
@@ -115,5 +132,5 @@ app.post("/strategies", (req, res) => {
 
 // connect to PORT
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });
