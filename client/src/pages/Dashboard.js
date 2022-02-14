@@ -2,7 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Sidebar from "../components/Sidebar";
-import "../styles/dashboard.scss"
+import Navbar from "../components/Navbar";
+import "./Dashboard.scss";
 
 export default function Dashboard(props) {
   const userID = localStorage.getItem('userID')
@@ -38,7 +39,10 @@ export default function Dashboard(props) {
   return(
     <>
       <div className="dash-container">
+      <main className="layout">
         <Sidebar />
+        <Navbar />
+      </main>
         <div className="get">
           {/* <button onClick={getStrat}>Button</button> */}
         </div>
