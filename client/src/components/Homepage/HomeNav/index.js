@@ -1,5 +1,5 @@
 import React from 'react';
-import {Nav, NavbarContainer, NavLogo, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink} from './NavbarElement'
+import {Nav, NavbarContainer, NavLogo, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink} from './NavbarCSS'
 import { gsap } from 'gsap';
 import { useEffect, useRef} from 'react';
 import Paw from '@mui/icons-material/Pets';
