@@ -76,7 +76,7 @@ app.post("/login", (req, res) => {
   return db
     .query(`SELECT * FROM users WHERE username = $1`, [username])
     .then((result) => {
-      console.log("LOGGED IN", result.rows)
+      // console.log("LOGGED IN", result.rows)
       if (result.rows.length > 0) {
         bcrypt.compare(password, result.rows[0].password, (error, response) => {
           if (response) {
@@ -97,6 +97,39 @@ app.post("/login", (req, res) => {
     })
     .catch(err => console.log(err));
 })
+
+
+// app.get("/strategies", (req, res) => {
+//   const userID = req.body.userID
+//   console.log(userID)
+
+//   return db
+//   .query(`SELECT strategies.*, users_strategies.* FROM strategies JOIN users_strategies ON strategy_id = strategies.id WHERE users_strategies.user_id = $1`, [userID])
+//   .then((result) => {
+//     console.log("res", result.rows)
+//     res.send(result.rows);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+// })
+
+app.post("/strategies", (req, res) => {
+  const userID = req.body.userID
+  console.log("post", userID)
+
+  return db
+  .query(`SELECT strategies.*, users_strategies.* FROM strategies JOIN users_strategies ON strategy_id = strategies.id WHERE users_strategies.user_id = $1`, [userID])
+  .then((result) => {
+    console.log("res post", result.rows)
+    console.log("second")
+    res.send(result.rows);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+})
+
 
 // connect to PORT
 app.listen(PORT, () => {

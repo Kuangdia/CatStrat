@@ -15,12 +15,12 @@ const Login = () => {
   Axios.defaults.withCredentials = true;
 
   const login = () => {
-    console.log("clicked")
+    // console.log("clicked")
     Axios.post('http://localhost:8080/login', {
       username: loginUser, 
       password: loginPassword
     }).then((response) => {
-      console.log("react login", response)
+      // console.log("react login", response)
       if (response.data.message) {
         setLoginStatus(false)
       } else {
@@ -62,7 +62,7 @@ const Login = () => {
       <div className="login-form">
         <h4 className="login-text">Log in to CatStrat</h4>
         <div className="center-form">
-        <span id="span-text">Email</span>
+        <span id="span-text">Username</span>
         <input 
           type="text"
           name="username"
