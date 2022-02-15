@@ -38,15 +38,6 @@ app.use(morgan(ENVIRONMENT));
 app.use(express.json());
 // app.use(bodyParser.json())
 
-
-// must add this if you use cookies/session
-app.use(cors({
-  origin: ["http://localhost:3000"],
-  methods: ["GET", "POST"],
-  credentials: true
-}));
-
-
 // allow api to receive data from client app // can use either
 // app.use(express.urlencoded({extended: true}))
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -125,12 +116,19 @@ app.post("/login", (req, res) => {
 //   });
 // })
 
-app.post("/strategies", (req, res) => {
-  const userID = req.body.userID
+app.post("/", (req, res) => {
+  console.log('req.body', req.body)
+  const userID = req.body.userID;
   console.log("post", userID)
 
+  const query = `SELECT DISTINCT records.* FROM records
+    JOIN strategies ON records.strategy_id = strategies.id
+    JOIN users_strategies ON strategies.id = users_strategies.strategy_id
+    WHERE records.user_id = $1
+    ORDER BY records.id`
+
   return db
-    .query(`SELECT strategies.*, users_strategies.* FROM strategies JOIN users_strategies ON strategy_id = strategies.id WHERE users_strategies.user_id = $1`, [userID])
+    .query(query, [userID])
     .then((result) => {
       console.log("res post", result.rows)
       res.send(result.rows);

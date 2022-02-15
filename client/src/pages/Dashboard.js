@@ -3,21 +3,35 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import "../components/Dashboard/Dashboard.scss";
+import Summary from "../components/Summary";
+import "../components/Summary/Summary.scss";
 
 export default function Dashboard(props) {
   const userID = localStorage.getItem('userID')
   const [data, setData] = useState("")
+
+  // store all data in state and manipulate it as need be
+  const [newData, setNewData] = useState('')
+
+  // store selection state
+  const [selection, setSelection] = useState('All time')
+
+  // create helper functions to filter data
+  const getWeeklyData = (data, week) => { 
+    return data.filter(() => {})
+  }
 
   useEffect(() => {
     
     Axios.defaults.withCredentials = true;
 
     if (userID) {
-      Axios.post('http://localhost:8080/strategies', {userID})
-      .then((response) => {
-        console.log(response)
-        setData(response)
+      console.log('userID', userID)
+      Axios.post(`http://localhost:8080/`, {userID})
+      .then((res) => {
+        console.log('response', res.data)
+        setData(res.data)
+        
       })
       .catch((err) => {
         console.log(err);
@@ -48,6 +62,7 @@ export default function Dashboard(props) {
         <Sidebar />
         <Navbar />
       </main>
+        <Summary />
       {/* <button onClick={log}></button> */}
     </>
   );
