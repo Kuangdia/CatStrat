@@ -15,8 +15,6 @@ export default function Dashboard(props) {
   const [data, setData] = useState("");
 
   useEffect(() => {
-    // Axios.defaults.withCredentials = true;
-
     if (loginUserID) {
       Axios.post('/strategies', {loginUserID})
       .then((response) => {
