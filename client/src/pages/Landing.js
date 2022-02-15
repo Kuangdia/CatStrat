@@ -3,14 +3,15 @@ import {useState} from 'react';
 import InfoSection from '../components/Homepage/HomeInfo';
 import { discover, manage, signup } from '../components/Homepage/HomeInfo/Data';
 import Homepage from '../components/Homepage/Homepage';
-import Video from '../videos/video2.mp4'
+import ReactPlayer from "react-player"
 
 function Home() {
+  const video = "https://streamable.com/e8vrxk";
 
   return (
     <>
       <Homepage />
-      <InfoSection Video={Video} {...discover}/>
+      <InfoSection Video={video} {...discover}/>
       <InfoSection {...manage}/>
       <InfoSection {...signup}/>
     </>

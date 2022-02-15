@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Button } from '../ButtonCSS'
 import { InfoContainer, VideoBg, InfoWrapper, InfoRow, Column1, Column2, TextWrapper, TopLine, Heading, Subtitle, BtnWrap, Img, ImgWrap } from './InfoCSS';
+import ReactPlayer from "react-player"
 
 function InfoSection({lightBg, Video, primary, dark, dark2, id, imgStart, topLine, lightText, darkText, Headline, description, buttonLabel, img, alt}) {
+  
   return (
   <>
     <InfoContainer lightBg={lightBg}>
@@ -28,10 +30,19 @@ function InfoSection({lightBg, Video, primary, dark, dark2, id, imgStart, topLin
             </TextWrapper>
           </Column1>
           <Column2>
+          {!Video ?             
             <ImgWrap>
               <Img src={img} alt={alt}/>
-            </ImgWrap>
-            <VideoBg autoPlay loop muted src={Video} type='video/mp4' />
+            </ImgWrap> 
+            :
+            <ReactPlayer
+              url={Video}
+              playing={true}
+              width={500}
+              loop={true} 
+              muted
+              controls
+            />}
           </Column2>
         </InfoRow>
       </InfoWrapper>

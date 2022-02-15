@@ -8,7 +8,7 @@ export const InfoContainer = styled.div`
     padding: 100px 0;
   }
 `
-export const VideoBg = styled.video`
+export const VideoBg = styled.div`
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -100,6 +100,6 @@ export const ImgWrap = styled.div`
 
 export const Img = styled.img`
   width: 100%;
-  margin: 0 0 -150px 0;
+  margin: 0;
   padding-right: 0;
 `
