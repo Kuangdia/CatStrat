@@ -16,13 +16,14 @@ const Login = () => {
 
   const login = () => {
     // console.log("clicked")
-    Axios.post('http://localhost:8080/login', {
+    Axios.post('/login', {
       username: loginUser, 
       password: loginPassword
     }).then((response) => {
       // console.log("react login", response)
       if (response.data.message) {
-        setLoginStatus(false)
+        setLoginStatus(false);
+        console.log(response.data.message)
       } else {
         setLoginStatus(true)
         localStorage.setItem('token', response.data.token)

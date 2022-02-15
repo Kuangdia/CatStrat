@@ -3,6 +3,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
 
+
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -12,11 +13,25 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 
 import "./ListTabs.scss";
 
+import Axios from "axios";
+
+
+
 export default function ListTabs(props) {
+
+  const userID = localStorage.getItem("userID");
+
+  const sendReq2Calendar = (userID) => {
+    Axios.post("/calendar", {userID})
+      .then(res => {
+        console.log("records data", res.data);
+      })
+      .catch(err => console.log(err));
+  }
   
   return (
     <React.Fragment>
-      <ListItemButton onClick={() => {console.log(props.wow)}} >
+      <ListItemButton >
         <ListItemIcon>
           <DashboardIcon className="hello" />
         </ListItemIcon>
@@ -30,11 +45,13 @@ export default function ListTabs(props) {
         <ListItemText primary="Profile" className="hello" />
       </ListItemButton>
 
-      <ListItemButton>
+      <ListItemButton onClick={() => {sendReq2Calendar(userID)}} >
         <ListItemIcon>
           <TodayIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Calendar" className="hello" />
+        <ListItemText 
+          primary="Calendar" 
+          className="hello" />
       </ListItemButton>
 
       <ListItemButton>

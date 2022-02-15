@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import "../components/Dashboard/Dashboard.scss";
+import Content from "../components/Content";
+import "./Dashboard.scss";
 
 export default function Dashboard(props) {
   const userID = localStorage.getItem('userID')
@@ -14,7 +15,7 @@ export default function Dashboard(props) {
     // Axios.defaults.withCredentials = true;
 
     if (userID) {
-      Axios.post('http://localhost:8080/strategies', {userID})
+      Axios.post('/strategies', {userID})
       .then((response) => {
         console.log(response)
         setData(response)
@@ -48,7 +49,10 @@ export default function Dashboard(props) {
     <>
       <main className="layout">
         <Sidebar />
-        <Navbar />
+        <div className="layout__right">
+          <Navbar />
+          <Content />
+        </div>
       </main>
       {/* <button onClick={log}></button> */}
     </>
