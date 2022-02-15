@@ -10,9 +10,10 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const jwt = require('jsonwebtoken')
+const morgan = require('morgan');
 
 // Environment variables
-const { PORT, ENVIRONMENT, DEV_URL } = process.env;
+const { ENVIRONMENT, DEV_URL } = process.env;
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -26,7 +27,6 @@ db.connect((err) => {
 });
 
 // Middleware
-const app = express();
 app.use(cors({
   origin: [DEV_URL],
   methods: ["GET", "POST", "DELETE"],
