@@ -31,16 +31,18 @@ app.use(cors({
 
 
 // allow api to receive data from client app // can use either
-// app.use(express.urlencoded({extended: true}))
+
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
 
 
 // Require routes
 const dashboardRoutes = require('./routes/dashboard');
+const calendarRoutes = require("./routes/calendar");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
+app.use("/calendar", calendarRoutes(db));
 
 app.get('/', (req,res) => {
     res.json({greetings: 'hello'});
@@ -52,7 +54,6 @@ app.post("/register", (req, res) => {
   const password = req.body.password;
   const bracket = req.body.bracket;
   
-
   db.query(`INSERT INTO users (username, password, email, money_bracket) VALUES ($1, $2, $3, $4)`, [username, bcrypt.hashSync(password, 10), email, bracket])
   .then((response) => {
     console.log("res", response);
@@ -61,7 +62,6 @@ app.post("/register", (req, res) => {
     console.log(err);
   });
 })
-
 
 app.post("/login", (req, res) => {
   const username = req.body.username;
@@ -74,39 +74,23 @@ app.post("/login", (req, res) => {
       if (result.rows.length > 0) {
         bcrypt.compare(password, result.rows[0].password, (error, response) => {
           if (response) {
-            const token = jwt.sign({userID: result.rows[0].id}, 'secretString')
+            const token = jwt.sign({userID: result.rows[0].id}, 'secretString');
             const loginData = {
               userID: result.rows[0].id,
               username,
               token
             }
-            res.send(loginData)
+            res.send(loginData);
           } else {
-            res.send({message: "Wrong username/password"})
+            res.send({message: "Wrong username/password"});
           }
         })
       } else {
-        res.send({message: "User doesn't exist"})
+        res.send({message: "User doesn't exist"});
       } 
     })
     .catch(err => console.log(err));
 })
-
-
-// app.get("/strategies", (req, res) => {
-//   const userID = req.body.userID
-//   console.log(userID)
-
-//   return db
-//   .query(`SELECT strategies.*, users_strategies.* FROM strategies JOIN users_strategies ON strategy_id = strategies.id WHERE users_strategies.user_id = $1`, [userID])
-//   .then((result) => {
-//     console.log("res", result.rows)
-//     res.send(result.rows);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-// })
 
 app.post("/strategies", (req, res) => {
   const userID = req.body.userID

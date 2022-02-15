@@ -1,14 +1,24 @@
 import "./Navbar.scss";
 import { IoLogoOctocat } from 'react-icons/io';
-import FaceIcon from '@mui/icons-material/Face';
-
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 
 export default function Navbar(props) {
+
+  const { setLoginUserID } = props;
+
+  const logout = () => {
+    setLoginUserID("");
+    localStorage.setItem("userID", "");
+  }
+
   return (
     <section className="navbar">
       <div className="navbar__button">
+        
+        <div onClick= { logout }>
+          <button> Logout</button>
+        </div>
 
         <div className="navbar__notice">
           <button>
@@ -28,7 +38,6 @@ export default function Navbar(props) {
       </div>
 
       <div className="navbar__user">
-        {/* <FaceIcon className="navbar__avatar navbar__icon" /> */}
         <IoLogoOctocat className="navbar__avatar navbar__icon" />
         <p className="navbar__user__name">John Doe</p>
       </div>

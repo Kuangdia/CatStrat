@@ -1,15 +1,16 @@
-import React from "react";
-import { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import "../styles/register.scss";
 import Axios from 'axios';
-import cat from '../images/catbg3.png'
+import cat from '../images/catbg3.png';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
+  let navigate = useNavigate();
   const [registerEmail, setRegisterEmail] = useState("")
   const [registerUser, setRegisterUser] = useState("")
   const [registerPassword, setRegisterPassword] = useState("")
-  const [registerBracket, setRegisterBracket] = useState(0)
-
+  const [registerBracket, setRegisterBracket] = useState(0);
+  const [loginStatus, setLoginStatus] = useState(false);
 
   const register = () => {
     console.log("clicked")
@@ -19,9 +20,30 @@ function Register() {
       password: registerPassword,
       bracket: registerBracket
     }).then((response) => {
-      console.log("react register response", response);
+      if (response.data.message) {
+        setLoginStatus(false);
+        console.log(response.data.message);
+      } else {
+        setLoginStatus(true);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userID', response.data.userID);
+        localStorage.setItem('username', response.data.username);
+      }
     })
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const userID = localStorage.getItem('userID');
+    
+    if (token && userID) {
+      setLoginStatus(true)
+    } 
+
+    if (loginStatus) {
+      return navigate("/dashboard")
+    }
+  }, [loginStatus])
 
   return (
     <div className="container-cat">
