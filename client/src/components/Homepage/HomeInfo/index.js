@@ -16,12 +16,7 @@ function InfoSection({lightBg, Video, primary, dark, dark2, id, imgStart, topLin
               <Heading lightText={lightText}>{Headline}</Heading>
               <Subtitle darkText={darkText}>{description}</Subtitle>
               <BtnWrap>
-                <Button to="home"
-                  smooth={true}
-                  duration={500}
-                  spy={true}
-                  exact="true"
-                  offset={-80}
+                <Button path="/login"
                   primary={primary ? 1 : 0}
                   dark={dark ? 1 : 0}
                   dark2={dark2 ? 1 : 0}
