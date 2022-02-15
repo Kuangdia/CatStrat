@@ -74,28 +74,28 @@ app.post("/login", (req, res) => {
   const password = req.body.password;
 
   return db
-  .query(`SELECT * FROM users WHERE username = $1`, [username])
-  .then((result) => {
-    // console.log("LOGGED IN rows", result.rows)
+    .query(`SELECT * FROM users WHERE username = $1`, [username])
+    .then((result) => {
+    // console.log("LOGGED IN", result.rows)
     if (result.rows.length > 0) {
       bcrypt.compare(password, result.rows[0].password, (error, response) => {
-        if (response) {
-          const token = jwt.sign({ userID: result.rows[0].id }, 'secretString')
-          const loginData = {
+      if (response) {
+        const token = jwt.sign({ userID: result.rows[0].id }, 'secretString')
+        const loginData = {
             userID: result.rows[0].id,
             username,
-            token
-          }
-          // res.send('loginData', loginData)
-        } else {
-          res.send({ message: "Wrong username/password" })
-        }
-      })
-    } else {
-      res.send({ message: "User doesn't exist" })
-    }
-  })
-  .catch(err => console.log(err));
+                token
+            }
+            res.send(loginData)
+            } else {
+            res.send({ message: "Wrong username/password" })
+            }
+        })
+      } else {
+        res.send({ message: "User doesn't exist" })
+      }
+    })
+    .catch(err => console.log(err));
 })
 
 
@@ -119,14 +119,14 @@ app.post("/strategies", (req, res) => {
   console.log("post", userID)
 
   return db
-  .query(`SELECT strategies.*, users_strategies.* FROM strategies JOIN users_strategies ON strategy_id = strategies.id WHERE users_strategies.user_id = $1`, [userID])
-  .then((result) => {
-    console.log("res post", result.rows)
-    res.send(result.rows);
-  })
-  .catch((err) => {
+    .query(`SELECT strategies.*, users_strategies.* FROM strategies JOIN users_strategies ON strategy_id = strategies.id WHERE users_strategies.user_id = $1`, [userID])
+    .then((result) => {
+      console.log("res post", result.rows)
+      res.send(result.rows);
+    })
+    .catch((err) => {
     console.log(err);
-  });
+    });
 })
 
 
