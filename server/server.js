@@ -116,27 +116,27 @@ app.post("/login", (req, res) => {
 //   });
 // })
 
-app.post("/", (req, res) => {
-  console.log('req.body', req.body)
-  const userID = req.body.userID;
-  console.log("post", userID)
+// app.get("/dashboard", (req, res) => {
+//   console.log('req.body', req.body)
+//   const userID = req.body.user_id;
+//   console.log("post", userID)
 
-  const query = `SELECT DISTINCT records.* FROM records
-    JOIN strategies ON records.strategy_id = strategies.id
-    JOIN users_strategies ON strategies.id = users_strategies.strategy_id
-    WHERE records.user_id = $1
-    ORDER BY records.id`
+//   const query = `SELECT DISTINCT records.* FROM records
+//     JOIN strategies ON records.strategy_id = strategies.id
+//     JOIN users_strategies ON strategies.id = users_strategies.strategy_id
+//     WHERE records.user_id = $1
+//     ORDER BY records.id`
 
-  return db
-    .query(query, [userID])
-    .then((result) => {
-      console.log("res post", result.rows)
-      res.send(result.rows);
-    })
-    .catch((err) => {
-    console.log(err);
-    });
-})
+//   return db
+//     .query(query, [userID])
+//     .then((result) => {
+//       console.log("res post", result.rows)
+//       res.send(result.rows);
+//     })
+//     .catch((err) => {
+//     console.log(err);
+//     });
+// })
 
 
 // connect to PORT

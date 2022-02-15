@@ -1,3 +1,18 @@
-.layout {
-  display: flex;
+
+.stats {
+    display:flex;
+    justify-content: space-between;
+    margin-top:5em;
+    margin-right:7em;
+    margin-left:7em;
+
+    &__total-earnings {
+        color: blue;
+        padding-left: 4em;
+        padding-right: 4em;
+        padding-top: 2em;
+        padding-bottom: 2em;
+        border: 2px solid;
+      }   
+    
 }
