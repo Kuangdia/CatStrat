@@ -21,8 +21,8 @@ export default function ListTabs(props) {
 
   const userID = localStorage.getItem("userID");
 
-  const sendReq2Calendar = (userID) => {
-    Axios.post("/calendar", {userID})
+  const sendGetReq = (target, userID) => {
+    Axios.get(`/${target}`, {params: { userID }})
       .then(res => {
         console.log("records data", res.data);
       })
@@ -45,7 +45,7 @@ export default function ListTabs(props) {
         <ListItemText primary="Profile" className="hello" />
       </ListItemButton>
 
-      <ListItemButton onClick={() => {sendReq2Calendar(userID)}} >
+      <ListItemButton onClick={() => {sendGetReq("calendar", userID)}} >
         <ListItemIcon>
           <TodayIcon className="hello" />
         </ListItemIcon>

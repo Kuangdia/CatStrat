@@ -7,6 +7,15 @@
   display: flex;
   justify-content: flex-end;
 
+  button {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    background-color: transparent;
+    color: $black;
+    border: solid $black 2px;
+  }
+
   &__button {
     display: flex;
     align-items: center;

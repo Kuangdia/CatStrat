@@ -4,9 +4,21 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 
 export default function Navbar(props) {
+
+  const { setLoginUserID } = props;
+
+  const logout = () => {
+    setLoginUserID("");
+    localStorage.setItem("userID", "");
+  }
+
   return (
     <section className="navbar">
       <div className="navbar__button">
+        
+        <div onClick= { logout }>
+          <button> Logout</button>
+        </div>
 
         <div className="navbar__notice">
           <button>

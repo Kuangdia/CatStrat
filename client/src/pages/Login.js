@@ -7,10 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   let navigate = useNavigate();
-  const [loginUser, setLoginUser] = useState("")
-  const [loginPassword, setLoginPassword] = useState("")
-
-  const [loginStatus, setLoginStatus] = useState(false)
+  const [loginUser, setLoginUser] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
 
   Axios.defaults.withCredentials = true;
 
@@ -23,12 +22,12 @@ const Login = () => {
       // console.log("react login", response)
       if (response.data.message) {
         setLoginStatus(false);
-        console.log(response.data.message)
+        console.log(response.data.message);
       } else {
-        setLoginStatus(true)
-        localStorage.setItem('token', response.data.token)
-        localStorage.setItem('userID', response.data.userID)
-        localStorage.setItem('username', response.data.username)
+        setLoginStatus(true);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userID', response.data.userID);
+        localStorage.setItem('username', response.data.username);
       }
     })
   }
@@ -43,17 +42,18 @@ const Login = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
+    const userID = localStorage.getItem('userID');
     
-    if (token) {
-      setLoginStatus(true)
+    if (token && userID) {
+      setLoginStatus(true);
     } 
 
     if (loginStatus) {
-      return navigate("/dashboard")
+      return navigate("/dashboard");
     }
 
-  }, [loginStatus])
+  }, [loginStatus]);
 
   return (
     <div className="container-cat">
