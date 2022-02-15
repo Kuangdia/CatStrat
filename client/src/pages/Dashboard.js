@@ -11,7 +11,7 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     
-    // Axios.defaults.withCredentials = true;
+    Axios.defaults.withCredentials = true;
 
     if (userID) {
       Axios.post('http://localhost:8080/strategies', {userID})

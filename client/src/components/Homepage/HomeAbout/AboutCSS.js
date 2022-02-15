@@ -24,7 +24,7 @@ export const AboutWrapper = styled.div`
 
 export const AboutCard = styled.div`
   background: #fff;
-  border: 2px dotted rgba(102, 135, 105, 0.77);
+  border: 2px solid rgba(102, 135, 105, 0.77);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,8 +59,10 @@ export const AboutH1 = styled.h1`
 `
 
 export const AboutH2 = styled.h2`
+  font-family: "Patua One";
   font-size: 2rem;
   margin-bottom: 10px;
+  margin-top: 24px;
 `
 
 export const AboutP = styled.p`
