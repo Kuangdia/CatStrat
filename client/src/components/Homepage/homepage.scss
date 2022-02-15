@@ -19,7 +19,7 @@
         margin-bottom: 25px;
         .hero-content-inner {
           width: 450px;
-          color: #323232;
+          color: #232222;
           margin: 0 auto;
           // margin-top: 20px;
           h1 {
@@ -38,9 +38,9 @@
             font-size: 24px;
             line-height: 24px;
             font-weight: 100;
-            color: rgb(149, 149, 149);
+            color: rgb(126, 126, 126);
             padding-right: 28px;
-            margin-bottom: 56px;
+            margin-bottom: 50px;
             // color: white;
           }
           .btn-row {
@@ -55,6 +55,7 @@
               left: 1px;
             }
             button {
+              font-family: sans-serif;
               color: #74c947;
               background: none;
               border: none;
@@ -68,6 +69,9 @@
               align-items: center;
               position: relative;
               left: 64px;
+              // &:hover {
+              //   font-size: 20px;;
+              // }
               &:focus {
                 outline: none;
               }
@@ -84,6 +88,10 @@
                 margin-left: 24px;
                 left: 65px;
                 transform-origin: center center;
+                // &:hover {
+                //   font-size: 20px;
+                //   margin-left: 75px;
+                // }
               }
             }
           }

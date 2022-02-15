@@ -28,7 +28,7 @@ function HomeNavbar() {
               duration={500}
               spy={true}
               exact='true'
-              offset={20}
+              offset={10}
             >About</NavLinks>
           </NavItem>
           <NavItem>
@@ -37,7 +37,7 @@ function HomeNavbar() {
               duration={500}
               spy={true}
               exact='true'
-              offset={25}
+              offset={10}
             >Discover</NavLinks>
           </NavItem>
           <NavItem>
@@ -46,7 +46,7 @@ function HomeNavbar() {
               duration={500}
               spy={true}
               exact='true'
-              offset={25}  
+              offset={15}  
             >Manage</NavLinks>
           </NavItem>
           <NavItem>
@@ -55,7 +55,7 @@ function HomeNavbar() {
               duration={500}
               spy={true}
               exact='true'
-              offset={25}
+              offset={15}
             >Sign Up</NavLinks>
           </NavItem>
         </NavMenu>

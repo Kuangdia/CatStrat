@@ -71,7 +71,7 @@ function Register() {
           setRegisterBracket(e.target.value)
         }}
         />
-        <button onClick={register}>Register</button>
+        <button className="buttonregid" onClick={register}>Register</button>
         </div>
       </div>
     </div>

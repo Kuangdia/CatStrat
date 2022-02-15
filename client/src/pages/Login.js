@@ -60,13 +60,13 @@ const Login = () => {
         <img id="cat" src={cat} alt="cat"/>
       </div>
       <div className="login-form">
-        <h4 className="login-text">Log in to CatStrat</h4>
+        <h4 className="login-text">Login</h4>
         <div className="center-form">
         <span id="span-text">Username</span>
         <input 
           type="text"
           name="username"
-          placeholder="Username" 
+          // placeholder="Username"
           value={loginUser}
           onChange={(e) => {
           setLoginUser(e.target.value)
@@ -76,13 +76,14 @@ const Login = () => {
         <input 
           type="password" 
           name="password"
-          placeholder="Password" 
+          // placeholder="Password" 
           value={loginPassword}
           onChange={(e) => {
           setLoginPassword(e.target.value)
         }}
         />
-        <button onClick={login}>Log in</button>
+        <p className="text-dec">Need to Create An Account? Register Here.</p>
+        <button className="buttonid" onClick={login}>Log in</button>
         </div>
       </div>
     </div>

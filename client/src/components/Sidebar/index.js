@@ -18,7 +18,6 @@ export default function Sidebar(props) {
       <nav className="siderbar__menu">
         <ListTabs wow="yes" />
       </nav>
-
     </section>
   );
 }
