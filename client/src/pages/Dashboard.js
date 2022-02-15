@@ -12,10 +12,11 @@ export default function Dashboard(props) {
 
   const [loginUserID, setLoginUserID] = useState(localStorage.getItem('userID'));
 
-  const [data, setData] = useState("");
+  const [data, setData] = useState({strategies: [],
+                                    records: []
+                                  });
 
   useEffect(() => {
-    // Axios.defaults.withCredentials = true;
 
     if (loginUserID) {
       Axios.post('/strategies', {loginUserID})
