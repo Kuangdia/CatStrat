@@ -17,7 +17,6 @@ export default function Dashboard(props) {
                                   });
 
   useEffect(() => {
-
     if (loginUserID) {
       Axios.post('/strategies', {loginUserID})
       .then((response) => {
