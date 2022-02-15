@@ -1,12 +1,13 @@
-// Load .env data into process.env
+// load .env data into process.env
 require("dotenv").config();
 
 // Web server config
+const PORT = process.env.PORT || 8080;
 const express = require('express');
-const morgan = require('morgan');
+const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
-const cors = require('cors');
 const session = require('express-session');
 const jwt = require('jsonwebtoken')
 
@@ -35,11 +36,21 @@ app.use(morgan(ENVIRONMENT));
 
 // allows api to parse json // both .json works but you need to use one
 app.use(express.json());
-// app.use(bodyParser.json());
+// app.use(bodyParser.json())
+
+
+// must add this if you use cookies/session
+app.use(cors({
+  origin: ["http://localhost:3000"],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
 
 // allow api to receive data from client app // can use either
 // app.use(express.urlencoded({extended: true}))
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 
 
 // Require routes
