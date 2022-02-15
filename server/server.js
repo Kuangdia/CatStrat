@@ -61,8 +61,15 @@ app.post("/register", (req, res) => {
   const bracket = req.body.bracket;
   
   db.query(`INSERT INTO users (username, password, email, money_bracket) VALUES ($1, $2, $3, $4)`, [username, bcrypt.hashSync(password, 10), email, bracket])
-  .then((response) => {
-    console.log("res", response);
+  .then((result) => {
+    const token = jwt.sign({userID: result.insertedId}, 'secretString');
+    const loginData = {
+      userID: result.insertedId,
+      username,
+      token
+    }
+
+    res.send(loginData);
   })
   .catch((err) => {
     console.log(err);
@@ -96,6 +103,10 @@ app.post("/login", (req, res) => {
       } 
     })
     .catch(err => console.log(err));
+})
+
+app.post("/logout", (req, res) => {
+  
 })
 
 app.post("/strategies", (req, res) => {
