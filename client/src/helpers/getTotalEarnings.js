@@ -4,6 +4,6 @@ export default function getTotalEarnings(data) {
     data.forEach((record) => {
         total += record.profit
     })
-    return total;
+    return total.toFixed(0);
 
 }
