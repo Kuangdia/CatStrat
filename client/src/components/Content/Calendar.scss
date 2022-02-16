@@ -1,0 +1,14 @@
+@import "../../styles/variables.scss";
+
+.calendar {
+  width: 65%;
+  height: 100%;
+  
+  .fc-event-title {
+    color: red;
+  }
+  .fc {
+    width: 100%;
+    height: 100%;
+  }
+}

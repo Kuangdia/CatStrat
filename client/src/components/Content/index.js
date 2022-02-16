@@ -1,11 +1,12 @@
 import "./Content.scss";
 
+import Calendar from "./Calendar";
+
 export default function Content(props) {
 
   return (
     <div className="content">
-      <h1>FILL ME!!!!</h1>
-      
+      <Calendar />
     </div>
   );
 }
