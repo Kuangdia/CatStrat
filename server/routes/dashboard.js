@@ -15,7 +15,7 @@ const dashboard = (db) => {
 
         const query = `SELECT DISTINCT records.* FROM records
           WHERE user_id = $1
-          ORDER BY records.id`
+          ORDER BY records.day`
       
         return db
           .query(query, [userID])
