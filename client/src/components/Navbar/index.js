@@ -9,7 +9,7 @@ export default function Navbar(props) {
 
   const logout = () => {
     setLoginUserID("");
-    localStorage.setItem("userID", "");
+    localStorage.clear();
   }
 
   return (
