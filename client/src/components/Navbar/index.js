@@ -20,22 +20,22 @@ export default function Navbar(props) {
           <button> Logout</button>
         </div>
 
-        <div className="navbar__notice">
-          <button>
-            <NotificationsNoneIcon className="navbar__icon"/>
-          </button>
-          <p>+666</p>
-        </div>
+          <div className="navbar__notice">
+            <button>
+              <NotificationsNoneIcon className="navbar__icon"/>
+            </button>
+            <p>+666</p>
+          </div>
 
-        <div className="navbar__coin">
-          <img 
-            src="catecoin.png"
-            alt="catecoin-icon"
-            className="navbar__icon"
-          />
-          <p>X<span>100</span></p>
+          <div className="navbar__coin">
+            <img 
+              src="catecoin.png"
+              alt="catecoin-icon"
+              className="navbar__icon"
+            />
+            <p>X<span>100</span></p>
+          </div>
         </div>
-      </div>
 
       <div className="navbar__user">
         <IoLogoOctocat className="navbar__avatar navbar__icon" />

@@ -59,8 +59,9 @@ export const TextWrapper = styled.div`
 `
 
 export const TopLine = styled.p`
+  font-family: sans serif;
   color: #74c947;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 16px;
   font-weight: 700;
   letter-spacing: 1.4px;
@@ -84,7 +85,7 @@ export const Subtitle = styled.p`
   max-width: 440px;
   margin-bottom: 35px;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 26px;
   color: ${({darkText}) => (darkText ? '#010606' : '#fff' )};
 `
 
