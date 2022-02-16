@@ -27,7 +27,7 @@ export default function Dashboard(props) {
         console.log(err);
       });
     } else {
-      navigate("/login");
+      navigate("/");
     }
   }, [loginUserID]);
 
