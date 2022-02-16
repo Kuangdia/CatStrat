@@ -5,7 +5,7 @@ export default function Content(props) {
 
   return (
     <div className="content">
-      <Summary />
+      <Summary data={props.data}/>
     </div>
   );
 }

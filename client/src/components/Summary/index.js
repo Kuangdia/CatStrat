@@ -6,26 +6,29 @@ export default function Summary(props) {
   const data = props.data
 
   // Store data after being manipulated
-  const [displayData, setDisplayData] = useState({})
+  // const [displayData, setDisplayData] = useState({})
 
   // Store user selection
-  const [selection, setSelection] = useState('All time')
+  // const [selection, setSelection] = useState('All time')
   
+
+
+
   return (
     <section>
       
       
       <div className="stats">
         <div className="stats__total-earnings">
-          Hello
+          Total Earnings
         </div>
 
         <div className="stats__total-earnings">
-          Hello
+          Average Daily Earnings
         </div>
 
         <div className="stats__total-earnings">
-          Hello
+          TBD
         </div>
       </div> 
       
