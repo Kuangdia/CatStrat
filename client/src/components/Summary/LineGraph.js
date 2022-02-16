@@ -51,7 +51,7 @@ export const lineData = {
 export default function LineGraph({data}) {
   
   // step 1: loop through data and get data = [profits(y-axis)] and labels=[days(x-axis)]
-
+  //
 
 
   return <Line options={options} data={lineData} />;
