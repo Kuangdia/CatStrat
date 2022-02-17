@@ -5,7 +5,9 @@ import getAverageEarnings from '../../helpers/getAverageEarnings';
 
 import LineGraph from './LineGraph';
 import PieChart from './PieChart';
+import BarChart from './BarChart';
 import Statistic from './Statistic';
+import StrategyContainer from './StrategyContainer';
 
 export default function Summary({ data }) {
 
@@ -34,7 +36,6 @@ export default function Summary({ data }) {
 
   return (
     <section>
-      <div className='two-column'>
         <div className="stats">
 
           <Statistic
@@ -62,10 +63,10 @@ export default function Summary({ data }) {
           />
         </div>
 
-      </div>
       <div className="graphs-container">
         <LineGraph data={data} />
-        <PieChart data={data} />
+        <StrategyContainer data={data} />
+        
       </div>
 
     </section>

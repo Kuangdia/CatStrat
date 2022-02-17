@@ -2,14 +2,10 @@ import './Summary.scss';
 import getPieChartData from '../../helpers/getPieChartData';
 
 import { Doughnut, Pie } from "react-chartjs-2";
-import { Divider, Paper } from '@material-ui/core';
 import { randomColor } from 'randomcolor'
 
-import { Chart, ArcElement, Legend} from 'chart.js'
-Chart.register(
-  ArcElement,
-  Legend
-)
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 export default function PieChart({ data }) {
 
@@ -41,44 +37,36 @@ export default function PieChart({ data }) {
   }
 
   return (
-    <Paper elevation={3} className="pie" style={{ borderRadius: '30px' }}>
-      <h1 className="pie__title"> Strategies Used </h1>
-      <Divider className="divider" style={{ height: '2px', color: 'black' }} />
       <div className="pie">
         <Pie
+          width={400}
+          height={400}
           data={dataset}
           options={{
-            // title: {
-            //   display: true,
-            //   text: 'Average Rainfall per month',
-            //   fontSize: 20
-            // },
+            responsive: true,
+            maintainAspectRatio: false,
             legend: {
-              display: true, 
+              display: true,
               position: 'top'
             },
-            // animation: {
-            //   animateScale: true,
-            //   animateRotate: true
-            // },
+            animation: {
+              animateScale: true,
+              animateRotate: true
+            },
             datalabels: {
               display: true,
               color: "white",
             },
-            tooltips: {
-              backgroundColor: "#5a6e7f",
-            },
-            // layout: {
-            //     padding: {
-            //         top: 5,
-            //         bottom: 5,
-            //         left: 5,
-            //         right: 5
-            //     }
-            // }
+            layout: {
+              padding: {
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0
+              }
+            }
           }}
         />
       </div>
-    </Paper>
   );
 }

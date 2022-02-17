@@ -7,24 +7,24 @@ export default function getBarChartData(data) {
 
     let formattedData = data.reduce((acc, curr) => {
         if (acc[curr.strategy_name]) {
-            acc[curr.strategy_name] += 1;
+            acc[curr.strategy_name] += curr.profit;
         } else {
-            acc[curr.strategy_name] = 1;
+            acc[curr.strategy_name] = curr.profit;
         }
         return acc;
     }, {})
 
     const arrData = Object.entries(formattedData);
 
-    arrData.forEach(([strat, count]) => {
+    arrData.forEach(([strat, profit]) => {
         barLabels.push(strat);
-        barData.push(count);
+        barData.push(profit);
     });
     console.log('barLabels', barLabels)
     console.log('barData', barData)
 
 
-    return { barData, bar };
+    return { barData, barLabels };
 }
 
 

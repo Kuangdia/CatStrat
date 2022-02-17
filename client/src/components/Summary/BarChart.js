@@ -2,12 +2,11 @@ import './Summary.scss';
 import getBarChartData from '../../helpers/getBarChartData';
 
 import { Bar } from "react-chartjs-2";
-import { Divider, Paper } from '@material-ui/core';
 
 
 export default function BarChart({ data }) {
 
-    const { barData, barLabels } = getPieChartData(data)
+    const { barData, barLabels } = getBarChartData(data)
 
     const dataset = {
         labels: barLabels,
@@ -34,44 +33,46 @@ export default function BarChart({ data }) {
     }
 
     return (
-        <Paper elevation={3} className="pie" style={{ borderRadius: '30px' }}>
-            <h1 className="pie__title"> Strategies Used </h1>
-            <Divider className="divider" style={{ height: '2px', color: 'black' }} />
-            <div className="pie">
-                <Pie
-                    data={dataset}
-                    options={{
-                        // title: {
-                        //   display: true,
-                        //   text: 'Average Rainfall per month',
-                        //   fontSize: 20
-                        // },
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        },
-                        // animation: {
-                        //   animateScale: true,
-                        //   animateRotate: true
-                        // },
-                        datalabels: {
-                            display: true,
-                            color: "white",
-                        },
-                        tooltips: {
-                            backgroundColor: "#5a6e7f",
-                        },
-                        // layout: {
-                        //     padding: {
-                        //         top: 5,
-                        //         bottom: 5,
-                        //         left: 5,
-                        //         right: 5
-                        //     }
-                        // }
-                    }}
-                />
-            </div>
-        </Paper>
+
+        <div className="pie">
+            <Bar
+                width={400}
+                height={500}
+                data={dataset}
+                options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    // title: {
+                    //   display: true,
+                    //   text: 'Average Rainfall per month',
+                    //   fontSize: 20
+                    // },
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    // animation: {
+                    //   animateScale: true,
+                    //   animateRotate: true
+                    // },
+                    datalabels: {
+                        display: true,
+                        color: "white",
+                    },
+                    tooltips: {
+                        backgroundColor: "#5a6e7f",
+                    },
+                    layout: {
+                        padding: {
+                            top: 0,
+                            bottom: 0,
+                            left: 25,
+                            right: 25
+                        }
+                    }
+                }}
+            />
+        </div>
+
     );
 }
