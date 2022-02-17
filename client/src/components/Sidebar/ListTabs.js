@@ -15,19 +15,11 @@ import "./ListTabs.scss";
 
 import Axios from "axios";
 
-
-
 export default function ListTabs(props) {
 
   const userID = localStorage.getItem("userID");
 
-  const sendGetReq = (target, userID) => {
-    Axios.get(`/${target}`, {params: { userID }})
-      .then(res => {
-        console.log("records data", res.data);
-      })
-      .catch(err => console.log(err));
-  }
+  
   
   return (
     <React.Fragment>
@@ -45,7 +37,7 @@ export default function ListTabs(props) {
         <ListItemText primary="Profile" className="hello" />
       </ListItemButton>
 
-      <ListItemButton onClick={() => {sendGetReq("calendar", userID)}} >
+      <ListItemButton>
         <ListItemIcon>
           <TodayIcon className="hello" />
         </ListItemIcon>
