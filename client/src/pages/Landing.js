@@ -7,10 +7,11 @@ import Footer from '../components/Homepage/Footer';
 
 function Home() {
   const video = "https://streamable.com/e8vrxk";
+  const videoHome = "https://streamable.com/5nnu5j"
 
   return (
     <>
-      <Homepage />
+      <Homepage Video={videoHome} />
       <About />
       <InfoSection Video={video} {...discover}/>
       <InfoSection {...manage}/>

@@ -42,7 +42,6 @@ export default function Dashboard(props) {
           <Content />
         </div>
       </main>
-      {/* <button onClick={log}></button> */}
     </>
   );
 }

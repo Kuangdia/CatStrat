@@ -6,6 +6,7 @@
   height: 6rem;
   display: flex;
   justify-content: flex-end;
+  z-index: 10;
 
   button {
     margin: 0;
@@ -80,4 +81,14 @@
     height: 2rem;
   }
 
+}
+
+.searchbar-placement {
+  display: flex;
+  align-items: center;
+  margin-right: 550px;
+}
+
+.logout {
+  cursor: pointer;
 }
