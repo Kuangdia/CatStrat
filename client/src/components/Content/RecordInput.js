@@ -4,12 +4,14 @@ import { useState } from "react";
 import NumberPicker from "react-widgets/NumberPicker";
 import DropdownList from "react-widgets/DropdownList";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { transformCalendarData } from "../../helpers/cleanCalendarData";
 
 export default function RecordInput(props) {
-  let navigate = useNavigate();
 
-  const { date, setShowForm, setCalendarData } = props;
+  const { date, 
+          setShowForm,
+          setCalendarData 
+        } = props;
 
   const [netBalance, setNetBalance] = useState(0);
   const [investAmount, setInvestAmount] = useState(0);
@@ -40,8 +42,14 @@ export default function RecordInput(props) {
       userID: localStorage.getItem("userID")
     })
       .then(res => {
-        alert(res.data);
-        
+        console.log("server sends back latest inserted data", res.data);
+        Axios.get("/calendar", {params: {userID: localStorage.getItem("userID")}})
+          .then(res => {
+            setCalendarData([...transformCalendarData(res.data)]);
+          })
+          .catch(err => {
+            console.log(err);
+          })
       });
   }
 

@@ -8,25 +8,16 @@ import Axios from "axios";
 import RecordInput from "./RecordInput";
 
 import "./Calendar.scss";
+import { transformCalendarData } from '../../helpers/cleanCalendarData';
 
 export default function Calendar() {
   const [calendarData, setCalendarData] = useState([]);
 
-  const transformCalendarData = (records) => {
-    return records.map(record => {
-      return {
-        title: record.profit.toString(),
-        date: record.day.slice(0, 10)
-      }
-    })
-  }
-
   const sendGetReq = (target, userID) => {
     Axios.get(`/${target}`, {params: { userID }})
       .then(res => {
-        console.log("recorconsods data", res.data);
+        // console.log("recorconsods data", res.data);
         setCalendarData([...transformCalendarData(res.data)]);
-        console.log("calendar data:", calendarData);
       })
       .catch(err => console.log(err));
   }
@@ -59,7 +50,9 @@ export default function Calendar() {
       {showForm? <RecordInput 
         setShowForm={setShowForm}
         date={date}
-        setCalendarData={ setCalendarData }
+        setCalendarData={ 
+          setCalendarData 
+        }
       /> : <></>}
     </div>
   );
