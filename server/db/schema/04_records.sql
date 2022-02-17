@@ -4,6 +4,8 @@ CREATE TABLE records (
   id SERIAL PRIMARY KEY NOT NULL,
   profit FLOAT NOT NULL,
   stock_option BOOLEAN NOT NULL DEFAULT TRUE,
+  stock_symbol VARCHAR(50) NOT NULL,
+  investment FLOAT NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   strategy_id INTEGER REFERENCES strategies(id) ON DELETE CASCADE,
   day DATE NOT NULL,
