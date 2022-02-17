@@ -8,24 +8,29 @@
     margin-left:7em;
     background-color: $content-background;
 
-    &__total-earnings {
+    &__container {
         display: flex;
         flex-direction: row;
-        width: 17em;
+        width: 18em;
         height: 9em;
         padding: 20px;
         border-radius: 25px;
         background-color: white;
 
     }   
+    &__text {
+        display: flex;
+        flex-direction: column;
+    }
 
+    
     &__image {
         width: 60px;
         height: 60px;
         margin-right: 8px;
         margin-top: 25px;
     }
-
+    
     &__data {
         font-size: 35px;
         font-weight: bold;
@@ -34,6 +39,10 @@
         // font-family: 'Comic Neue';
     }
     
+    &__label {
+        margin-left:10px;
+        margin-top: 10px;
+    }
 }
 
 
@@ -42,7 +51,7 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
-
+    
 }
 
 .line-graph {
@@ -67,4 +76,9 @@
     margin-top: 4px;
     height: 3px;
     width: 80%;
+}
+
+
+.pie {
+    margin-right: 150px;
 }

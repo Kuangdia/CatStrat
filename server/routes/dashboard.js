@@ -13,7 +13,8 @@ const dashboard = (db) => {
         //   WHERE records.user_id = $1
         //   ORDER BY records.id`
 
-        const query = `SELECT DISTINCT records.* FROM records
+        const query = `SELECT DISTINCT records.*, strategy_name FROM records
+          JOIN strategies ON records.strategy_id = strategies.id
           WHERE user_id = $1
           ORDER BY records.day`
       

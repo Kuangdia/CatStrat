@@ -39,24 +39,24 @@ export default function Summary({ data }) {
         <Statistic
           label={'Total Earnings'}
           data={totalEarnings}
-          image='logo192.png'
+          image='sum.png'
         />
 
         <Statistic
-          label={'Total Earnings'}
-          data={totalEarnings}
-          image='logo192.png'
-        />
-
-        <Statistic
-          label={'Total Earnings'}
+          label={'Average Daily Earnings'}
           data={averageEarnings}
+          image='average.png'
+        />
+
+        <Statistic
+          label={'Return on Investment'}
+          data={'34%'}
           image='logo192.png'
         />
 
         <Statistic
-          label={'Total Earnings'}
-          data={'$532.84'}
+          label={' TBD '}
+          data={'TBD'}
           image='logo192.png'
         />
       </div>
