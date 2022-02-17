@@ -40,7 +40,7 @@ export default function PieChart({ data }) {
 
   return (
     <Paper elevation={3} className="pie" style={{ borderRadius: '30px' }}>
-      <h1 className="title"> Strategies Used </h1>
+      <h1 className="pie__title"> Strategies Used </h1>
       <Divider className="divider" style={{ height: '2px', color: 'black' }} />
       <div className="pie">
         <Pie

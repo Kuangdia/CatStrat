@@ -55,8 +55,8 @@ export default function Summary({ data }) {
         />
 
         <Statistic
-          label={' TBD '}
-          data={'TBD'}
+          label={'Better than others in your money bracket'}
+          data={'15%'}
           image='logo192.png'
         />
       </div>
