@@ -2,6 +2,14 @@ import './Summary.scss';
 import getBarChartData from '../../helpers/getBarChartData';
 
 import { Bar } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    Legend
+} from 'chart.js';
+
+ChartJS.register(
+    Legend
+);
 
 
 export default function BarChart({ data }) {
@@ -12,7 +20,6 @@ export default function BarChart({ data }) {
         labels: barLabels,
         datasets: [
             {
-                label: 'Rainfall',
                 backgroundColor: [
                     '#B21F00',
                     '#C9DE00',
@@ -27,7 +34,8 @@ export default function BarChart({ data }) {
                     '#003350',
                     // '#35014F'
                 ],
-                data: barData
+                data: barData,
+                label: 'label remove me!'
             }
         ]
     }
@@ -36,8 +44,8 @@ export default function BarChart({ data }) {
 
         <div className="pie">
             <Bar
-                width={400}
-                height={500}
+                width={450}
+                height={400}
                 data={dataset}
                 options={{
                     responsive: true,
@@ -48,7 +56,7 @@ export default function BarChart({ data }) {
                     //   fontSize: 20
                     // },
                     legend: {
-                        display: true,
+                        display: false,
                         position: 'top'
                     },
                     // animation: {
@@ -56,11 +64,11 @@ export default function BarChart({ data }) {
                     //   animateRotate: true
                     // },
                     datalabels: {
-                        display: true,
+                        display: false,
                         color: "white",
                     },
                     tooltips: {
-                        backgroundColor: "#5a6e7f",
+                        backgroundColor: "#FFFFFF",
                     },
                     layout: {
                         padding: {
