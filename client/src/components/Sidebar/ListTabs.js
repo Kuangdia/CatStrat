@@ -13,49 +13,50 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import "./ListTabs.scss";
 
 export default function ListTabs(props) {
-  
+
+
   return (
     <React.Fragment>
       <ListItemButton onClick={() => {console.log(props.wow)}} >
         <ListItemIcon>
           <DashboardIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" className="hello" />
+        <ListItemText primary="Dashboard" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
       </ListItemButton>
 
       <ListItemButton>
         <ListItemIcon>
           <AccountCircleIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Profile" className="hello" />
+        <ListItemText primary="Profile" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
       </ListItemButton>
 
       <ListItemButton>
         <ListItemIcon>
           <TodayIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Calendar" className="hello" />
+        <ListItemText primary="Calendar" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
       </ListItemButton>
 
       <ListItemButton>
         <ListItemIcon>
           <AssignmentIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Strategy Info" className="hello" />
+        <ListItemText primary="Strategy Info" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
       </ListItemButton>
 
       <ListItemButton>
         <ListItemIcon>
           <CompareArrowsIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Comparison" className="hello" />
+        <ListItemText primary="Comparison" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
       </ListItemButton>
 
       <ListItemButton>
         <ListItemIcon>
           <LeaderboardIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Leaderboard" className="hello" />
+        <ListItemText primary="Leaderboard" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
       </ListItemButton>
     </React.Fragment>
   );
