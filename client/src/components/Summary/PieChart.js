@@ -3,6 +3,7 @@ import getPieChartData from '../../helpers/getPieChartData';
 
 import { Doughnut, Pie } from "react-chartjs-2";
 import { Divider, Paper } from '@material-ui/core';
+import { randomColor } from 'randomcolor'
 
 import { Chart, ArcElement, Legend} from 'chart.js'
 Chart.register(
@@ -13,6 +14,7 @@ Chart.register(
 export default function PieChart({ data }) {
 
   const { pieData, pieLabels } = getPieChartData(data)
+  let random = randomColor();
 
   const dataset = {
     labels: pieLabels,
@@ -26,13 +28,13 @@ export default function PieChart({ data }) {
           '#00A6B4',
           // '#6800B4'
         ],
-        hoverBackgroundColor: [
-          '#501800',
-          '#4B5000',
-          '#175000',
-          '#003350',
-          // '#35014F'
-        ],
+        // hoverBackgroundColor: [
+        //   '#501800',
+        //   '#4B5000',
+        //   '#175000',
+        //   '#003350',
+        //   // '#35014F'
+        // ],
         data: pieData
       }
     ]

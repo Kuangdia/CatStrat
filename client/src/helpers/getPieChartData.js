@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns';
 // var parseISO = require('date-fns/parseISO');
 
-export default function getLineGraphData(data) {
+export default function getPieChartData(data) {
     const pieData = [];
     const pieLabels = [];
 

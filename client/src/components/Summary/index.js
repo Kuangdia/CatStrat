@@ -34,31 +34,34 @@ export default function Summary({ data }) {
 
   return (
     <section>
-      <div className="stats">
+      <div className='two-column'>
+        <div className="stats">
 
-        <Statistic
-          label={'Total Earnings'}
-          data={totalEarnings}
-          image='sum.png'
-        />
+          <Statistic
+            label={'Total Earnings'}
+            data={totalEarnings}
+            image='sum.png'
+          />
 
-        <Statistic
-          label={'Average Daily Earnings'}
-          data={averageEarnings}
-          image='average.png'
-        />
+          <Statistic
+            label={'Average Daily Earnings'}
+            data={averageEarnings}
+            image='average.png'
+          />
 
-        <Statistic
-          label={'Return on Investment'}
-          data={'34%'}
-          image='logo192.png'
-        />
+          <Statistic
+            label={'Return on Investment'}
+            data={'34%'}
+            image='logo192.png'
+          />
 
-        <Statistic
-          label={'Better than others in your money bracket'}
-          data={'15%'}
-          image='logo192.png'
-        />
+          <Statistic
+            label={'Better than others in your money bracket'}
+            data={'15%'}
+            image='logo192.png'
+          />
+        </div>
+
       </div>
       <div className="graphs-container">
         <LineGraph data={data} />
