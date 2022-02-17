@@ -14,7 +14,7 @@ export default function Navbar(props) {
 
         <div className="navbar__notice">
           <button>
-          <Badge badgeContent={199} color="success">
+          <Badge badgeContent={229} color="success">
             {/* <NotificationsNoneIcon className="navbar__icon"/> */}
             <NotificationsIcon className="navbar__icon"/>
           </Badge>

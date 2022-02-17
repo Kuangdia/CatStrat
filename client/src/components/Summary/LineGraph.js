@@ -1,77 +1,69 @@
 import React from 'react';
 import getLineGraphData from '../../helpers/getLineGraphData';
-
+import { Divider, Paper } from '@material-ui/core';
 
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
 } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
 );
 
- const options = {
-  responsive: true,
-//   maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
-
-// const labels = ['Jan 21', 'Feb 21', 'Mar 21', 'Apr 21', 'May', 'June', 'July'];
-
-// const lineData = {
-//   labels,
-//   datasets: [
-//     {
-//       label: 'Dataset 1',
-//       data: [12, 14, 15, 16, 21, 22, 23],
-//       borderColor: 'rgb(255, 99, 132)',
-//       backgroundColor: 'rgba(255, 99, 132, 0.5)',
-//     },
-//   ],
-// };
 
 export default function LineGraph({ data }) {
+
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+            padding: {
+                top: 30,
+                bottom: 35,
+                left: 35,
+                right: 50
+            }
+        }
+    };
 
     const { lineData, lineLabels } = getLineGraphData(data)
 
     const lineGraphData = {
-          labels: lineLabels,
-          datasets: [
+        labels: lineLabels,
+        datasets: [
             {
-              label: 'Dataset 1',
-              data: lineData,
-              borderColor: 'rgb(255, 99, 132)',
-              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                label: 'Earnings',
+                data: lineData,
+                borderColor: '#303F9F',
+                backgroundColor: '#303F9F',
+                tension: 0.15
             },
-          ],
-        };
+        ],
+    };
 
 
 
-  return (
-      <Line className="line-graph"
-        options={options} 
-        data={lineGraphData} 
-      />
+    return (
+        <Paper elevation={3} className="line-graph" style={{ borderRadius: '30px' }}>
+            <h1 className="title"> Overview </h1>
+            <Divider className="divider" style={{ height: '2px', color: 'black' }} />
+            <div>
+                <Line
+                    options={options}
+                    data={lineGraphData}
+                    width={850}
+                    height={500}
+                />
+            </div>
+        </Paper>
     );
-
 }

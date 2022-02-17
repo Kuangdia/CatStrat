@@ -7,7 +7,7 @@ export default function getLineGraphData(data) {
     let arrDayProfit = data.map((record) => {
         const { day } = record
         const month = Number(format(parseISO(day), 'M')) - 1;
-        const year = Number(format(parseISO(day), 'yy'));
+        const year = Number(format(parseISO(day), 'yyyy'));
 
         return { profit: record.profit, month, year };
     });
@@ -50,11 +50,11 @@ export default function getLineGraphData(data) {
     // check current month
     const currentDate = new Date();
     console.log('current date', currentDate);
-    const formattedCurrentDate = `${format(currentDate, 'MMM')} ${format(currentDate, 'yy')}`;
+    const formattedCurrentDate = `${format(currentDate, 'MMM')} ${format(currentDate, 'yyyy')}`;
 
-    // find starting index and ending index for our arrays
+    // find starting index and ending index for our arrays 
     const startIndex = lineData.findIndex((profit) => profit > 0)
-    const endIndex = lineLabels.findIndex((month) => month === formattedCurrentDate);
+    const endIndex = lineLabels.findIndex((month) => month === formattedCurrentDate) + 1;
 
     // slice arrays based on starting index and ending index
     lineData = lineData.slice(startIndex, endIndex);

@@ -1,4 +1,4 @@
-INSERT INTO records (profit, stock_option, stock_symbol, investmnet, user_id, strategy_id, day) 
+INSERT INTO records (profit, stock_option, stock_symbol, investment, user_id, strategy_id, day) 
 VALUES 
 (200, true, "AAPL", 3020, 1, 1, '2022-02-1'),
 (305, true, "AAPL", 4021, 1, 2, '2022-02-4'),
