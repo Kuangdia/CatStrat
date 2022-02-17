@@ -82,6 +82,7 @@ export default function Calendar() {
             setStock={ setStock }
             recordID={ recordID }
             setRecordID={ setRecordID }
+            render={ render }
             setRender={ setRender }
           /> : <></>
         }

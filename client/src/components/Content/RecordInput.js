@@ -22,7 +22,8 @@ export default function RecordInput(props) {
     setStock,
     recordID,
     setRecordID,
-    setRender
+    setRender,
+    render
   } = props;
   
   const userID = localStorage.getItem("userID");
@@ -47,7 +48,7 @@ export default function RecordInput(props) {
       alert(res.data);
       clear();
       setShowForm(false);
-      setRender(true);
+      setRender(!render);
     })
     .catch(err => {
       console.log(err.message);
@@ -68,7 +69,7 @@ export default function RecordInput(props) {
     })
       .then(res => {
         console.log("server sends back latest inserted data", res.data);
-        setRender(true);
+        setRender(!render);
         close();
       });
   }

@@ -11,7 +11,8 @@ export function transformCalendarData (records) {
 }
 
 export function sendGetReq(target, userID, setCalendarData) {
-  Axios.get(`/${target}`, {params: { userID }})
+  //GET token from lcoalS request header 
+  Axios.get(`/${target}`, {params: { userID }})        //, {headers})
     .then(res => {
       // console.log("recorconsods data", res.data);
       setCalendarData([...transformCalendarData(res.data)]);
