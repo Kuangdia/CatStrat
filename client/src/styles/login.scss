@@ -19,7 +19,7 @@
   // box-sizing: border-box;
   // border: solid rgb(170, 204, 215);
   margin-left: 80px;
-  margin-top: 100px;
+  margin-top: 130px;
 }
 
 .center-form {
@@ -33,18 +33,22 @@
   margin: auto;
 }
 
+.text-dec {
+  text-decoration: underline;
+}
+
 #span-text {
   font-weight: 100;
 }
 
-button {
+.buttonid {
   align-self: center;
   box-sizing: border-box;
   padding: 20px 50px;
   font-size: 16px;
   margin-right: 275px;
-  margin-top: 44px;
-  background: #000;
+  margin-top: 10px;
+  background: #74c947;
   color: #fff;
   border: 0px;
   border-radius: 4px;
@@ -53,7 +57,7 @@ button {
   font-family: sans-serif;
 
   &:hover {
-    opacity: 0.80;
+    background: #c82828;
   }
 }
 
@@ -63,6 +67,8 @@ input {
 }
 
 .login-text {
+  font-family: "Fira Sans";
+  margin-bottom: 40px;
   color: #000;
   font-size: 32px;
 }

@@ -7,27 +7,27 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   let navigate = useNavigate();
-  const [loginUser, setLoginUser] = useState("")
-  const [loginPassword, setLoginPassword] = useState("")
-
-  const [loginStatus, setLoginStatus] = useState(false)
+  const [loginUser, setLoginUser] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
 
   Axios.defaults.withCredentials = true;
 
   const login = () => {
     // console.log("clicked")
-    Axios.post('http://localhost:8080/login', {
+    Axios.post('/login', {
       username: loginUser, 
       password: loginPassword
     }).then((response) => {
       console.log("react login", response)
       if (response.data.message) {
-        setLoginStatus(false)
+        setLoginStatus(false);
+        console.log(response.data.message);
       } else {
-        setLoginStatus(true)
-        localStorage.setItem('token', response.data.token)
-        localStorage.setItem('userID', response.data.userID)
-        localStorage.setItem('username', response.data.username)
+        setLoginStatus(true);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userID', response.data.userID);
+        localStorage.setItem('username', response.data.username);
       }
     })
   }
@@ -42,17 +42,18 @@ const Login = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
+    const userID = localStorage.getItem('userID');
     
-    if (token) {
-      setLoginStatus(true)
+    if (token && userID) {
+      setLoginStatus(true);
     } 
 
     if (loginStatus) {
-      return navigate("/dashboard")
+      return navigate("/dashboard");
     }
 
-  }, [loginStatus])
+  }, [loginStatus]);
 
   return (
     <div className="container-cat">
@@ -60,13 +61,13 @@ const Login = () => {
         <img id="cat" src={cat} alt="cat"/>
       </div>
       <div className="login-form">
-        <h4 className="login-text">Log in to CatStrat</h4>
+        <h4 className="login-text">Login</h4>
         <div className="center-form">
         <span id="span-text">Username</span>
         <input 
           type="text"
           name="username"
-          placeholder="Username" 
+          // placeholder="Username"
           value={loginUser}
           onChange={(e) => {
           setLoginUser(e.target.value)
@@ -76,13 +77,14 @@ const Login = () => {
         <input 
           type="password" 
           name="password"
-          placeholder="Password" 
+          // placeholder="Password" 
           value={loginPassword}
           onChange={(e) => {
           setLoginPassword(e.target.value)
         }}
         />
-        <button onClick={login}>Log in</button>
+        <p className="text-dec">Need to Create An Account? Register Here.</p>
+        <button className="buttonid" onClick={login}>Log in</button>
         </div>
       </div>
     </div>

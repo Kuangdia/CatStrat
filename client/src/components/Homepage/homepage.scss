@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@500&family=DM+Serif+Text&family=Patua+One&display=swap");
 
 .hero {
-  font-family: "DM Serif Text";
+  font-family: "sans serif";
   visibility: hidden;
   height: 100vh;
   .container {
@@ -15,12 +15,14 @@
       margin: 0 24px;
       height: 100vh;
       .hero-content {
-        width: 100%;
+        width: 90%;
         margin-bottom: 25px;
         .hero-content-inner {
-          width: 450px;
-          color: #323232;
-          margin: 0 auto;
+          margin-right: 50px;
+          margin-left: 200px;
+          width: 400px;
+          color: #232222;
+          // margin: 0 auto;
           // margin-top: 20px;
           h1 {
             font-weight: 600;
@@ -38,9 +40,9 @@
             font-size: 24px;
             line-height: 24px;
             font-weight: 100;
-            color: rgb(149, 149, 149);
+            color: rgb(126, 126, 126);
             padding-right: 28px;
-            margin-bottom: 56px;
+            margin-bottom: 50px;
             // color: white;
           }
           .btn-row {
@@ -55,6 +57,7 @@
               left: 1px;
             }
             button {
+              font-family: sans-serif;
               color: #74c947;
               background: none;
               border: none;
@@ -68,6 +71,9 @@
               align-items: center;
               position: relative;
               left: 64px;
+              // &:hover {
+              //   font-size: 20px;;
+              // }
               &:focus {
                 outline: none;
               }
@@ -84,6 +90,10 @@
                 margin-left: 24px;
                 left: 65px;
                 transform-origin: center center;
+                // &:hover {
+                //   font-size: 20px;
+                //   margin-left: 75px;
+                // }
               }
             }
           }

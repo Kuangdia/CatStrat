@@ -6,7 +6,7 @@ export const AboutContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("https://t3.ftcdn.net/jpg/04/40/42/74/360_F_440427468_FJfbVBl4K7BsEITyZF7gF1rS1cx3Di9J.jpg");
+  background-image: url("https://www.wallpaperflare.com/static/658/837/172/minimalism-cat-simple-background-abstract-wallpaper.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 `
