@@ -62,7 +62,7 @@ export default function Summary({ data }) {
       </div>
       <div className="graphs-container">
         <LineGraph data={data} />
-        <PieChart />
+        <PieChart data={data} />
       </div>
 
     </section>

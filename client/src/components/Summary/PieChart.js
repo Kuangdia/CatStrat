@@ -1,51 +1,82 @@
 import './Summary.scss';
+import getPieChartData from '../../helpers/getPieChartData';
+
 import { Doughnut, Pie } from "react-chartjs-2";
-import {Chart, ArcElement} from 'chart.js'
-Chart.register(ArcElement);
+import { Divider, Paper } from '@material-ui/core';
 
-const state = {
-  labels: ['January', 'February', 'March',
-           'April', 'May'],
-  datasets: [
-    {
-      label: 'Rainfall',
-      backgroundColor: [
-        '#B21F00',
-        '#C9DE00',
-        '#2FDE00',
-        '#00A6B4',
-        '#6800B4'
-      ],
-      hoverBackgroundColor: [
-      '#501800',
-      '#4B5000',
-      '#175000',
-      '#003350',
-      '#35014F'
-      ],
-      data: [65, 59, 80, 81, 56]
-    }
-  ]
-}
+import { Chart, ArcElement, Legend} from 'chart.js'
+Chart.register(
+  ArcElement,
+  Legend
+)
 
-export default function PieChart() {
-    return (
+export default function PieChart({ data }) {
+
+  const { pieData, pieLabels } = getPieChartData(data)
+
+  const dataset = {
+    labels: pieLabels,
+    datasets: [
+      {
+        label: 'Rainfall',
+        backgroundColor: [
+          '#B21F00',
+          '#C9DE00',
+          '#2FDE00',
+          '#00A6B4',
+          // '#6800B4'
+        ],
+        hoverBackgroundColor: [
+          '#501800',
+          '#4B5000',
+          '#175000',
+          '#003350',
+          // '#35014F'
+        ],
+        data: pieData
+      }
+    ]
+  }
+
+  return (
+    <Paper elevation={3} className="pie" style={{ borderRadius: '30px' }}>
+      <h1 className="title"> Strategies Used </h1>
+      <Divider className="divider" style={{ height: '2px', color: 'black' }} />
       <div className="pie">
         <Pie
-          data={state}
+          data={dataset}
           options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:20
+            // title: {
+            //   display: true,
+            //   text: 'Average Rainfall per month',
+            //   fontSize: 20
+            // },
+            legend: {
+              display: true, 
+              position: 'top'
             },
-            legend:{
-              display:true,
-              position:'right'
-            }
+            // animation: {
+            //   animateScale: true,
+            //   animateRotate: true
+            // },
+            datalabels: {
+              display: true,
+              color: "white",
+            },
+            tooltips: {
+              backgroundColor: "#5a6e7f",
+            },
+            // layout: {
+            //     padding: {
+            //         top: 5,
+            //         bottom: 5,
+            //         left: 5,
+            //         right: 5
+            //     }
+            // }
           }}
         />
-
       </div>
-    );
+    </Paper>
+  );
 }
