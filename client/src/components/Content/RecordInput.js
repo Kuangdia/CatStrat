@@ -128,12 +128,12 @@ export default function RecordInput(props) {
         <br />
         <button 
           type="submit"
-          onClick={cancel}
+          onClick={ cancel }
         >Cancel</button>
 
         <button 
           type="submit"
-          onClick={submit}
+          onClick={ submit }
         >Submit</button>
       </form>
     </>

@@ -12,6 +12,8 @@ import { transformCalendarData } from '../../helpers/cleanCalendarData';
 
 export default function Calendar() {
   const [calendarData, setCalendarData] = useState([]);
+  const [date, setDate] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
   const sendGetReq = (target, userID) => {
     Axios.get(`/${target}`, {params: { userID }})
@@ -28,32 +30,31 @@ export default function Calendar() {
     sendGetReq("calendar", userID);
   }, [])
 
-  const [date, setDate] = useState("");
-
+  
   const handleDateClick = (arg) => {
     setDate(arg.dateStr);
     setShowForm(!showForm);
   }
 
-  const [showForm, setShowForm] = useState(false);
+  
 
   return (
     <div className='calendar-container'>
-    <div className="calendar">
-      <FullCalendar
-        plugins={[ dayGridPlugin, interactionPlugin ]}
-        initialView="dayGridMonth"
-        events={ calendarData }
-        dateClick={ handleDateClick }
-      />
-    </div>
-      {showForm? <RecordInput 
-        setShowForm={setShowForm}
-        date={date}
-        setCalendarData={ 
-          setCalendarData 
-        }
-      /> : <></>}
+      <div className="calendar">
+        <FullCalendar
+          plugins={[ dayGridPlugin, interactionPlugin ]}
+          initialView="dayGridMonth"
+          events={ calendarData }
+          dateClick={ handleDateClick }
+        />
+      </div>
+        {showForm? <RecordInput 
+          setShowForm={setShowForm}
+          date={date}
+          setCalendarData={ 
+            setCalendarData 
+          }
+        /> : <></>}
     </div>
   );
 }
