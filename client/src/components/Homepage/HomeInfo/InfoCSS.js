@@ -3,10 +3,6 @@ import styled from 'styled-components'
 export const InfoContainer = styled.div`
   color: #000;
   background: ${({lightBg}) => (lightBg ? '#fff' : '#f5f5f5')};
-
-  @media screen and (max-width: 768px) {
-    padding: 100px 0;
-  }
 `
 export const VideoBg = styled.div`
   width: 100%;
@@ -34,10 +30,6 @@ export const InfoRow = styled.div`
   align-items: center;
   grid-auto-columns: auto;
   grid-template-areas: ${({imgStart}) => (imgStart ? `'col2 col1'` : `'col1 col2'`)};
-
-  // @media screen and (max-width: 768px) {
-  //   grid-template-areas: ${({imgStart}) => (imgStart ? `'col1 col2'` : `'col1 col1' 'col2 col2'`)};
-  // }
 `
 
 export const Column1 = styled.div`
@@ -75,10 +67,6 @@ export const Heading = styled.h1`
   // line-height: 11px;
   font-weight: 600px;
   color: ${({lightText}) => (lightText ? '#f7f8fa' : '#010606' )};
-
-  @media screen and (max-width: 480px) {
-    font-size: 32px;
-  }
 `
 
 export const Subtitle = styled.p`
