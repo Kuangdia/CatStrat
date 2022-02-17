@@ -1,4 +1,7 @@
 import React from 'react';
+import getLineGraphData from '../../helpers/getLineGraphData';
+
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -6,9 +9,8 @@ import {
   PointElement,
   LineElement,
   Title,
-  Tooltip,
-  Legend,
 } from 'chart.js';
+
 import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -17,12 +19,11 @@ ChartJS.register(
   PointElement,
   LineElement,
   Title,
-  Tooltip,
-  Legend
 );
 
-export const options = {
+ const options = {
   responsive: true,
+//   maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'top',
@@ -34,26 +35,43 @@ export const options = {
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+// const labels = ['Jan 21', 'Feb 21', 'Mar 21', 'Apr 21', 'May', 'June', 'July'];
 
-export const lineData = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [12, 14, 15, 16, 21, 22, 23],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-  ],
-};
+// const lineData = {
+//   labels,
+//   datasets: [
+//     {
+//       label: 'Dataset 1',
+//       data: [12, 14, 15, 16, 21, 22, 23],
+//       borderColor: 'rgb(255, 99, 132)',
+//       backgroundColor: 'rgba(255, 99, 132, 0.5)',
+//     },
+//   ],
+// };
 
-export default function LineGraph({data}) {
-  
-  // step 1: loop through data and get data = [profits(y-axis)] and labels=[days(x-axis)]
-  //
+export default function LineGraph({ data }) {
+
+    const { lineData, lineLabels } = getLineGraphData(data)
+
+    const lineGraphData = {
+          labels: lineLabels,
+          datasets: [
+            {
+              label: 'Dataset 1',
+              data: lineData,
+              borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
+          ],
+        };
 
 
-  return <Line options={options} data={lineData} />;
+
+  return (
+      <Line className="line-graph"
+        options={options} 
+        data={lineGraphData} 
+      />
+    );
 
 }

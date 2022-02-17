@@ -2,7 +2,6 @@ import './Summary.scss';
 import { useState } from 'react';
 import getTotalEarnings from '../../helpers/getTotalEarnings';
 import getAverageEarnings from '../../helpers/getAverageEarnings';
-// import getLineGraphData from '../../helpers/getLineGraphData';
 
 import LineGraph from './LineGraph';
 
@@ -11,7 +10,6 @@ export default function Summary({data}) {
   // Organize and manipulate data
   const totalEarnings = getTotalEarnings(data);
   const averageEarnings = getAverageEarnings(data);
-  // const lineGraphData = getLineGraphData(data);
 
   // Store data after being manipulated
   // const [displayData, setDisplayData] = useState({})
@@ -39,8 +37,6 @@ export default function Summary({data}) {
       </div> 
 
       <LineGraph data={data}/>
-
-      
       
     </section>
   );
