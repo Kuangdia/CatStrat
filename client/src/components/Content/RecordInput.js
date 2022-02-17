@@ -4,58 +4,78 @@ import { useState } from "react";
 import NumberPicker from "react-widgets/NumberPicker";
 import DropdownList from "react-widgets/DropdownList";
 import Axios from "axios";
-import { transformCalendarData } from "../../helpers/cleanCalendarData";
 
 export default function RecordInput(props) {
 
-  const { date, 
-          setShowForm,
-          setCalendarData 
-        } = props;
-
-  const [netBalance, setNetBalance] = useState(0);
-  const [investAmount, setInvestAmount] = useState(0);
-  const [strategy, setStrategy] = useState("");
-  const [strategyID, setStrategyID] = useState("");
-  const [stock, setStock] = useState("");
+  const { 
+    date, 
+    setShowForm,
+    netBalance, 
+    setNetBalance,
+    investAmount, 
+    setInvestAmount,
+    strategy, 
+    setStrategy,
+    strategyID, 
+    setStrategyID,
+    stock, 
+    setStock,
+    recordID,
+    setRecordID,
+    setRender
+  } = props;
   
-
+  const userID = localStorage.getItem("userID");
+  
   function handleSubmit(e) {
     e.preventDefault();
     alert("You submit a form!");
   }
 
-  function cancel() {
+  function clear() {
     setNetBalance(0);
     setInvestAmount(0);
     setStrategy("");
+    setStrategyID("");
     setStock("");
+    setRecordID("");
+  }
+
+  function deleteRecord() {
+    Axios.delete(`/calendar/${recordID}`)
+    .then(res => {
+      alert(res.data);
+      clear();
+      setShowForm(false);
+      setRender(true);
+    })
+    .catch(err => {
+      console.log(err.message);
+    })
   }
 
   function submit() {
+    // if (recordID) {
+    //   put
+    // }
     Axios.post("/calendar", {
       netBalance,
       investAmount,
       strategyID,
       stock,
       date,
-      userID: localStorage.getItem("userID")
+      userID
     })
       .then(res => {
         console.log("server sends back latest inserted data", res.data);
-        Axios.get("/calendar", {params: {userID: localStorage.getItem("userID")}})
-          .then(res => {
-            setCalendarData([...transformCalendarData(res.data)]);
-          })
-          .catch(err => {
-            console.log(err);
-          })
+        setRender(true);
+        close();
       });
   }
 
   function close() {
+    clear();
     setShowForm(false);
-    cancel();
   }
 
   return (
@@ -71,7 +91,7 @@ export default function RecordInput(props) {
           id="balance"
           name="balance"
           type="text"
-          value={netBalance}
+          value={ netBalance }
           onChange={(e) => {
             setNetBalance(e.target.value)
           }}
@@ -82,17 +102,17 @@ export default function RecordInput(props) {
         </label>
         <NumberPicker
           id="investAmount"
-          defaultValue={investAmount}
+          defaultValue={ investAmount }
           step={1000}
-          onChange={value => setInvestAmount(value)}
+          onChange={e => setInvestAmount(e.target.value)}
         />
         <br />
         <label htmlFor="strategy">
           Investment Strategy
         </label>
         <DropdownList
-        id="strategy"
-          value={strategy}
+          id="strategy"
+          value={ strategy }
           onChange={nextValue => {
             setStrategy(nextValue.strategy);
             setStrategyID(nextValue.id);
@@ -111,7 +131,7 @@ export default function RecordInput(props) {
         </label>
         <DropdownList
         id="stock"
-          value={stock}
+          value={ stock }
           onChange={nextValue => {
             setStock(nextValue.stock);
           }}
@@ -124,12 +144,14 @@ export default function RecordInput(props) {
           ]}
         />
         <br />
-        <p>{date}</p>
+        <p>{ date }</p>
+        <p>RecordID: { recordID }</p>
         <br />
+
         <button 
           type="submit"
-          onClick={ cancel }
-        >Cancel</button>
+          onClick={ deleteRecord }
+        >Delete</button>
 
         <button 
           type="submit"
