@@ -29,12 +29,15 @@ export default function RecordInput(props) {
     setNetBalance,
     investAmount, 
     setInvestAmount,
-    strategy, 
-    setStrategy,
+
+    // strategy, 
+    // setStrategy,
+
     strategyID, 
     setStrategyID,
-    stock, 
-    setStock,
+
+    stockID, 
+    setStockID,
     recordID,
     setRecordID,
     setRender,
@@ -51,9 +54,9 @@ export default function RecordInput(props) {
   function clear() {
     setNetBalance(0);
     setInvestAmount(0);
-    setStrategy("");
+    // setStrategy("");
     setStrategyID("");
-    setStock("");
+    setStockID("");
     setRecordID("");
   }
 
@@ -78,7 +81,7 @@ export default function RecordInput(props) {
       netBalance,
       investAmount,
       strategyID,
-      stock,
+      stockID,
       date,
       userID
     })
@@ -118,9 +121,9 @@ export default function RecordInput(props) {
         </label>
         <NumberPicker
           id="investAmount"
-          defaultValue={ investAmount }
-          step={1000}
-          onChange={e => setInvestAmount(e.target.value)}
+          value={ investAmount }
+          step={ 100 }
+          onChange={ value => setInvestAmount(value) }
         />
         <br />
         <label htmlFor="strategy">
@@ -128,12 +131,11 @@ export default function RecordInput(props) {
         </label>
         <DropdownList
           id="strategy"
-          value={ strategy }
+          value={ strategyID }
           onChange={nextValue => {
-            setStrategy(nextValue.strategy);
             setStrategyID(nextValue.id);
           }}
-          datakey="id"
+          dataKey="id"
           textField="strategy"
           data={[
             { id: 1, strategy: "strat1" },
@@ -143,15 +145,15 @@ export default function RecordInput(props) {
         />
         <br />
         <label htmlFor="stock">
-          Stock/Option tick
+          Stock/Option ticker
         </label>
         <DropdownList
-        id="stock"
-          value={ stock }
+          id="stock"
+          value={ stockID }
           onChange={nextValue => {
-            setStock(nextValue.id);
+            setStockID(nextValue.id);
           }}
-          datakey="id"
+          dataKey="id"
           textField="stock"
           data={ stockData }
         />
