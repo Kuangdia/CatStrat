@@ -4,9 +4,9 @@ import Axios from 'axios';
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Content from '../components/Content';
-// import "../styles/dashboard.scss";
+import "../styles/dashboard.scss";
 import { useNavigate } from 'react-router-dom';
-// import "./Dashboard.scss";
+import Summary from '../components/Summary';
 
 export default function Dashboard(props) {
   const userID = localStorage.getItem('userID')
@@ -32,10 +32,10 @@ export default function Dashboard(props) {
         .then((res) => {
           console.log('response', res.data)
           setData(res.data)
-      })
+        })
     } else {
       navigate("/");
-   }
+    }
   }, [loginUserID]);
 
 
@@ -47,7 +47,9 @@ export default function Dashboard(props) {
           <Navbar
             loginUserID={loginUserID}
             setLoginUserID={setLoginUserID} />
-          <Content data={data} />
+          <div className="content">
+            <Summary data={data} />
+          </div>
         </div>
       </main>
     </>

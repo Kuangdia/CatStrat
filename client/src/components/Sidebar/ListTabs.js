@@ -41,6 +41,12 @@ export default function ListTabs(props) {
       navigate(`/`)
     }
   }
+
+  const styles = theme => ({
+    listItemText:{
+      fontSize:'2em',//Insert your required size
+    }
+  });
   
   return (
     <React.Fragment>
@@ -48,7 +54,7 @@ export default function ListTabs(props) {
         <ListItemIcon>
           <DashboardIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
+        <ListItemText primary="Dashboard" className="hello" />
       </ListItemButton>
 
       <ListItemButton onClick={() => {profileRoute(userID)}}>
@@ -71,21 +77,21 @@ export default function ListTabs(props) {
         <ListItemIcon>
           <AssignmentIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Strategy Info" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
+        <ListItemText primary="Strategy Info" className="hello" />
       </ListItemButton>
 
       <ListItemButton>
         <ListItemIcon>
           <CompareArrowsIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Comparison" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
+        <ListItemText primary="Comparison" className="hello" />
       </ListItemButton>
 
       <ListItemButton>
         <ListItemIcon>
           <LeaderboardIcon className="hello" />
         </ListItemIcon>
-        <ListItemText primary="Leaderboard" className="hello" primaryTypographyProps={{fontSize: '1em'}} />
+        <ListItemText primary="Leaderboard" className="hello" />
       </ListItemButton>
 
     </React.Fragment>
