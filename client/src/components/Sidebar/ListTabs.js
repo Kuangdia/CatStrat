@@ -11,20 +11,21 @@ import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 
 import "./ListTabs.scss";
+import "./Sidebar.scss";
 
 import Axios from "axios";
 
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import Today from '@mui/icons-material/Today';
 
 
 export default function ListTabs(props) {
   let navigate = useNavigate();
-  
+
   const userID = localStorage.getItem("userID");
 
   const sendGetReq = (target, userID) => {
-    Axios.get(`/${target}`, {params: { userID }})
+    Axios.get(`/${target}`, { params: { userID } })
       .then(res => {
         console.log("records data", res.data);
       })
@@ -39,60 +40,49 @@ export default function ListTabs(props) {
     if (userID) {
       navigate(`/`)
     }
-  }
+  };
 
-  const styles = theme => ({
-    listItemText:{
-      fontSize:'2em',//Insert your required size
-    }
-  });
-  
   return (
-    <React.Fragment>
-      <ListItemButton onClick={() => {dashboardRoute(userID)}}>
-        <ListItemIcon>
-          <DashboardIcon className="hello" />
-        </ListItemIcon>
-        <ListItemText primary="Dashboard" className="hello" />
-      </ListItemButton>
+    <div className='sidebar'>
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+        <div > 
+        <DashboardIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
+        <div className="label">Dashboard </div>
+      </button>
 
-      <ListItemButton onClick={() => {profileRoute(userID)}}>
-          <ListItemIcon>
-            <AccountCircleIcon className="hello" />
-          </ListItemIcon>
-          <ListItemText primary="Profile" className="hello"/>
-      </ListItemButton>
 
-      <ListItemButton>
-        <ListItemIcon>
-          <TodayIcon className="hello" />
-        </ListItemIcon>
-        <ListItemText 
-          primary="Calendar" 
-          className="hello" />
-      </ListItemButton>
+      <button className="nav-item" onClick={() => { profileRoute(userID) }} >
+        <div> 
+        <AccountCircleIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
+        <div className="label">Profile </div>
+      </button>
 
-      <ListItemButton>
-        <ListItemIcon>
-          <AssignmentIcon className="hello" />
-        </ListItemIcon>
-        <ListItemText primary="Strategy Info" className="hello" />
-      </ListItemButton>
 
-      <ListItemButton>
-        <ListItemIcon>
-          <CompareArrowsIcon className="hello" />
-        </ListItemIcon>
-        <ListItemText primary="Comparison" className="hello" />
-      </ListItemButton>
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+        <div> 
+        <TodayIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
+        <div className="label">Calendar </div>
+      </button>
+      
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+        <div> 
+        <AssignmentIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
+        <div className="label">Strategy Info </div>
+      </button>
 
-      <ListItemButton>
-        <ListItemIcon>
-          <LeaderboardIcon className="hello" />
-        </ListItemIcon>
-        <ListItemText primary="Leaderboard" className="hello" />
-      </ListItemButton>
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+        <CompareArrowsIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> 
+        <div className="label">Comparison </div>
+      </button>
 
-    </React.Fragment>
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item"  >
+        <div >
+          <LeaderboardIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
+        </div>
+        <div className="label">Leaderboard </div>
+      </button>
+
+
+    </div>
   );
 }

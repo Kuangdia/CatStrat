@@ -1,11 +1,16 @@
 @import "../../styles/variables.scss";
 
+.full-container {
+    // width: 100vh;
+    position:relative;
+}
+
 .stats {
     display:flex;
     justify-content: space-between;
-    margin-top:2.25em;
-    margin-right:5em;
-    margin-left:3.5em;
+    padding-top:2.25em;
+    padding-right:5em;
+    padding-left:3.5em;
     background-color: $content-background;
 
     &__container {
@@ -47,11 +52,13 @@
 
 
 .graphs-container{
-    width: 95%;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-between;
-    margin-left:3.5em;
+    padding-left:3.5em;
+    background-color: $content-background;
+
     
 }
 
