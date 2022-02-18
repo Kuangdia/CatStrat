@@ -8,8 +8,6 @@ import SearchBar from "./SearchBar/SearchBar";
 import Data from "./Data.json"
 import { Navigate, useNavigate } from "react-router-dom";
 
-
-
 export default function Navbar(props) {
   const navigate = useNavigate();
 
