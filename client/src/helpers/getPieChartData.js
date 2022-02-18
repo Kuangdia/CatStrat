@@ -20,8 +20,8 @@ export default function getPieChartData(data) {
         pieLabels.push(strat);
         pieData.push(count);
     });
-    console.log('pieLabels', pieLabels)
-    console.log('pieData', pieData)
+    // console.log('pieLabels', pieLabels)
+    // console.log('pieData', pieData)
 
 
     return { pieData, pieLabels };
