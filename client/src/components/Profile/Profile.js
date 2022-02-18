@@ -5,16 +5,16 @@ import Upvotes from '@mui/icons-material/ThumbUp';
 import Downvotes from '@mui/icons-material/ThumbDown';
 import Trophy from '@mui/icons-material/EmojiEvents';
 import {useState, useEffect} from 'react'
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa'
 import Button from '@mui/material/Button';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import { TextField } from '@mui/material';
 import {useParams} from 'react-router-dom'
 import Axios from "axios";
-// import { DataGrid } from '@mui/x-data-grid';
-import strategy from "./Data.json"
+import PieChart from './PieChart2';
+import { FcDown, FcUp } from "react-icons/fc";
+import classNames from 'classnames'
 
 import 'devextreme/dist/css/dx.material.blue.dark.css';
 import { ProgressBar } from 'devextreme-react/progress-bar';
@@ -24,47 +24,76 @@ import { ProgressBar } from 'devextreme-react/progress-bar';
 const Profile = () => {
   // const [loginID, setLoginID] = useState("")
   const [getData, setGetData] = useState("");
+  const [stratData, setStratData] = useState([]);
+  const [graphData, setGraphData] = useState([])
   // const [goal, setGoal] = useState(0)
   // const [profit, setProfit] = useState(0)
   // const [upvoteCount, setUpvoteCount] = useState(0)
   // const [downvoteCount, setDownvoteCount] = useState(0)
-  const [editProfile, setEditProfile] = useState(true)
+  const [editProfile, setEditProfile] = useState(false)
   const [follow, setFollow] = useState(false)
   const [removeFollow, setRemoveFollow] = useState(false)
   const [unfollow, setUnfollow] = useState(true)
   const [showFollow, setShowFollow] = useState(false);
+  const [showPurchase, setShowPurchase] = useState(true);
+  const [bought, setBought] = useState(false)
+  const [addLike, setAddLike] = useState(false)
+  const userID = localStorage.getItem("userID")
   const params = useParams()
   const id = params.id
+
+  const graphClass = classNames("graph-chart", {
+    "graph-chart--bought": bought,
+  })
 
   useEffect(() => {
     const userID = localStorage.getItem("userID")
 
-    Axios.get(`/profile/${id}}`, {params: {id}})
-      .then(res => {
-        console.log("resdata", res.data[0])
-        setGetData(res.data[0])
-        if (parseInt(userID) !== parseInt(id)) {
-          setShowFollow(true)
-        }
-        if (parseInt(userID) !== parseInt(id) && removeFollow === false) {
-          setFollow(true)
-          setUnfollow(false)
-        } else {
-          setFollow(false)
-          setUnfollow(true)
-        }
-        if (parseInt(userID) !== parseInt(id)) {
-          setEditProfile(false)
-        }
-      })
-      .catch(err => console.log(err));
+    Promise.all([
+      Axios.get(`/profile/${id}}`, {params: {id}}),
+      Axios.get(`http://localhost:8080/dashboard`, { params: { user_id: userID } }),
+      Axios.get("/strategies", {}),
+    ]).then((all) => {
+      
+      setGetData(all[0].data[0]);
+      console.log("all0", all[0].data)
+      setGraphData(all[1].data)
+      console.log("all1", all[1].data)
+      setStratData(all[2].data)
+      console.log("all2", all[2].data)
 
-  }, [removeFollow, id])
+      console.log(userID, id)
+      if (userID === id) {
+        setShowPurchase(true)
+        setBought(true)
+      }
+      if (userID !== id) {
+        setShowFollow(true)
+      } else {
+        setShowFollow(false)
+      }
+      if (parseInt(userID) !== parseInt(id) && removeFollow === false) {
+        setFollow(true)
+        setUnfollow(false)
+      } else {
+        setFollow(false)
+        setUnfollow(true)
+      }
+      if (userID == id) {
+        setEditProfile(true)
+      }
+    }).catch(err => console.log(err))
+
+  }, [removeFollow, id, bought, addLike])
+
+  const purchase = () => {
+    setBought(true);
+  }
 
   const followUser = () => {
     console.log("clicked")
     const userID = localStorage.getItem("userID")
-
+  
     Axios.post("/following", {userID, id})
       .then(res => {
         console.log("followed success!", res.data)
@@ -74,11 +103,11 @@ const Profile = () => {
       })
       .catch(err => console.log(err));
   }
-
+  
   const unfollowUser = () => {
     console.log("clicked")
     const userID = localStorage.getItem("userID")
-
+  
     Axios.post("/unfollow", {userID, id})
       .then(res => {
         console.log("unfollowed success!")
@@ -88,7 +117,39 @@ const Profile = () => {
       })
       .catch(err => console.log(err));
   }
-
+  
+  const like = () => {
+    console.log("clicked")
+  
+    Axios.post("/like", {id})
+      .then(res => {
+        console.log("success!")
+        setAddLike(!addLike)
+      })
+      .catch(err => console.log(err));
+  }
+  
+  const dislike = () => {
+    console.log("clicked")
+  
+    Axios.post("/dislike", {id})
+      .then(res => {
+        console.log("success!")
+        setAddLike(!addLike)
+      })
+      .catch(err => console.log(err));
+  }
+  
+  const upvote = (item_id) => {
+    console.log("clicked")
+  
+    Axios.post(`/strategy/${item_id}`)
+      .then(res => {
+        console.log("did you trigger?")
+        setAddLike(!addLike)
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
     <div className="profile-container">
@@ -110,7 +171,7 @@ const Profile = () => {
             <div className="profile-separator">
               <div className="follow-btn">
                 <div className="profile-username">{getData.username}<VerifiedIcon/></div>
-                {!showFollow ? <></> : <>{follow === true ? <Button size="small" variant="contained" onClick={followUser}>Follow</Button> : <Button size="small" variant="contained" onClick={unfollowUser} >Unfollow</Button>}</>}
+                {showFollow ? <>{follow === true ? <Button size="small" variant="contained" onClick={followUser}>Follow</Button> : <Button size="small" variant="contained" onClick={unfollowUser} >Unfollow</Button>}</> : <></> }
               </div>
               <div>
                 <div className="last-online">Last Online: 2 hours ago</div>
@@ -131,39 +192,44 @@ const Profile = () => {
             {editProfile && <Button id="edit-btn" size="small" variant="contained">Edit</Button>}
             <div className="progress" >
             <div className="profit-goal"></div>
-              <h4 className="profit-goal-text">Profit Goal: $10000</h4>
+              <h4 className="profit-goal-text">{`Profit Goal: $ ${getData.profit_goal}`}</h4>
               <ProgressBar
                 min={0}
                 max={100}
-                value={parseInt(getData.profit) / 100}
+                value={(parseInt(getData.profit) / getData.profit_goal) * 100}
                 width={340}
                 height={0}
               />
             <div className="votes">
-              <div className="up"><Upvotes/>10 &nbsp;&nbsp;&nbsp;</div>
-              <div className="down"><Downvotes/>2</div>
+              <div className="up"><Upvotes onClick={like}/>{`${getData.likes}`}</div>
+              <div className="down"><Downvotes onClick={dislike}/>{getData.dislikes}</div>
             </div>
             </div>
           </div>
         </div> 
         <div className="profile-graph">
           <div className="graph1">
-            
+            <div className={graphClass}><PieChart id="graph-chart" data={graphData}/></div>
+           {bought ? <></> : <Button className="graph1-btn" variant="contained" size="small" onClick={purchase}>Purchase</Button>}
           </div>
           <div className="graph2">
             <div className="table-container">
-              <tr className="column">
-                <th>Strategy Name</th>
-                <th>Description</th>
-                <th><Upvotes /></th>
-                <th><Downvotes /></th>
+              <tr className="table-columns">
+                <th className="one-a">Strategy Name</th>
+                <th className="one-b">Description</th>
+                <th className="one-c"><Upvotes /></th>
+                <th className="one-d"><Downvotes /></th>
               </tr>
-              <tr className="table-rows">
-                <td className="one">News trading</td>
-                <td className="two">A news trading strategy​​ involves trading based on news and market expectations.</td>
-                <td className="three">20</td>
-                <td className="four">10</td>
-              </tr>
+              {stratData.map((item) => {
+                return (<div className="table-rows-content">
+                <tr className="table-rows">
+                  <td className="one">{item.strategy_name}</td>
+                  <td className="two">{item.description}</td>
+                  <td className="three" onClick={() => {upvote(item.id)}}>{item.upvotes}<FcUp /></td>
+                  <td className="four">{item.downvotes}<FcDown/></td>
+                {/* <Button className="graph2-btn" variant="contained" size="small">Purchase</Button> */}
+                </tr></div>)
+              })}
             </div>
           </div>
         </div>

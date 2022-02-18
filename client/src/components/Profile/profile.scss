@@ -1,4 +1,5 @@
 .profile-container {
+  // overflow: hidden;
   display: flex;
   box-sizing: border-box;
   // border: 3px solid green;
@@ -9,6 +10,7 @@
 }
 
 .profile-container-side {
+  z-index: 5;
   display: flex;
   flex-direction: column;
   margin: 30px 0 30px 30px;
@@ -56,7 +58,7 @@
     // border: 3px solid rgb(108, 19, 113);
     position: relative;
     width: 95%;
-    height: 220px;
+    height: 195px;
     background-color: #fff;
 
     .user-profile {
@@ -139,28 +141,50 @@
     // align-items: center;
     // margin: 0px 15px 15px 15px;
     box-sizing: border-box;
-    border: 3px solid rgb(108, 19, 113);
+    // border: 3px solid rgb(108, 19, 113);
     position: relative;
-    width: 95%;
-    height: 100%;
+    width: 100%;
+    height: 90%;
     background-color: #fff;
     font-size: 12px;
+
+    .graph1-btn {
+      z-index: 100;
+      position: relative;
+      margin-left: 160px;
+      bottom: 120px;
+      background-color: rgb(26, 157, 30);
+      color: white;
+      border-radius: 4px;
+      padding: 5px 10px;
+      // visibility: visible;
+    }
   
     .graph1 {
+      right: 50px;
       margin-top: 15px;
-      margin-right: 15px;
+      // margin-right: 15px;
       box-sizing: border-box;
-      border: 3px solid rgb(19, 113, 25);
+      // border: 3px solid rgb(19, 113, 25);
       position: relative;
-      width: 100%;
+      width: 35%;
       background-color: #fff;
+
+      .graph-chart {
+        opacity: 0.05;
+
+        &--bought {
+          opacity: 1;
+        }
+      }
     }
     .graph2 {
       display: flex;
       margin-top: 15px;
-      margin-left: 15px;
+      // right: px;
+      // margin-left: 15px;
       box-sizing: border-box;
-      border: 3px solid rgb(19, 113, 46);
+      // border: 3px solid rgb(19, 113, 46);
       position: relative;
       width: 100%;
       background-color: #fff;
@@ -169,32 +193,80 @@
 }
 
 .table-container {
+  top: 30px;
   position: relative;
   box-sizing: 1px solid black;
   width: 100%;
 
-  .column {
+  .table-columns {
+    position: relative;
+    font-size: 14px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .one-a {
+      font-size: 15px;
+      width: 20%;
+    }
+    .one-b {
+      font-size: 15px;
+      margin-left: 5px;
+      margin-right: 5px;
+      width: 50%;
+    }
+    .one-c {
+      width: 15%;
+    }
+    .one-d {
+      width: 15%;
+    }
+  }
+
+  .table-rows {
+    box-sizing: border-box;
+    // border: 1px solid red;
+    margin-top: 20px;
+    position: relative;
     display: flex;
     justify-content: space-between;
+    font-size: 14px;
+  
+    .one {
+      margin-left: 10px;
+      width: 20%;
+    }
+    .two {
+      margin-left: 15px;
+      margin-right: 25px;
+      width: 56%;
+      word-wrap: break-word;
+    }
+    .three {
+      margin-left: 5px;
+      margin-right: 14px;
+      width: 12%;
+      font-size: 15px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .four {
+      margin-left: 2px;
+      width: 12%;
+      font-size: 15px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
 
-.table-rows {
-  text-align: center;
 
-  .one {
-    width: 25%;
-  }
-  .two {
-    width: 25%;
-  }
-  .three {
-    width: 25%;
-  }
-  .four {
-    width: 25%;
-  }
-}
 
 .catecoin {
   height: 20px;
@@ -248,7 +320,7 @@
     position: relative;
 
     .up {
-
+      margin-right: 10px;
       &:hover {
         color: darkblue;
         cursor: pointer;
@@ -256,6 +328,7 @@
     }
 
     .down {
+      margin-left: 10px;
       &:hover {
         cursor: pointer;
         color: darkblue;
@@ -281,7 +354,33 @@
 }
 
 #edit-btn {
+  color: white;
   float: right;
   background-color: rgb(179, 179, 179);
   margin-top: 10px;
+}
+
+// .btn-strat {
+// }
+
+// .buy-strat {
+//   align-self: center;
+//   position: relative;
+//   background-color: rgb(63, 63, 63);
+//   // color: white;
+//   border-radius: 4px;
+//   padding: 5px 10px;
+// }
+
+.graph2-btn {
+  // opacity: 1;
+  // align-self: center;
+  // z-index: 50;
+  // position: relative;
+  // // margin-left: 160px;
+  // bottom: 40px;
+  // background-color: rgb(26, 157, 30);
+  // color: white;
+  // border-radius: 4px;
+  // padding: 5px 10px;
 }

@@ -1,5 +1,10 @@
 @import "../../styles/variables.scss";
 
+.full-container {
+    position: relative;
+    // width: 100vh;
+}
+
 .stats {
     display:flex;
     justify-content: space-between;
@@ -56,6 +61,7 @@
 }
 
 .line-graph {
+    width: 100%;
     margin-top: 2.5em;
     margin-bottom: 20px;
     margin-right: 40px;
