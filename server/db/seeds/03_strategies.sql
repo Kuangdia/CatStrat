@@ -6,4 +6,5 @@ VALUES
 
 INSERT INTO strategies (strategy_name, description, custom, active, upvotes, downvotes) 
 VALUES 
-('custom', 'hello it', true, true, 10, 4); 
+('buy low', 'hello it', true, true, 10, 4),
+('buy high', 'I have a lot of $', true, true, 100, 44);

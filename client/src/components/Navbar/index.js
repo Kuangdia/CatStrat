@@ -5,11 +5,24 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Badge } from '@mui/material';
 import cate from "../../images/imgC.png"
 import SearchBar from "./SearchBar/SearchBar";
-import Data from "./Data.json"
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Navbar(props) {
   const navigate = useNavigate();
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+
+    axios.get("/username")
+      .then(res => {
+        // console.log("search", res.data)
+        setData(res.data)
+      })
+      .catch(err => console.log(err))
+
+  }, [])
 
   const logout = () => {
     console.log("logout")
@@ -20,13 +33,13 @@ export default function Navbar(props) {
   return (
     <section className="navbar">
       <div className="searchbar-placement">
-          <SearchBar placeholder="Search" data={Data}/>
+          <SearchBar placeholder="Search" data={data}/>
       </div>
       <div className="navbar__button">
 
         <div className="navbar__notice">
           <button>
-          <Badge badgeContent={229} color="success">
+          <Badge badgeContent={88} color="success">
             {/* <NotificationsNoneIcon className="navbar__icon"/> */}
             <NotificationsIcon className="navbar__icon"/>
           </Badge>
@@ -35,9 +48,6 @@ export default function Navbar(props) {
         <div onClick= { logout }>
           <button className="logout"> Logout</button>
         </div>
-
-      
-
           <div className="navbar__coin">
             <img 
               src={cate}

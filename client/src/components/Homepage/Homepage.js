@@ -27,7 +27,7 @@ function Homepage({Video}) {
   }, [loginStatus])
 
   const toLogin = () => {
-    navigate("/login2")
+    navigate("/login")
   }
 
   let app = useRef(null)

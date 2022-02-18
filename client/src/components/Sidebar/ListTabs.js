@@ -40,8 +40,12 @@ export default function ListTabs(props) {
     if (userID) {
       navigate(`/`)
     }
-  };
-
+  }
+  const calendarRoute = (userID) => {
+    if (userID) {
+      navigate(`/calendar`);
+    }
+  }
 
   const strategyInfoRoute = (userID) => {
     if (userID) {

@@ -48,11 +48,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const dashboardRoutes = require('./routes/dashboard');
 const calendarRoutes = require("./routes/calendar");
 const stockRoutes = require("./routes/stock");
+const strategyRoutes = require("./routes/strategy");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
 app.use("/calendar", calendarRoutes(db));
 app.use("/stock", stockRoutes(db));
+app.use("/strategy", strategyRoutes(db));
 
 
 const secret = "secretString12345"
@@ -112,8 +114,6 @@ app.post("/login", (req, res) => {
     .catch(err => console.log(err));
 })
 
-
-
 app.post("/strategies", (req, res) => {
   const userID = req.body.loginUserID
   // console.log("post", userID)
@@ -130,8 +130,9 @@ app.post("/strategies", (req, res) => {
 })
 
 app.get("/strategies", (req, res) => {
+
   return db
-  .query(`SELECT strategies.*, users_strategies.* FROM strategies JOIN users_strategies ON strategy_id = strategies.id WHERE users_strategies.user_id = 1`)
+  .query(`SELECT * FROM strategies`)
   .then((result) => {
     res.send(result.rows);
   })
@@ -142,7 +143,7 @@ app.get("/strategies", (req, res) => {
 
 app.get("/profile/:id", (req, res) => {
   const userID = req.query.id;
-  console.log("profileid query", userID)
+  // console.log("profileid query", userID)
 
   return db.query(`SELECT users.*, (SELECT COUNT(follower_id) AS followers from followers WHERE user_id = $1), (SELECT COUNT(user_id) AS following from followers WHERE follower_id = $1), (SELECT sum(profit) AS profit from records WHERE user_id = $1) from users JOIN followers on users.id = followers.user_id JOIN records on users.id = records.user_id WHERE users.id = $1 GROUP BY users.id`, [userID])
   .then((data) => {
@@ -167,8 +168,8 @@ app.get("/username", (req, res) => {
 app.post("/following", (req, res) => {
   const userID = req.body.userID
   const followID = req.body.id
-  console.log("requery", req.query)
-  console.log("follow values", userID, followID)
+  // console.log("requery", req.query)
+  // console.log("follow values", userID, followID)
 
   db.query(`INSERT INTO followers (follower_id, user_id) VALUES ($1, $2)`, [userID, followID])
     .then((result) => {
@@ -180,11 +181,44 @@ app.post("/following", (req, res) => {
 app.post("/unfollow", (req, res) => {
   const userID = req.body.userID
   const followID = req.body.id
-  console.log("unfollow values", userID, followID)
+  // console.log("unfollow values", userID, followID)
 
   db.query(`delete from followers where follower_id = $1 AND user_id = $2`, [userID, followID])
     .then((result) => {
       res.send({added: false})
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/like", (req, res) => {
+  const id = req.body.id
+
+  db.query(`update users set likes = (select likes from users where id = $1)+ 1 where id = $1`, [id])
+    .then((result) => {
+      res.send(result.rows)
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/dislike", (req, res) => {
+  const id = req.body.id
+
+  db.query(`update users set dislikes = (select dislikes from users where id = $1)+ 1 where id = $1`, [id])
+    .then((result) => {
+      res.send(result.rows)
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/strategy/:id", (req, res) => {
+  const id = req.body.id
+  const strategy_id = req.params.id
+  console.log("strat", strategy_id)
+
+  db.query(`update strategies set upvotes = (select upvotes from strategies where id = $1)+ 1`, [strategy_id])
+    .then((result) => {
+      console.log("success!")
+      res.send(result.rows)
     })
     .catch(err => console.log(err))
 })

@@ -22,7 +22,7 @@ export const manage = {
   description: 'Keep Track and Get Real-Time Comparison and Analysis of Your Portfolio',
   buttonLabel: 'Get started',
   imgStart: true,
-  img: require('../../../images/333.png'),
+  img: require('../../../images/1st.png'),
   alt: 'Team',
   primary: true,
   darkText: true,
