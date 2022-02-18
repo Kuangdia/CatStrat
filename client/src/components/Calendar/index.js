@@ -7,7 +7,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import Axios from "axios";
 import RecordInput from "./RecordInput";
 
-import "./Calendar.scss";
+// import "./Calendar.scss";
 import { sendGetReq } from '../../helpers/cleanCalendarData';
 
 export default function Calendar() {
@@ -16,11 +16,11 @@ export default function Calendar() {
   const [showForm, setShowForm] = useState(false);
 
   const [netBalance, setNetBalance] = useState(0);
-  const [investAmount, setInvestAmount] = useState(1000);
-  const [strategy, setStrategy] = useState("");
+  const [investAmount, setInvestAmount] = useState(0);
   const [strategyID, setStrategyID] = useState("");
   const [stockID, setStockID] = useState("");
   const [recordID, setRecordID] = useState("");
+  const [investChoice, setInvestChoice] = useState(true);
   const [render, setRender] = useState(false);
 
   const userID = localStorage.getItem("userID");
@@ -45,6 +45,7 @@ export default function Calendar() {
         setNetBalance(profit);
         setStrategyID(strategy_id);
         setStockID(stock_id);
+        setInvestChoice(stock_option);
         setShowForm(true);
       })
       .catch(err => console.log(err));
@@ -82,6 +83,8 @@ export default function Calendar() {
             setStockID={ setStockID }
             recordID={ recordID }
             setRecordID={ setRecordID }
+            investChoice={ investChoice }
+            setInvestChoice={ setInvestChoice }
             render={ render }
             setRender={ setRender }
           /> : <></>
