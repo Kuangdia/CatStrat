@@ -44,43 +44,43 @@ export default function ListTabs(props) {
 
   return (
     <div className='sidebar'>
-      <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item" >
         <div > 
         <DashboardIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
         <div className="label">Dashboard </div>
-      </div>
+      </button>
 
 
-      <div className="nav-item" onClick={() => { profileRoute(userID) }} >
+      <button className="nav-item" onClick={() => { profileRoute(userID) }} >
         <div> 
         <AccountCircleIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
         <div className="label">Profile </div>
-      </div>
+      </button>
 
 
-      <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item" >
         <div> 
         <TodayIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
         <div className="label">Calendar </div>
-      </div>
+      </button>
       
-      <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item" >
         <div> 
         <AssignmentIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
         <div className="label">Strategy Info </div>
-      </div>
+      </button>
 
-      <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item" >
         <CompareArrowsIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> 
         <div className="label">Comparison </div>
-      </div>
+      </button>
 
-      <div onClick={() => { dashboardRoute(userID) }} className="nav-item"  >
+      <button onClick={() => { dashboardRoute(userID) }} className="nav-item"  >
         <div >
           <LeaderboardIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
         </div>
         <div className="label">Leaderboard </div>
-      </div>
+      </button>
 
 
     </div>
