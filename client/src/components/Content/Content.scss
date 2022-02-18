@@ -1,12 +1,17 @@
+@import "../../styles/variables.scss";
+
+
 .content {
-  background-color: #98c3bf;
+  // background-color: #98c3bf;
+  background-color: $content-background;
+
   width: 100%;
   height: 100%;
 
-  h1 {
-    color: pink;
-    position: absolute;
-    top: 50%;
-    left: 40%;
-  }
+  // h1 {
+  //   color: pink;
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 40%;
+  // }
 }

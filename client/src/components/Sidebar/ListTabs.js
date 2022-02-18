@@ -41,6 +41,12 @@ export default function ListTabs(props) {
       navigate(`/`)
     }
   }
+
+  const styles = theme => ({
+    listItemText:{
+      fontSize:'2em',//Insert your required size
+    }
+  });
   
   return (
     <React.Fragment>
