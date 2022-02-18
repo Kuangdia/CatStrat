@@ -40,6 +40,11 @@ export default function ListTabs(props) {
       navigate(`/`)
     }
   }
+  const calendarRoute = (userID) => {
+    if (userID) {
+      navigate(`/calendar`);
+    }
+  }
 
   const styles = theme => ({
     listItemText:{
@@ -63,7 +68,7 @@ export default function ListTabs(props) {
           <ListItemText primary="Profile" className="hello"/>
       </ListItemButton>
 
-      <ListItemButton>
+      <ListItemButton onClick={ calendarRoute }>
         <ListItemIcon>
           <TodayIcon className="hello" />
         </ListItemIcon>
