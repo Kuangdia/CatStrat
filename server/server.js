@@ -9,7 +9,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { getStockSymbols } = require("./helper/stockSymbols");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -25,7 +26,7 @@ app.use(express.json());
 // must add this if you use cookies/session
 app.use(cors({
   origin: ["http://localhost:3000"],
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "DELETE", "PUT"],
   credentials: true
 }));
 
@@ -39,10 +40,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Require routes
 const dashboardRoutes = require('./routes/dashboard');
 const calendarRoutes = require("./routes/calendar");
+const stockRoutes = require("./routes/stock");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
 app.use("/calendar", calendarRoutes(db));
+app.use("/stock", stockRoutes(db));
+
 
 app.get('/', (req,res) => {
     res.json({greetings: 'hello'});
@@ -117,7 +121,6 @@ app.post("/strategies", (req, res) => {
     console.log(err);
   });
 })
-
 
 // connect to PORT
 app.listen(PORT, () => {

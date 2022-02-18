@@ -1,11 +1,26 @@
 import "react-widgets/scss/styles.scss";
 import "./RecordInput.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NumberPicker from "react-widgets/NumberPicker";
 import DropdownList from "react-widgets/DropdownList";
 import Axios from "axios";
 
 export default function RecordInput(props) {
+  const [stockData, setStockData] = useState([]);
+
+  useEffect(() => {
+    Axios.get("/stock")
+    .then(res => {
+      const result = res.data.map(dataObj => {
+        return {
+          id: dataObj.id,
+          stock: dataObj.stock_symbol
+        }
+      });
+      setStockData([...result]);
+    })
+    .catch(err => console.log(err.message));
+  }, []);
 
   const { 
     date, 
@@ -134,15 +149,11 @@ export default function RecordInput(props) {
         id="stock"
           value={ stock }
           onChange={nextValue => {
-            setStock(nextValue.stock);
+            setStock(nextValue.id);
           }}
           datakey="id"
           textField="stock"
-          data={[
-            { id: 1, stock: "AAPL" },
-            { id: 2, stock: "AMD" },
-            { id: 3, stock: "SPY" },
-          ]}
+          data={ stockData }
         />
         <br />
         <p>{ date }</p>

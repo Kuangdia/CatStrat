@@ -4,45 +4,90 @@ require('dotenv').config();
 // other dependencies
 const fs = require('fs');
 const chalk = require('chalk');
-const Client = require('pg-native');
+// const Client = require('pg-native');
+const { Client } = require("pg");
+const dbParams = require("../lib/db.js");
+const db = new Client(dbParams);
+
+//stock symbols setup
+const finnhub = require('finnhub');
+const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+api_key.apiKey = process.env.FINNHUB_API_KEY;
+const finnhubClient = new finnhub.DefaultApi();
 
 // PG connection setup
-const connectionString = process.env.DATABASE_URL ||
-  `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?sslmode=disable`;
-const client = new Client();
+// const connectionString = process.env.DATABASE_URL ||
+//   `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?sslmode=disable`;
+// const client = new Client();
 
 // Loads the schema files from db/schema
-const runSchemaFiles = function () {
+const runSchemaFiles = async () => {
   console.log(chalk.cyan(`-> Loading Schema Files ...`));
   const schemaFilenames = fs.readdirSync('./db/schema');
 
   for (const fn of schemaFilenames) {
     const sql = fs.readFileSync(`./db/schema/${fn}`, 'utf8');
     console.log(`\t-> Running ${chalk.green(fn)}`);
-    client.querySync(sql);
+    await db.query(sql);
   }
 };
 
-const runSeedFiles = function () {
+const runSeedFiles = async () => {
   console.log(chalk.cyan(`-> Loading Seeds ...`));
   const schemaFilenames = fs.readdirSync('./db/seeds');
 
   for (const fn of schemaFilenames) {
     const sql = fs.readFileSync(`./db/seeds/${fn}`, 'utf8');
     console.log(`\t-> Running ${chalk.green(fn)}`);
-    client.querySync(sql);
+    await db.query(sql);
   }
 };
 
-try {
-  console.log(`-> Connecting to PG using ${connectionString} ...`);
-  client.connectSync(connectionString);
-  runSchemaFiles();
-  runSeedFiles();
-  client.end();
-} catch (err) {
-  console.error(chalk.red(`Failed due to error: ${err}`));
-  client.end();
+const getStockSymbols = async () => {
+
+  finnhubClient.symbolSearch('', async (error, data, response) => {
+    const symbolLists = []
+    await data.result.map(symbolObj => {
+      symbolLists.push(symbolObj.symbol);
+    });
+    function generateQuerySyntax(num) {
+      let res ="";
+      for (let i = 1; i < num; i++) {
+        res += `($${i}), ` //9
+      }
+      res += `($${num})`;
+      return res;
+    }
+    const subQuery = generateQuerySyntax(symbolLists.length);
+
+    const query = `INSERT INTO stocks (stock_symbol) VALUES ${subQuery};`;
+
+    db.query(query, [...symbolLists], (err, res) => {
+      console.log(err);
+      db.end();
+    });
+  });
 }
+
+const runResetDB = async () => {
+  try {
+    // console.log(`-> Connecting to PG using ${connectionString} ...`);
+    dbParams.host &&
+      console.log(`-> Connecting to PG on ${dbParams.host} as ${dbParams.user}...`);
+    dbParams.connectionString &&
+      console.log(`-> Connecting to PG with ${dbParams.connectionString}...`);
+    await db.connect();
+    // await client.connectSync(connectionString);
+    await runSchemaFiles();
+    await runSeedFiles();
+    await getStockSymbols();
+    // db.end();
+  } catch (err) {
+    console.error(chalk.red(`Failed due to error: ${err}`));
+    db.end();
+  }
+};
+
+runResetDB();
 
 

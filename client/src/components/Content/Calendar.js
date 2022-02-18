@@ -16,7 +16,7 @@ export default function Calendar() {
   const [showForm, setShowForm] = useState(false);
 
   const [netBalance, setNetBalance] = useState(0);
-  const [investAmount, setInvestAmount] = useState(0);
+  const [investAmount, setInvestAmount] = useState(1000);
   const [strategy, setStrategy] = useState("");
   const [strategyID, setStrategyID] = useState("");
   const [stock, setStock] = useState("");
