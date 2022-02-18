@@ -1,5 +1,10 @@
 @import "../../styles/variables.scss";
 
+.full-container {
+    // width: 100vh;
+    position:relative;
+}
+
 .stats {
     display:flex;
     justify-content: space-between;
