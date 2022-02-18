@@ -145,7 +145,7 @@ const Profile = () => {
             </div>
             </div>
           </div>
-        </div>
+        </div> 
         <div className="profile-graph">
           <div className="graph1">
             

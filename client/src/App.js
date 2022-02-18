@@ -2,16 +2,16 @@ import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.light.css';
 import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.light.css';
-import './App.scss';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Landing from './pages/Landing';
+import DashboardCalendar from './pages/DashboardCalendar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Axios from 'axios'
 import React from 'react';
 import DashboardProfile from './pages/DashboardProfile';
 import {useState, useEffect} from 'react'
-import axios from 'axios';
 
 function App() {
   // const [user, setUser] = useState({})
@@ -37,6 +37,7 @@ function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/calendar" element={<DashboardCalendar/>} />
         <Route path="/profile/:id" element={<DashboardProfile />}/>
       </Routes>
     </Router>

@@ -10,25 +10,33 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const jwt = require('jsonwebtoken')
+const morgan = require('morgan');
+
+// Environment variables
+const { ENVIRONMENT, DEV_URL } = process.env;
 
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
-db.connect();
+db.connect((err) => {
+  console.log('Connected to db');
+  if (err) {
+  return console.log('Error with db connection:', err)
+  }
+});
+
+// Middleware
+app.use(cors({
+  origin: [DEV_URL],
+  methods: ["GET", "POST", "DELETE", "PUT"],
+  credentials: true
+}));
+app.use(morgan(ENVIRONMENT));
 
 // allows api to parse json // both .json works but you need to use one
 app.use(express.json());
 // app.use(bodyParser.json())
-
-
-// must add this if you use cookies/session
-app.use(cors({
-  origin: ["http://localhost:3000"],
-  methods: ["GET", "POST"],
-  credentials: true
-}));
-
 
 // allow api to receive data from client app // can use either
 
@@ -39,15 +47,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Require routes
 const dashboardRoutes = require('./routes/dashboard');
 const calendarRoutes = require("./routes/calendar");
+const stockRoutes = require("./routes/stock");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
 app.use("/calendar", calendarRoutes(db));
+app.use("/stock", stockRoutes(db));
+
 
 const secret = "secretString12345"
 
-app.get('/', (req,res) => {
-    res.json({greetings: 'hello'});
+app.get('/', (req, res) => {
+  res.json({ greetings: 'hello' });
 })
 
 app.post("/register", (req, res) => {
@@ -101,9 +112,7 @@ app.post("/login", (req, res) => {
     .catch(err => console.log(err));
 })
 
-app.post("/logout", (req, res) => {
-  
-})
+
 
 app.post("/strategies", (req, res) => {
   const userID = req.body.loginUserID

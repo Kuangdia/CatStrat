@@ -18,7 +18,6 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 
-
 export default function ListTabs(props) {
   let navigate = useNavigate();
 
@@ -43,6 +42,12 @@ export default function ListTabs(props) {
       navigate(`/`)
     }
   }
+
+  const styles = theme => ({
+    listItemText:{
+      fontSize:'2em',//Insert your required size
+    }
+  });
   
   return (
     <React.Fragment>
@@ -60,7 +65,7 @@ export default function ListTabs(props) {
           <ListItemText primary="Profile" className="hello"/>
       </ListItemButton>
 
-      <ListItemButton onClick={() => {sendGetReq("calendar", userID)}} >
+      <ListItemButton>
         <ListItemIcon>
           <TodayIcon className="hello" />
         </ListItemIcon>

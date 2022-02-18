@@ -6,7 +6,7 @@ import logo from "../../images/logo192.png"
 export default function Sidebar(props) {
 
   return (
-    <section className="sidebar">
+    <div className="sidebar">
       <div className="sidebar__head">
         <img 
             className="sidebar--centered sidebar__logo"
@@ -19,6 +19,6 @@ export default function Sidebar(props) {
       <nav className="siderbar__menu">
         <ListTabs wow="yes" />
       </nav>
-    </section>
+    </div>
   );
 }

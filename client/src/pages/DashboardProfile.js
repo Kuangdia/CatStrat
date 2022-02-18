@@ -2,7 +2,7 @@ import React from 'react'
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile/Profile";
-import "./Dashboard.scss";
+import "../styles/dashboard.scss";
 
 export default function DashboardProfile(props) {
 
