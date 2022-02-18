@@ -6,22 +6,7 @@ import DropdownList from "react-widgets/DropdownList";
 import Axios from "axios";
 
 export default function RecordInput(props) {
-  const [stockData, setStockData] = useState([]);
-
-  useEffect(() => {
-    Axios.get("/stock")
-    .then(res => {
-      const result = res.data.map(dataObj => {
-        return {
-          id: dataObj.id,
-          stock: dataObj.stock_symbol
-        }
-      });
-      setStockData([...result]);
-    })
-    .catch(err => console.log(err.message));
-  }, []);
-
+  const userID = localStorage.getItem("userID");
   const { 
     date, 
     setShowForm,
@@ -38,9 +23,37 @@ export default function RecordInput(props) {
     setRender,
     render
   } = props;
-  
-  const userID = localStorage.getItem("userID");
-  
+
+  const [stockData, setStockData] = useState([]);
+  const [stratData, setStratData] = useState([]);
+
+  const getStockData = () => {
+    return Axios.get("/stock")
+  }
+  const getStratData = () => {
+    return Axios.get(`/strategy/${userID}`)
+  }
+  useEffect(() => {
+    Promise.all([getStockData(), getStratData(userID)])
+      .then(res => {
+        const stockDataReturn = res[0].data.map(dataObj => {
+          return {
+            id: dataObj.id,
+            stock: dataObj.stock_symbol
+          }
+        });
+        const startDataReturn = res[1].data.map(stratObj => {
+          return {
+            id: stratObj.id,
+            strategy: stratObj.strategy_name
+          }
+        });
+        setStockData([...stockDataReturn]);
+        setStratData([...startDataReturn]);
+      })
+      .catch(err => console.log(err.message));
+  }, []);
+
   function handleSubmit(e) {
     e.preventDefault();
   }
@@ -48,7 +61,6 @@ export default function RecordInput(props) {
   function clear() {
     setNetBalance(0);
     setInvestAmount(0);
-    // setStrategy("");
     setStrategyID("");
     setStockID("");
     setRecordID("");
@@ -146,11 +158,7 @@ export default function RecordInput(props) {
           }}
           dataKey="id"
           textField="strategy"
-          data={[
-            { id: 1, strategy: "strat1" },
-            { id: 2, strategy: "strat2" },
-            { id: 3, strategy: "strat3" },
-          ]}
+          data={ stratData }
         />
         <br />
         <label htmlFor="stock">
