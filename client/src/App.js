@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Axios from 'axios'
 import React from 'react';
 import DashboardProfile from './pages/DashboardProfile';
+import DashboardStrategyInfo from './pages/DashboardStrategyInfo';
 import {useState, useEffect} from 'react'
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/calendar" element={<DashboardCalendar/>} />
         <Route path="/profile/:id" element={<DashboardProfile />}/>
+        <Route path="/strategyInfo" element={<DashboardStrategyInfo/>}/>
       </Routes>
     </Router>
   );
