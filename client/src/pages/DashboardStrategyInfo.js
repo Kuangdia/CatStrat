@@ -5,27 +5,26 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import { useNavigate } from 'react-router-dom';
 import "../components/Calendar/Calendar.scss";
-import Calendar from '../components/Calendar';
+import StrategyInfo from '../components/StrategyInfo';
 
-export default function DashboardCalendar(props) {
+export default function DashboardStrategyInfo(props) {
+  const userID = localStorage.getItem('userID')
+
   let navigate = useNavigate();
 
   const [loginUserID, setLoginUserID] = useState(localStorage.getItem('userID'));
 
-  const [data, setData] = useState({strategies: [],
-                                    records: []
-                                  });
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (loginUserID) {
-      Axios.post('/strategies', {loginUserID})
-      .then((response) => {
-        console.log(response)
-        setData(response)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    if (userID) {
+      console.log('userID', userID)
+      Axios.get(`http://localhost:8080/strategies`, { params: { user_id: userID } })
+        .then((res) => {
+          console.log('response', res.data)
+          setData(res.data)
+        })
     } else {
       navigate("/");
     }
@@ -40,11 +39,10 @@ export default function DashboardCalendar(props) {
             loginUserID={loginUserID} 
             setLoginUserID = {setLoginUserID} />
           <div className="content">
-            <Calendar />
+            <StrategyInfo data={data}/>
           </div>
         </div>
       </main>
-      {/* <button onClick={log}></button> */}
     </>
   );
 }

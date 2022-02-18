@@ -42,6 +42,13 @@ export default function ListTabs(props) {
     }
   };
 
+
+  const strategyInfoRoute = (userID) => {
+    if (userID) {
+      navigate(`/strategyInfo`)
+    }
+  };
+
   return (
     <div className='sidebar'>
       <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
@@ -64,7 +71,7 @@ export default function ListTabs(props) {
         <div className="label">Calendar </div>
       </div>
       
-      <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+      <div onClick={() => { strategyInfoRoute(userID) }} className="nav-item" >
         <div> 
         <AssignmentIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
         <div className="label">Strategy Info </div>
