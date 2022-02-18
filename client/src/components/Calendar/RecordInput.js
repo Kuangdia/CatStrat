@@ -29,13 +29,8 @@ export default function RecordInput(props) {
     setNetBalance,
     investAmount, 
     setInvestAmount,
-
-    // strategy, 
-    // setStrategy,
-
     strategyID, 
     setStrategyID,
-
     stockID, 
     setStockID,
     recordID,
@@ -48,7 +43,6 @@ export default function RecordInput(props) {
   
   function handleSubmit(e) {
     e.preventDefault();
-    alert("You submit a form!");
   }
 
   function clear() {
@@ -63,10 +57,10 @@ export default function RecordInput(props) {
   function deleteRecord() {
     Axios.delete(`/calendar/${recordID}`)
     .then(res => {
-      alert(res.data);
       clear();
       setShowForm(false);
       setRender(!render);
+      alert("Delete 1 record successfully!");
     })
     .catch(err => {
       console.log(err.message);
@@ -74,22 +68,37 @@ export default function RecordInput(props) {
   }
 
   function submit() {
-    // if (recordID) {
-    //   put
-    // }
-    Axios.post("/calendar", {
-      netBalance,
-      investAmount,
-      strategyID,
-      stockID,
-      date,
-      userID
-    })
-      .then(res => {
-        console.log("server sends back latest inserted data", res.data);
-        setRender(!render);
-        close();
-      });
+    if (recordID) {
+      Axios.put(`/calendar/${recordID}`, {
+        netBalance,
+        investAmount,
+        strategyID,
+        stockID,
+        date,
+        userID,
+      })
+        .then(res => {
+          console.log("Update route sent back", res.data);
+          alert("update submitted!");
+          setRender(!render);
+          close();
+        });
+    } else {
+      Axios.post("/calendar", {
+        netBalance,
+        investAmount,
+        strategyID,
+        stockID,
+        date,
+        userID
+      })
+        .then(res => {
+          // console.log("server sends back latest inserted data", res.data);
+          alert("Record Created!");
+          setRender(!render);
+          close();
+        });
+    }
   }
 
   function close() {
