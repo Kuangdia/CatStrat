@@ -6,6 +6,7 @@
   align-self: center;
   margin-top: 15px;
 
+
 }
 
 .icon {
@@ -15,20 +16,20 @@
   margin-right: .75em;
   margin-left: .75em;
   margin-top: .6em;
-
-
 }
 
 .nav-item {
   display:flex;
   width:100%;
   height:100%;
-  padding-top: 1em;
+  padding-top: .75em;
+  padding-bottom: .9em;
   background-color: #304347;
-//   :hover {
-//     background-color:white;
-//     color: black !important;
-// }
+
+  :hover {
+    background-color:white;
+    color: black !important;
+}
 
 
 }
