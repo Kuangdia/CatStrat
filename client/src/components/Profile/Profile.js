@@ -13,31 +13,11 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { TextField } from '@mui/material';
 import {useParams} from 'react-router-dom'
 import Axios from "axios";
-import { DataGrid } from '@mui/x-data-grid';
+// import { DataGrid } from '@mui/x-data-grid';
+import strategy from "./Data.json"
 
 import 'devextreme/dist/css/dx.material.blue.dark.css';
 import { ProgressBar } from 'devextreme-react/progress-bar';
-
-const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-];
 
 
 
@@ -79,7 +59,7 @@ const Profile = () => {
       })
       .catch(err => console.log(err));
 
-  }, [removeFollow])
+  }, [removeFollow, id])
 
   const followUser = () => {
     console.log("clicked")
@@ -168,10 +148,23 @@ const Profile = () => {
         </div>
         <div className="profile-graph">
           <div className="graph1">
-
+            
           </div>
           <div className="graph2">
-            
+            <div className="table-container">
+              <tr className="column">
+                <th>Strategy Name</th>
+                <th>Description</th>
+                <th><Upvotes /></th>
+                <th><Downvotes /></th>
+              </tr>
+              <tr className="table-rows">
+                <td className="one">News trading</td>
+                <td className="two">A news trading strategy​​ involves trading based on news and market expectations.</td>
+                <td className="three">20</td>
+                <td className="four">10</td>
+              </tr>
+            </div>
           </div>
         </div>
       </div>

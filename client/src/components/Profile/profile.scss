@@ -136,6 +136,7 @@
 
   .profile-graph {
     display: flex;
+    // align-items: center;
     // margin: 0px 15px 15px 15px;
     box-sizing: border-box;
     border: 3px solid rgb(108, 19, 113);
@@ -143,6 +144,7 @@
     width: 95%;
     height: 100%;
     background-color: #fff;
+    font-size: 12px;
   
     .graph1 {
       margin-top: 15px;
@@ -154,6 +156,7 @@
       background-color: #fff;
     }
     .graph2 {
+      display: flex;
       margin-top: 15px;
       margin-left: 15px;
       box-sizing: border-box;
@@ -162,6 +165,34 @@
       width: 100%;
       background-color: #fff;
     }
+  }
+}
+
+.table-container {
+  position: relative;
+  box-sizing: 1px solid black;
+  width: 100%;
+
+  .column {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.table-rows {
+  text-align: center;
+
+  .one {
+    width: 25%;
+  }
+  .two {
+    width: 25%;
+  }
+  .three {
+    width: 25%;
+  }
+  .four {
+    width: 25%;
   }
 }
 
