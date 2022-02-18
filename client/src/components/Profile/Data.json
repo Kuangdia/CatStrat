@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "strategy_name": "News trading",
+    "description": "A news trading strategy​​ involves trading based on news and market expectations, both before and following news releases. Trading on news announcements can require a skilled mind-set as news can travel very quickly on digital media. Traders will need to assess the news immediately after it’s released and make a quick judgement on how to trade it.",
+    "custom": false,
+    "active": true,
+    "upvotes": 0,
+    "downvotes": 0,
+    "created_at": "2022-02-14T17:40:13.990Z",
+    "user_id": 1,
+    "strategy_id": 1
+  },
+  {
+    "id": 2,
+    "strategy_name": "End-of-day trading",
+    "description": "The end-of-day trading strategy involves trading near the close of markets. End-of-day traders become active when it becomes clear that the price is going to ‘settle’ or close.",
+    "custom": false,
+    "active": true,
+    "upvotes": 0,
+    "downvotes": 0,
+    "created_at": "2022-02-14T17:40:13.990Z",
+    "user_id": 1,
+    "strategy_id": 2
+  },
+  {
+    "id": 3,
+    "strategy_name": "Trend trading",
+    "description": "This strategy describes when a trader uses technical analysis to define a trend, and only enters trades in the direction of the pre-determined trend.",
+    "custom": false,
+    "active": true,
+    "upvotes": 0,
+    "downvotes": 0,
+    "created_at": "2022-02-14T17:40:13.990Z",
+    "user_id": 1,
+    "strategy_id": 3
+  },
+  {
+    "id": 4,
+    "strategy_name": "Custom trading",
+    "description": "I made this custom trading strategy that uses psychic powers.",
+    "custom": true,
+    "active": true,
+    "upvotes": 10,
+    "downvotes": 4,
+    "created_at": "2022-02-14T17:40:13.990Z",
+    "user_id": 1,
+    "strategy_id": 4
+  }
+]

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@500&family=DM+Serif+Text&family=Patua+One&display=swap");
 
 .hero {
-  font-family: "DM Serif Text";
+  font-family: "sans serif";
   visibility: hidden;
   height: 100vh;
   .container {
@@ -15,12 +15,14 @@
       margin: 0 24px;
       height: 100vh;
       .hero-content {
-        width: 100%;
+        width: 90%;
         margin-bottom: 25px;
         .hero-content-inner {
-          width: 450px;
+          margin-right: 50px;
+          margin-left: 200px;
+          width: 400px;
           color: #232222;
-          margin: 0 auto;
+          // margin: 0 auto;
           // margin-top: 20px;
           h1 {
             font-weight: 600;

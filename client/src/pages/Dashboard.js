@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-// import "../styles/dashboard.scss";
+import "../styles/dashboard.scss";
 import { useNavigate } from 'react-router-dom';
-// import Summary from '../components/Summary';
+import Summary from '../components/Summary';
 
 export default function Dashboard(props) {
   const userID = localStorage.getItem('userID')
@@ -47,7 +47,7 @@ export default function Dashboard(props) {
             loginUserID={loginUserID}
             setLoginUserID={setLoginUserID} />
           <div className="content">
-            {/* <Summary data={data} /> */}
+            <Summary data={data} />
           </div>
         </div>
       </main>
