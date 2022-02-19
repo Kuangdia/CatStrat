@@ -6,17 +6,16 @@ export default function AddStrategy(props) {
 
     return (
         <div >
-            <details className="alert">
+            <details className="alert" onClick={props.onClick}>
                 <summary className="add-strat">
                     <img
                         className="add"
                         src="add2.png"
                         alt="Add"
-                        onClick={props.onClick}
                     />
                 </summary>
                 <section className="footer">
-                    hello
+                    Add Strategy
                 </section>
             </details>
         </div>
