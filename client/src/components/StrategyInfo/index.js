@@ -9,7 +9,7 @@ export default function StrategyInfo({ data }) {
       key={i.id}
       name={i.strategy_name}
       description={i.description}
-      type={i.custom === true ? 'Custom' : 'Default'}
+      type={i.custom === true ? 'Custom' : 'Standard'}
     />
   );
 
@@ -17,7 +17,7 @@ export default function StrategyInfo({ data }) {
 
   return (
     <section className="full-container">
-      <div className="card">
+      <div className="strategies">
         <h1>Strategies Explained</h1>
         <ul>{parsedStrategies}</ul>
       </div>
