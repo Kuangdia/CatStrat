@@ -6,11 +6,24 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 import Axios from "axios";
 import RecordInput from "./RecordInput";
+import $ from 'jquery';
 
 // import "./Calendar.scss";
 import { sendGetReq } from '../../helpers/cleanCalendarData';
 
 export default function Calendar() {
+  $(() => {
+    const $records = $(".fc-event-title");
+    for (let $record of $records) {
+  
+      if (parseInt($($record).text()) < 0) {
+        $($record).addClass("neg-record");
+      } else {
+        $($record).addClass("pos-record");
+      }
+    }
+  })
+  
   const [calendarData, setCalendarData] = useState([]);
   const [date, setDate] = useState("");
   const [showForm, setShowForm] = useState(false);
@@ -27,6 +40,7 @@ export default function Calendar() {
 
   useEffect(() => {
     sendGetReq("calendar", userID, setCalendarData);
+
   }, [render])
 
   const handleDateClick = (arg) => {

@@ -10,6 +10,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function RecordInput(props) {
   const userID = localStorage.getItem("userID");
@@ -138,8 +139,11 @@ export default function RecordInput(props) {
         className="record-input" 
         onSubmit={ handleSubmit }
       >
-        <button className="button__close"
-        onClick={ close }>X</button>
+
+        <CloseIcon 
+          id="button__close"
+          onClick={ close }
+        />
 
         <label htmlFor="balance" className="input__title">
           Gain/Loss

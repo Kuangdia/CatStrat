@@ -16,14 +16,13 @@
   padding: 2rem;
   padding-top: 1rem;
 }
+#button__close {
+    align-self: flex-end;
+    font-size: xx-large;
+}
 
 .button {
-  &__close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    
-  }
+
   &__submit {
     display: flex;
     justify-content: space-around;

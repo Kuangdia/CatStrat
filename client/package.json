@@ -24,6 +24,7 @@
     "devextreme": "^21.2.4",
     "devextreme-react": "^21.2.4",
     "gsap": "^3.9.1",
+    "jquery": "^3.6.0",
     "node-sass": "^7.0.1",
     "normalize.css": "^8.0.1",
     "randomcolor": "^0.6.2",

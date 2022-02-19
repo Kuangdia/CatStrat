@@ -35,7 +35,22 @@
     padding: 1rem;
   }
   
+  .fc-event-title-container {
+    background-color: lightcyan;
+  }
+  
   .fc-event-title:hover {
+    color: red;
+  }
+
+  .fc-event-title {
+    font-size: larger;
+  }
+
+  .pos-record {
+    color: green;
+  }
+  .neg-record {
     color: red;
   }
 
