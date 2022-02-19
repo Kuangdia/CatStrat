@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import Axios from "axios";
 import PieChart from './PieChart2';
 import { FcDown, FcUp } from "react-icons/fc";
@@ -22,20 +22,20 @@ import { ProgressBar } from 'devextreme-react/progress-bar';
 
 
 const Profile = () => {
+  const navigate = useNavigate();
+
   // const [loginID, setLoginID] = useState("")
   const [getData, setGetData] = useState("");
   const [stratData, setStratData] = useState([]);
   const [graphData, setGraphData] = useState([])
-  // const [goal, setGoal] = useState(0)
-  // const [profit, setProfit] = useState(0)
-  // const [upvoteCount, setUpvoteCount] = useState(0)
-  // const [downvoteCount, setDownvoteCount] = useState(0)
   const [editProfile, setEditProfile] = useState(false)
   const [follow, setFollow] = useState(false)
   const [removeFollow, setRemoveFollow] = useState(false)
   const [unfollow, setUnfollow] = useState(true)
   const [showFollow, setShowFollow] = useState(false);
   const [showPurchase, setShowPurchase] = useState(true);
+  const [showStrat, setShowStrat] = useState(false);
+
   const [bought, setBought] = useState(false)
   const [addLike, setAddLike] = useState(false)
   const userID = localStorage.getItem("userID")
@@ -66,6 +66,7 @@ const Profile = () => {
       if (userID === id) {
         setShowPurchase(true)
         setBought(true)
+        setShowStrat(true)
       }
       if (userID !== id) {
         setShowFollow(true)
@@ -151,6 +152,14 @@ const Profile = () => {
       .catch(err => console.log(err))
   }
 
+  const purchaseStrat = () => {
+    setShowStrat(true);
+  }
+
+  const navigateCompare = (id) => {
+    navigate(`/comparison/${id}`)
+  }
+
   return (
     <div className="profile-container">
       <div className="profile-container-side">
@@ -171,6 +180,7 @@ const Profile = () => {
             <div className="profile-separator">
               <div className="follow-btn">
                 <div className="profile-username">{getData.username}<VerifiedIcon/></div>
+                {follow && <Button id="compare-id" size="small" variant="contained" onClick={() => {navigateCompare(id)}}>Compare</Button>}
                 {showFollow ? <>{follow === true ? <Button size="small" variant="contained" onClick={followUser}>Follow</Button> : <Button size="small" variant="contained" onClick={unfollowUser} >Unfollow</Button>}</> : <></> }
               </div>
               <div>
@@ -220,16 +230,18 @@ const Profile = () => {
                 <th className="one-c"><Upvotes /></th>
                 <th className="one-d"><Downvotes /></th>
               </tr>
-              {stratData.map((item) => {
+              {showStrat ? 
+              <>{stratData.map((item) => {
                 return (<div className="table-rows-content">
                 <tr className="table-rows">
                   <td className="one">{item.strategy_name}</td>
                   <td className="two">{item.description}</td>
                   <td className="three" onClick={() => {upvote(item.id)}}>{item.upvotes}<FcUp /></td>
                   <td className="four">{item.downvotes}<FcDown/></td>
-                {/* <Button className="graph2-btn" variant="contained" size="small">Purchase</Button> */}
                 </tr></div>)
-              })}
+              })}</>
+              :
+              <><div className="g2-container"><Button id="g2-btn" variant="contained" size="small" onClick={purchaseStrat}>Purchase</Button></div></>}
             </div>
           </div>
         </div>

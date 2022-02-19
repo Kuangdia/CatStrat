@@ -36,6 +36,10 @@ export default function ListTabs(props) {
     navigate(`/profile/${userID}`)
   }
 
+  const comparisonRoute = (userID) => {
+    navigate(`/comparison/${userID}`)
+  }
+
   const dashboardRoute = (userID) => {
     if (userID) {
       navigate(`/`)
@@ -70,7 +74,7 @@ export default function ListTabs(props) {
         <div className="label">Strategy Info </div>
       </button>
 
-      <button onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+      <button onClick={() => { comparisonRoute(userID) }} className="nav-item" >
         <CompareArrowsIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> 
         <div className="label">Comparison </div>
       </button>

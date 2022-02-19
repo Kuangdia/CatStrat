@@ -1,12 +1,9 @@
-import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.light.css';
-import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.light.css';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Landing from './pages/Landing';
 import DashboardCalendar from './pages/DashboardCalendar';
+import DashboardComparison from './pages/DashboardComparison';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Axios from 'axios'
 import React from 'react';
@@ -39,6 +36,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/calendar" element={<DashboardCalendar/>} />
         <Route path="/profile/:id" element={<DashboardProfile />}/>
+        <Route path="/comparison/:id" element={<DashboardComparison />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,79 @@
+.comparison-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  border: 3px solid green;
+  margin: auto;
+
+  &-middle {
+    text-align: center;
+    font-size: 48px;
+    color: rgb(130, 194, 215);
+    box-sizing: border-box;
+    border: 3px solid rgb(7, 71, 126);
+    height: 15%;
+    width: 100%;
+    position: relative;
+  }
+
+  &-bottom {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: 3px solid rgb(110, 7, 126);
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .comparison-container-left {
+
+      box-sizing: border-box;
+      border: 3px solid rgb(7, 71, 126);
+      height: 100%;
+      width: 100%;
+      position: relative;
+  
+      .a-btn {
+        box-sizing: border-box;
+        border: 3px solid rgb(7, 126, 25);
+        height: 20%;
+        width: 100%;
+        position: relative;
+      }
+  
+      .a-graphs {
+        box-sizing: border-box;
+        border: 3px solid rgb(7, 126, 25);
+        height: 80%;
+        width: 100%;
+        position: relative;
+      }
+    }
+    .comparison-container-right {
+      box-sizing: border-box;
+      border: 3px solid rgb(7, 71, 126);
+      height: 100%;
+      width: 100%;
+      position: relative;
+  
+      .c-btn {
+        box-sizing: border-box;
+        border: 3px solid rgb(7, 126, 25);
+        height: 20%;
+        width: 100%;
+        position: relative;
+      }
+  
+      .c-graphs {
+        box-sizing: border-box;
+        border: 3px solid rgb(7, 126, 25);
+        height: 80%;
+        width: 100%;
+        position: relative;
+      }
+    }
+  }
+}

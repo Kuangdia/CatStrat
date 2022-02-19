@@ -372,15 +372,25 @@
 //   padding: 5px 10px;
 // }
 
-.graph2-btn {
-  // opacity: 1;
-  // align-self: center;
-  // z-index: 50;
-  // position: relative;
-  // // margin-left: 160px;
-  // bottom: 40px;
-  // background-color: rgb(26, 157, 30);
-  // color: white;
-  // border-radius: 4px;
-  // padding: 5px 10px;
+.g2-container {
+  box-sizing: border-box;
+  border: 1px solid darkgrey;
+  margin-right: 25px;
+  height: 300px;
+
+  #g2-btn {
+    margin-top: 130px;
+    margin-left: 220px;
+  
+    z-index: 200;
+    background-color: rgb(26, 157, 30);
+    color: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+}
+
+#compare-id {
+  margin-left: 90px;
+  background-color: rgb(160, 45, 198);
 }
