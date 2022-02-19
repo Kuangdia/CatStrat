@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import "../styles/dashboard.scss";
+// import "../styles/dashboard.scss";
 import { useNavigate } from 'react-router-dom';
 import Summary from '../components/Summary';
 

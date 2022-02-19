@@ -1,9 +1,15 @@
 import "react-widgets/scss/styles.scss";
 import "./RecordInput.scss";
+import * as React from 'react';
 import { useEffect, useState } from "react";
 import NumberPicker from "react-widgets/NumberPicker";
 import DropdownList from "react-widgets/DropdownList";
 import Axios from "axios";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 export default function RecordInput(props) {
   const userID = localStorage.getItem("userID");
@@ -21,6 +27,8 @@ export default function RecordInput(props) {
     recordID,
     setRecordID,
     setRender,
+    investChoice,
+    setInvestChoice,
     render
   } = props;
 
@@ -58,6 +66,10 @@ export default function RecordInput(props) {
     e.preventDefault();
   }
 
+  function handleInvestChoiceChange(e) {
+    setInvestChoice(e.target.value);
+  }
+
   function clear() {
     setNetBalance(0);
     setInvestAmount(0);
@@ -87,6 +99,7 @@ export default function RecordInput(props) {
         strategyID,
         stockID,
         date,
+        investChoice,
         userID,
       })
         .then(res => {
@@ -102,6 +115,7 @@ export default function RecordInput(props) {
         strategyID,
         stockID,
         date,
+        investChoice,
         userID
       })
         .then(res => {
@@ -137,6 +151,7 @@ export default function RecordInput(props) {
           }}
         />
         <br />
+
         <label htmlFor="investAmount">
           Invest Amount
         </label>
@@ -147,6 +162,22 @@ export default function RecordInput(props) {
           onChange={ value => setInvestAmount(value) }
         />
         <br />
+
+        <FormControl>
+          <FormLabel id="demo-controlled-radio-buttons-group">Investment Options</FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              value={ investChoice }
+              onChange={ handleInvestChoiceChange }
+            >
+            <FormControlLabel value={true} control={<Radio />} label="Stock" />
+            <FormControlLabel value={false} control={<Radio />} label="Option" />
+          </RadioGroup>
+        </FormControl>
+        <br />
+
         <label htmlFor="strategy">
           Investment Strategy
         </label>
@@ -161,6 +192,7 @@ export default function RecordInput(props) {
           data={ stratData }
         />
         <br />
+
         <label htmlFor="stock">
           Stock/Option ticker
         </label>
@@ -175,6 +207,7 @@ export default function RecordInput(props) {
           data={ stockData }
         />
         <br />
+
         <p>{ date }</p>
         <p>RecordID: { recordID }</p>
         <br />
