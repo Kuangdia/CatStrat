@@ -5,22 +5,20 @@ import Button from 'react-bootstrap/Button';
 export default function AddStrategy(props) {
 
     return (
-        <>
-
+        <div >
             <details className="alert">
-                <summary className="summary">
-                    Hello
+                <summary className="add-strat">
+                    <img
+                        className="add"
+                        src="add2.png"
+                        alt="Add"
+                        onClick={props.onClick}
+                    />
                 </summary>
                 <section className="footer">
-                    <div className="buttons">
-                            <div>
-                                <Button className="edit" variant="warning">Edit</Button>{' '}
-                                <Button className="edit" variant="danger">Delete</Button>{' '}
-                            </div>
-                    </div>
+                    hello
                 </section>
             </details>
-
-        </>
+        </div>
     );
 }

@@ -1,38 +1,65 @@
 import './StrategyInfo.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from 'react-bootstrap/Button';
+import ShowStrategy from './ShowStrategy';
+import AddStrategy from './AddStrategy';
+import WriteStrategy from './WriteStrategy';
+import useVisualMode from './useVisualMode';
+import { useState } from 'react';
+import axios from 'axios';
+import OpenStrategy from './OpenStrategy';
 
-export default function Strategy({ name, description, type }) {
+export default function Strategy({ id, name, description, type, setName, setDescription}) {
+
+    const { mode, transition, back } = useVisualMode("SHOW");
+
+    const SHOW = "SHOW";
+    const CREATE = "CREATE";
+    const EDIT = "EDIT";
+    const ADD = "ADD";
+    const SHOWOPEN = "SHOWOPEN";
+    // const SAVING = "SAVING";
+    // const DELETING = "DELETING";
+    // const CONFIRM = "CONFIRM";
+
+
+    // save strategy
+    function save(name, description) {
+        axios.put('http://localhost:8080/strategy/info/${id}')
+            .then(() => transition(SHOWOPEN))
+            .catch((err) => {
+                console.log('err', err)
+            })
+    }
+
+    // create strategy
+    function create(name, description) {
+        axios.post('http://localhost:8080/strategy/info/${id}')
+            .then(() => transition(SHOWOPEN))
+            .catch((err) => {
+                console.log('err', err)
+            })
+    }
+
+    // // reset the input data and transition back to the previous mode
+    function reset() {
+        setName('');
+        setDescription('');
+        back();
+    }
 
     return (
         <>
+            {mode === SHOW && <ShowStrategy name={name} description={description} type={type} />}
 
-            <details className="alert">
-                <summary className="summary">
-                    <div style={{ paddingTop: '7px' }}>{name}</div>
-                    <div><KeyboardArrowDownIcon style={{ width: '30px', height: '30px' }} /></div>
+            {mode === ADD && <AddStrategy onAdd={() => transition(CREATE)} />}
 
-                </summary>
-                <section className="footer">
-                    <div className="description">{description}</div>
-                    <div className="buttons">
-                        <div className="strategy-type">{type}</div>
-                        {type === 'Custom' &&
-                            <div>
-                                <Button className="edit" variant="warning">Edit</Button>{' '}
-                                <Button className="edit" variant="danger">Delete</Button>{' '}
-                            </div>
-                        }
-                    </div>
-                </section>
+            {mode === CREATE && <WriteStrategy
+                onCancel={reset}
+                onSave={save}
+            />}
 
-
-            </details>
-
-
-
-
-
+            {mode === SHOWOPEN && <OpenStrategy name={name} description={description} type={type} />}
 
             {/* <details className="info" open>
                     <summary> End-of-day trading</summary>
