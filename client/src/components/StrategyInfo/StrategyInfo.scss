@@ -1,15 +1,16 @@
 @import "../../styles/variables.scss";
 
 .full-container {
-    // width: 100vh;
-    position:relative;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $content-background;
+    height:100%;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --color-bg: #EEEDEB;
-  --color-title: #0E1C4E;
   
   --color-summary-1: #FFF6EE;
   --color-summary-1-highlight: #FFC48B;
@@ -41,6 +42,9 @@
   box-shadow: 0 8px 10px rgba(0, 0, 0, .1);
   max-width: 30em;
   width: 100%;
+  align-self: center;
+  min-width: 75rem;
+  border-radius: 30px;
   
   h1 {
     font-family: var(--font-ibm-plex-sans);
@@ -48,13 +52,12 @@
     font-weight: bold;
     font-size: 20px;
     line-height: 1.2;
-    color: var(--color-title);
     margin-bottom: 20px;
   }
   
   details {
     display: flex;
-    
+    // justify-content: space-between;
     border-radius: 5px;
     overflow: hidden;
     background: rgba(0, 0, 0, .05);
@@ -62,6 +65,10 @@
     padding:15px;
     & {
       margin-top: 15px;
+    }
+    &.summary {
+      display:flex;
+      justify-content: space-between;
     }
     
     &.warning {

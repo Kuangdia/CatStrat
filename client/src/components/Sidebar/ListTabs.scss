@@ -27,7 +27,9 @@
   background-color: $dark-background;
 
   &:hover {
+    cursor: pointer;
     background-color:$content-background;
+
     color: black !important;
   }
 
