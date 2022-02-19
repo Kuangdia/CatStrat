@@ -17,10 +17,10 @@ export default function DashboardStrategyInfo(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-
+    Axios.get(`/strategy/${userID}`)
     if (userID) {
       console.log('userID', userID)
-      Axios.get(`http://localhost:8080/strategies`, { params: { user_id: userID } })
+      Axios.get(`http://localhost:8080/strategy/${userID}`)
         .then((res) => {
           console.log('response', res.data)
           setData(res.data)

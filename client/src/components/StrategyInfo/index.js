@@ -1,9 +1,9 @@
 import './StrategyInfo.scss';
 import Strategy from './Strategy';
 
-export default function Summary({ data }) {
+export default function StrategyInfo({ data }) {
   // Organize and manipulate data
-
+  
 
   return (
     <section className="full-container">
