@@ -60,7 +60,7 @@ export default function Calendar() {
           events={ calendarData }
           dateClick={ handleDateClick }
           eventClick={ handleRecordClick }
-          selectable={true}
+          selectable={ true }
           unselectAuto
         />
       </div>

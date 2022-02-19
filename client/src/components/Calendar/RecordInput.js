@@ -133,95 +133,122 @@ export default function RecordInput(props) {
   }
 
   return (
-    <>
+    <div className="paper__container">
       <form 
         className="record-input" 
         onSubmit={ handleSubmit }
       >
-        <button onClick={ close }>X</button>
+        <button className="button__close"
+        onClick={ close }>X</button>
 
-        <label htmlFor="balance">Gain/Loss</label>
-        <input
-          id="balance"
-          name="balance"
-          type="text"
-          value={ netBalance }
-          onChange={(e) => {
-            setNetBalance(e.target.value)
-          }}
-        />
+        <label htmlFor="balance" className="input__title">
+          Gain/Loss
+        </label>
+        <div className="input__container">
+          <span className="input__container__symbol">
+            $
+          </span>
+          <input
+            className="input__container__box"
+            id="balance"
+            name="balance"
+            type="text"
+            value={ netBalance }
+            onChange={(e) => {
+              setNetBalance(e.target.value)
+            }}
+          />
+        </div>
+
         <br />
 
-        <label htmlFor="investAmount">
+        <label htmlFor="investAmount" className="input__title">
           Invest Amount
         </label>
-        <NumberPicker
-          id="investAmount"
-          value={ investAmount }
-          step={ 100 }
-          onChange={ value => setInvestAmount(value) }
-        />
+        <div className="input__container">
+          <span className="input__container__symbol">
+            $
+          </span>
+          <NumberPicker
+            className="input__container__box"
+            id="investAmount"
+            value={ investAmount }
+            step={ 100 }
+            onChange={ value => setInvestAmount(value) }
+          />
+        </div>
         <br />
 
         <FormControl>
-          <FormLabel id="demo-controlled-radio-buttons-group">Investment Options</FormLabel>
+          <FormLabel id="demo-controlled-radio-buttons-group"
+          className="input__title">Investment Options</FormLabel>
             <RadioGroup
               row
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
               value={ investChoice }
               onChange={ handleInvestChoiceChange }
+              className="input__radio"
             >
-            <FormControlLabel value={true} control={<Radio />} label="Stock" />
-            <FormControlLabel value={false} control={<Radio />} label="Option" />
+            <FormControlLabel className="input__radio__label" value={true} control={<Radio />} label="Stock" />
+            <FormControlLabel className="input__radio__label" value={false} control={<Radio />} label="Option" />
           </RadioGroup>
         </FormControl>
         <br />
 
-        <label htmlFor="strategy">
+        <label htmlFor="strategy" className="input__title">
           Investment Strategy
         </label>
-        <DropdownList
-          id="strategy"
-          value={ strategyID }
-          onChange={nextValue => {
-            setStrategyID(nextValue.id);
-          }}
-          dataKey="id"
-          textField="strategy"
-          data={ stratData }
-        />
+        <div className="input__container">
+          <DropdownList
+            id="strategy"
+            value={ strategyID }
+            onChange={nextValue => {
+              setStrategyID(nextValue.id);
+            }}
+            dataKey="id"
+            textField="strategy"
+            data={ stratData }
+          />
+        </div>
         <br />
 
-        <label htmlFor="stock">
+        <label htmlFor="stock" className="input__title">
           Stock/Option ticker
         </label>
-        <DropdownList
-          id="stock"
-          value={ stockID }
-          onChange={nextValue => {
-            setStockID(nextValue.id);
-          }}
-          dataKey="id"
-          textField="stock"
-          data={ stockData }
-        />
+        <div className="input__container">
+          <DropdownList
+            id="stock"
+            value={ stockID }
+            onChange={nextValue => {
+              setStockID(nextValue.id);
+            }}
+            dataKey="id"
+            textField="stock"
+            data={ stockData }
+          />
+        </div>
         <br />
 
-        <p>{ date }</p>
-        <p>RecordID: { recordID }</p>
+        <p className="input__title" >{ date }</p>
+
+        <p className="input__hidden">RecordID: { recordID }</p>
         <br />
+        
+        <section className="button__submit">
+          <button
+            className="button__submit__delete"
+            type="submit"
+            onClick={ deleteRecord }
+          >Delete</button>
 
-        <button 
-          type="submit"
-          onClick={ deleteRecord }
-        >Delete</button>
-
-        <button 
-          type="submit"
-          onClick={ submit }
-        >Submit</button>
+          <button
+            className="button__submit__submit"
+            type="submit"
+            onClick={ submit }
+          >Submit</button>
+        </section>
       </form>
-    </>
+    </div>
   );
 }
