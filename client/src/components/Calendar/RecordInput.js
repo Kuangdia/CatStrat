@@ -140,7 +140,7 @@ export default function RecordInput(props) {
       >
         <button onClick={ close }>X</button>
 
-        <label htmlFor="balance">Gain/Losses</label>
+        <label htmlFor="balance">Gain/Loss</label>
         <input
           id="balance"
           name="balance"
