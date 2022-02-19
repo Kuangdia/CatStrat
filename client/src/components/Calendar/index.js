@@ -19,7 +19,7 @@ export default function Calendar() {
   const [investAmount, setInvestAmount] = useState(1000);
   const [strategy, setStrategy] = useState("");
   const [strategyID, setStrategyID] = useState("");
-  const [stock, setStock] = useState("");
+  const [stockID, setStockID] = useState("");
   const [recordID, setRecordID] = useState("");
   const [render, setRender] = useState(false);
 
@@ -38,13 +38,13 @@ export default function Calendar() {
     Axios.get(`/calendar/${info.event.id}`)
       .then(res => {
         console.log("single record", res.data);
-        const {day, profit, strategy_id} = res.data[0];
+        const {day, profit, strategy_id, investment, stock_id, stock_option} = res.data[0];
         setRecordID(info.event.id);
         setDate(day.slice(0, 10));
-        setInvestAmount(1001);
+        setInvestAmount(investment);
         setNetBalance(profit);
-        setStrategy(strategy_id);
-        setStock(3);
+        setStrategyID(strategy_id);
+        setStockID(stock_id);
         setShowForm(true);
       })
       .catch(err => console.log(err));
@@ -74,12 +74,12 @@ export default function Calendar() {
             setNetBalance = { setNetBalance }
             investAmount={ investAmount }
             setInvestAmount={ setInvestAmount }
-            strategy={ strategy }
-            setStrategy={ setStrategy }
+            // strategy={ strategy }
+            // setStrategy={ setStrategy }
             strategyID={ strategyID }
             setStrategyID={ setStrategyID }
-            stock={ stock }
-            setStock={ setStock }
+            stockID={ stockID }
+            setStockID={ setStockID }
             recordID={ recordID }
             setRecordID={ setRecordID }
             render={ render }

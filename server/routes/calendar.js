@@ -26,20 +26,28 @@ const calendar = (db) => {
 
   router.post("/", (req, res) => {
     console.log(req.body);
-    const { netBalance, investAmount, strategyID, stock, date, userID } = req.body;
+    const { netBalance, investAmount, strategyID, stockID, date, userID } = req.body;
 
     return db.query(`INSERT INTO records (
       profit, user_id, strategy_id, day, investment, stock_id
     )VALUES (
       $1, $2, $3, $4, $5, $6
-    ) returning *`,[netBalance, userID, strategyID, date, investAmount, stock])
+    ) returning *`,[netBalance, userID, strategyID, date, investAmount, stockID])
       .then(data => {
         res.send(data.rows);
       });
   });
 
   router.put("/:recordID", (req, res) => {
+    const recordID = req.params.recordID;
+    const { netBalance, investAmount, strategyID, stockID, date, userID } = req.body;
 
+    return db.query(`UPDATE records set
+      profit = $1, user_id = $2, strategy_id = $3, day = $4, investment = $5, stock_id = $6
+      WHERE id = $7`, [netBalance, userID, strategyID, date, investAmount, stockID, recordID])
+      .then(data => {
+        res.send(data.rows);
+      });
   });
 
   router.delete("/:recordID", (req, res) => {

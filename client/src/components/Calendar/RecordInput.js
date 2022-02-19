@@ -6,22 +6,7 @@ import DropdownList from "react-widgets/DropdownList";
 import Axios from "axios";
 
 export default function RecordInput(props) {
-  const [stockData, setStockData] = useState([]);
-
-  useEffect(() => {
-    Axios.get("/stock")
-    .then(res => {
-      const result = res.data.map(dataObj => {
-        return {
-          id: dataObj.id,
-          stock: dataObj.stock_symbol
-        }
-      });
-      setStockData([...result]);
-    })
-    .catch(err => console.log(err.message));
-  }, []);
-
+  const userID = localStorage.getItem("userID");
   const { 
     date, 
     setShowForm,
@@ -29,41 +14,65 @@ export default function RecordInput(props) {
     setNetBalance,
     investAmount, 
     setInvestAmount,
-    strategy, 
-    setStrategy,
     strategyID, 
     setStrategyID,
-    stock, 
-    setStock,
+    stockID, 
+    setStockID,
     recordID,
     setRecordID,
     setRender,
     render
   } = props;
-  
-  const userID = localStorage.getItem("userID");
-  
+
+  const [stockData, setStockData] = useState([]);
+  const [stratData, setStratData] = useState([]);
+
+  const getStockData = () => {
+    return Axios.get("/stock")
+  }
+  const getStratData = () => {
+    return Axios.get(`/strategy/${userID}`)
+  }
+  useEffect(() => {
+    Promise.all([getStockData(), getStratData(userID)])
+      .then(res => {
+        const stockDataReturn = res[0].data.map(dataObj => {
+          return {
+            id: dataObj.id,
+            stock: dataObj.stock_symbol
+          }
+        });
+        const startDataReturn = res[1].data.map(stratObj => {
+          return {
+            id: stratObj.id,
+            strategy: stratObj.strategy_name
+          }
+        });
+        setStockData([...stockDataReturn]);
+        setStratData([...startDataReturn]);
+      })
+      .catch(err => console.log(err.message));
+  }, []);
+
   function handleSubmit(e) {
     e.preventDefault();
-    alert("You submit a form!");
   }
 
   function clear() {
     setNetBalance(0);
     setInvestAmount(0);
-    setStrategy("");
     setStrategyID("");
-    setStock("");
+    setStockID("");
     setRecordID("");
   }
 
   function deleteRecord() {
     Axios.delete(`/calendar/${recordID}`)
     .then(res => {
-      alert(res.data);
       clear();
       setShowForm(false);
       setRender(!render);
+      alert("Delete 1 record successfully!");
     })
     .catch(err => {
       console.log(err.message);
@@ -71,22 +80,37 @@ export default function RecordInput(props) {
   }
 
   function submit() {
-    // if (recordID) {
-    //   put
-    // }
-    Axios.post("/calendar", {
-      netBalance,
-      investAmount,
-      strategyID,
-      stock,
-      date,
-      userID
-    })
-      .then(res => {
-        console.log("server sends back latest inserted data", res.data);
-        setRender(!render);
-        close();
-      });
+    if (recordID) {
+      Axios.put(`/calendar/${recordID}`, {
+        netBalance,
+        investAmount,
+        strategyID,
+        stockID,
+        date,
+        userID,
+      })
+        .then(res => {
+          console.log("Update route sent back", res.data);
+          alert("update submitted!");
+          setRender(!render);
+          close();
+        });
+    } else {
+      Axios.post("/calendar", {
+        netBalance,
+        investAmount,
+        strategyID,
+        stockID,
+        date,
+        userID
+      })
+        .then(res => {
+          // console.log("server sends back latest inserted data", res.data);
+          alert("Record Created!");
+          setRender(!render);
+          close();
+        });
+    }
   }
 
   function close() {
@@ -118,9 +142,9 @@ export default function RecordInput(props) {
         </label>
         <NumberPicker
           id="investAmount"
-          defaultValue={ investAmount }
-          step={1000}
-          onChange={e => setInvestAmount(e.target.value)}
+          value={ investAmount }
+          step={ 100 }
+          onChange={ value => setInvestAmount(value) }
         />
         <br />
         <label htmlFor="strategy">
@@ -128,30 +152,25 @@ export default function RecordInput(props) {
         </label>
         <DropdownList
           id="strategy"
-          value={ strategy }
+          value={ strategyID }
           onChange={nextValue => {
-            setStrategy(nextValue.strategy);
             setStrategyID(nextValue.id);
           }}
-          datakey="id"
+          dataKey="id"
           textField="strategy"
-          data={[
-            { id: 1, strategy: "strat1" },
-            { id: 2, strategy: "strat2" },
-            { id: 3, strategy: "strat3" },
-          ]}
+          data={ stratData }
         />
         <br />
         <label htmlFor="stock">
-          Stock/Option tick
+          Stock/Option ticker
         </label>
         <DropdownList
-        id="stock"
-          value={ stock }
+          id="stock"
+          value={ stockID }
           onChange={nextValue => {
-            setStock(nextValue.id);
+            setStockID(nextValue.id);
           }}
-          datakey="id"
+          dataKey="id"
           textField="stock"
           data={ stockData }
         />

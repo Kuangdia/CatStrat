@@ -39,7 +39,7 @@ export default function Navbar(props) {
 
         <div className="navbar__notice">
           <button>
-          <Badge badgeContent={229} color="success">
+          <Badge badgeContent={88} color="success">
             {/* <NotificationsNoneIcon className="navbar__icon"/> */}
             <NotificationsIcon className="navbar__icon"/>
           </Badge>
@@ -48,9 +48,6 @@ export default function Navbar(props) {
         <div onClick= { logout }>
           <button className="logout"> Logout</button>
         </div>
-
-      
-
           <div className="navbar__coin">
             <img 
               src={cate}
