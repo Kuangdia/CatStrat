@@ -1,5 +1,6 @@
 import './StrategyInfo.scss';
 import Strategy from './Strategy';
+import AddStrategy from './AddStrategy';
 
 export default function StrategyInfo({ data }) {
 
@@ -20,6 +21,7 @@ export default function StrategyInfo({ data }) {
       <div className="strategies">
         <h1>Strategies Explained</h1>
         <ul>{parsedStrategies}</ul>
+        <ul><AddStrategy /></ul>
       </div>
     </section>
   );
