@@ -16,7 +16,7 @@ export default function StrategyContainer({ data }) {
   };
 
   return (
-    <Paper elevation={3} className="paper" style={{ borderRadius: '30px', width: '300px' }}>
+    <Paper elevation={3} className="paper" style={{ borderRadius: '30px', width: '520px' }}>
       <h1 className="pie__title"> Strategies Used </h1>
       <Divider className="divider" style={{ height: '2px', color: 'black' }} />
       <RadioGroup

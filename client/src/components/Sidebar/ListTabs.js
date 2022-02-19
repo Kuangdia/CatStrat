@@ -69,7 +69,7 @@ export default function ListTabs(props) {
       </div>
 
 
-      <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+      <div onClick={() => { calendarRoute(userID) }} className="nav-item" >
         <div> 
         <TodayIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
         <div className="label">Calendar </div>

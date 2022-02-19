@@ -24,10 +24,10 @@
   height:100%;
   padding-top: .75em;
   padding-bottom: .9em;
-  background-color: #304347;
+  background-color: $dark-background;
 
   &:hover {
-    background-color:white;
+    background-color:$content-background;
     color: black !important;
   }
 
