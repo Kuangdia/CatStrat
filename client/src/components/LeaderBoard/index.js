@@ -3,7 +3,6 @@ import Axios from "axios";
 import ToggleButton from './ToggleButton';
 import Top3List from './Top3List';
 import LoserList from './LoserList';
-import TOP3ListCoin from "./Top3ListCoin";
 import LoserListCoin from './LoserListCoin';
 import Top3ListCoin from './Top3ListCoin';
 /*
