@@ -12,4 +12,7 @@ VALUES
 
 ('McDonald''s Pattern', 'This script fits a cubic Bezier curve using tops/bottoms in order to approximate a McDonald''s pattern, a popular meme pattern in the crypto trading community. Traditionally the McDonald''s pattern is described by an M pattern with deep retracement (> 50%), forming a McDonald''s logo. The script fits Bezier curves using specific tops/bottoms as control points. When the distance between tops and bottoms values is relatively small, the user can more easily identify the pattern. A score is shown on the top right of the chart, aiming to return how close the returned pattern is to the original logo. A regular Mcdonald''s pattern would return a red background, while an inverted pattern would return a green one.', true, true, 100, 44),
 
-('WEndy Strat', 'Lose all money and go work at Wendy''s', true, true, 0, 99);
+('WEndy Strat', 'Lose all money and go work at Wendy''s', true, true, 0, 99),
+('Staleny Strat', 'Go to a park before invest', true, true, 6, 2),
+('Give Up Strat', 'Do nothing after invested, uninstall the investment app', true, true, 1, 12),
+('U Name It Strat', 'actually it hasn''t been created yet', true, true, 2, 0);

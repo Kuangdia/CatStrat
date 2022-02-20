@@ -49,12 +49,14 @@ const dashboardRoutes = require('./routes/dashboard');
 const calendarRoutes = require("./routes/calendar");
 const stockRoutes = require("./routes/stock");
 const strategyRoutes = require("./routes/strategy");
+const leaderBoardRoutes = require("./routes/leaderBoard");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
 app.use("/calendar", calendarRoutes(db));
 app.use("/stock", stockRoutes(db));
 app.use("/strategy", strategyRoutes(db));
+app.use("/leaderBoard", leaderBoardRoutes(db));
 
 
 const secret = "secretString12345"

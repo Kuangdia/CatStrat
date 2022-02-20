@@ -9,10 +9,11 @@ import Landing from './pages/Landing';
 import DashboardCalendar from './pages/DashboardCalendar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Axios from 'axios'
+import {useState, useEffect} from 'react'
 import React from 'react';
 import DashboardProfile from './pages/DashboardProfile';
 import DashboardStrategyInfo from './pages/DashboardStrategyInfo';
-import {useState, useEffect} from 'react'
+import DashboardLeaderBoard from './pages/DashboardLeaderBoard';
 
 function App() {
   // const [user, setUser] = useState({})
@@ -38,12 +39,13 @@ function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
-        <Route path="/calendar" element={<DashboardCalendar/>} />
+        <Route path="/calendar" element={<DashboardCalendar />} />
         <Route path="/profile/:id" element={<DashboardProfile />}/>
-        <Route path="/strategyInfo" element={<DashboardStrategyInfo/>}/>
+        <Route path="/strategyInfo" element={<DashboardStrategyInfo />}/>
+        <Route path="/leaderBoard" element={<DashboardLeaderBoard />}/>
       </Routes>
     </Router>
   );
-}
+} 
 
 export default App;
