@@ -11,6 +11,7 @@ export default function BarChart({ data }) {
 
     const { barData, barLabels } = getBarChartData(data)
 
+    
     const dataset = {
         labels: barLabels,
         datasets: [

@@ -10,27 +10,19 @@ Chart.register(...registerables);
 export default function PieChart({ data }) {
 
   const { pieData, pieLabels } = getPieChartData(data)
-  let random = randomColor();
+  let randomColors = [];
+  for (let i = 0; i < pieLabels.length; i++) {
+    randomColors.push(randomColor());
+    console.log(randomColors[i])
+  }
 
   const dataset = {
     labels: pieLabels,
     datasets: [
       {
         label: 'Rainfall',
-        backgroundColor: [
-          '#B21F00',
-          '#C9DE00',
-          '#2FDE00',
-          '#00A6B4',
-          // '#6800B4'
-        ],
-        // hoverBackgroundColor: [
-        //   '#501800',
-        //   '#4B5000',
-        //   '#175000',
-        //   '#003350',
-        //   // '#35014F'
-        // ],
+        backgroundColor: randomColors,
+        hoverBackgroundColor: '#0B2038',
         data: pieData
       }
     ]
