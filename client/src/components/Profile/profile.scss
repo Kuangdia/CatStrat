@@ -211,13 +211,14 @@
     font-weight: bold;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+   
 
     .one-a {
       font-size: 15px;
       width: 20%;
     }
     .one-b {
+      padding-left: 85px;
       font-size: 15px;
       margin-left: 5px;
       margin-right: 5px;
@@ -311,7 +312,7 @@
   font-weight: 400;
 }
 
-.progress {
+.progressbar {
   position: relative;
   top: 30px;
   color: #03A9F4;
@@ -352,6 +353,7 @@
 }
 
 .profit-goal-text {
+  font-size: 18px;
   margin-bottom: 10px;
 }
 
