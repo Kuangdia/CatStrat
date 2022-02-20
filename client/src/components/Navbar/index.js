@@ -5,19 +5,24 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Badge } from '@mui/material';
 import cate from "../../images/imgC.png"
 import SearchBar from "./SearchBar/SearchBar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Navbar(props) {
+  const { coins } = props
   const navigate = useNavigate();
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+
+  const userID = localStorage.getItem("userID")
+
+  // console.log(coins)
 
   useEffect(() => {
-
+    
     axios.get("/username")
       .then(res => {
-        // console.log("search", res.data)
+        console.log("nav data", res.data)
         setData(res.data)
       })
       .catch(err => console.log(err))
@@ -28,6 +33,10 @@ export default function Navbar(props) {
     console.log("logout")
     localStorage.clear();
     navigate("/")
+  }
+
+  const navigateCoins = () => {
+    navigate(`/catecoins/${userID}`)
   }
 
   return (
@@ -53,8 +62,9 @@ export default function Navbar(props) {
               src={cate}
               alt="catecoin-icon"
               className="navbar__icon"
+              onClick={navigateCoins}
             />
-            <p>X<span>100</span></p>
+            <p>X<span>{coins}</span></p>
 
           </div>
         </div>

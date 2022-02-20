@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import Profile from "../components/Profile/Profile";
+import Comparison from "../components/Comparison";
 import "../styles/dashboard.scss";
 import {useState, useEffect} from 'react';
 import Axios from 'axios';
@@ -39,7 +39,7 @@ export default function DashboardProfile(props) {
         <Sidebar />
         <div className="layout__right">
           <Navbar coins={coins}/>
-          <Profile setCoins={setCoins} coins={coins}/>
+          <Comparison />
         </div>
       </main>
     </>
