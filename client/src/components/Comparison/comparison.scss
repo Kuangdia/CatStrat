@@ -1,0 +1,121 @@
+.comparison-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100vh;
+  width: 95%;
+  box-sizing: border-box;
+  // border: 3px solid green;
+  margin: auto;
+  background-color: white;
+  z-index: 5;
+  margin: 30px 0px 30px 30px;
+  border-radius: 25px;
+
+  &-middle {
+    text-align: center;
+    font-size: 48px;
+    color: black;
+    box-sizing: border-box;
+    // border: 3px solid rgb(7, 71, 126);
+    height: 15%;
+    width: 100%;
+    position: relative;
+  }
+
+  &-bottom {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    // border: 3px solid rgb(110, 7, 126);
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .comparison-container-left {
+
+      box-sizing: border-box;
+      // border: 3px solid rgb(7, 71, 126);
+      height: 100%;
+      width: 100%;
+      position: relative;
+  
+      .a-btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        height: 12%;
+        width: 100%;
+        position: relative;
+      }
+  
+      .a-graphs {
+        box-sizing: border-box;
+        // border: 3px solid rgb(7, 126, 25);
+        height: 78%;
+        width: 100%;
+        position: relative;
+      }
+    }
+    .comparison-container-right {
+      box-sizing: border-box;
+      // border: 3px solid rgb(7, 71, 126);
+      height: 100%;
+      width: 100%;
+      position: relative;
+  
+      .c-btn {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        // border: 3px solid rgb(7, 126, 25);
+        height: 12%;
+        width: 100%;
+        position: relative;
+      }
+  
+      .c-graphs {
+        box-sizing: border-box;
+        // border: 3px solid rgb(7, 126, 25);
+        height: 78%;
+        width: 100%;
+        position: relative;
+      }
+    }
+  }
+}
+
+
+
+.nocomparison-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .no-compare-txt {
+    align-self: center;
+    font-size: 48px;
+  }
+
+  .no-compare-btn {
+    align-self: flex-end;
+    margin-top: 50px;
+  }
+
+  .no-compare-graph {
+    position: relative;
+    margin-left: 100px;
+    width: 80%;
+  }
+}
+
+#btn-color {
+  background-color: rgb(126, 126, 126);
+}
+
+.line-graphC {
+  position: relative;
+  height: 80%;
+  width: 90%;
+}

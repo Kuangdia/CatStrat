@@ -38,7 +38,7 @@ export default function DashboardCalendar(props) {
         <div className="layout__right">
           <Navbar 
             loginUserID={loginUserID} 
-            setLoginUserID = {setLoginUserID} />
+            setLoginUserID={setLoginUserID} />
           <div className="content">
             <Calendar />
           </div>

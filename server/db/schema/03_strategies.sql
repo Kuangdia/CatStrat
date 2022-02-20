@@ -10,4 +10,4 @@ CREATE TABLE strategies (
   downvotes INTEGER DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+ 

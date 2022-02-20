@@ -6,21 +6,34 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 import Axios from "axios";
 import RecordInput from "./RecordInput";
+import $ from 'jquery';
 
-import "./Calendar.scss";
+// import "./Calendar.scss";
 import { sendGetReq } from '../../helpers/cleanCalendarData';
 
 export default function Calendar() {
+  $(() => {
+    const $records = $(".fc-event-title");
+    for (let $record of $records) {
+      console.log($($record).text());
+      if (parseInt($($record).text().slice(2)) < 0) {
+        $($record).addClass("neg-record");
+      } else {
+        $($record).addClass("pos-record");
+      }
+    }
+  })
+  
   const [calendarData, setCalendarData] = useState([]);
   const [date, setDate] = useState("");
   const [showForm, setShowForm] = useState(false);
 
   const [netBalance, setNetBalance] = useState(0);
-  const [investAmount, setInvestAmount] = useState(1000);
-  const [strategy, setStrategy] = useState("");
+  const [investAmount, setInvestAmount] = useState(0);
   const [strategyID, setStrategyID] = useState("");
   const [stockID, setStockID] = useState("");
   const [recordID, setRecordID] = useState("");
+  const [investChoice, setInvestChoice] = useState(true);
   const [render, setRender] = useState(false);
 
   const userID = localStorage.getItem("userID");
@@ -45,6 +58,7 @@ export default function Calendar() {
         setNetBalance(profit);
         setStrategyID(strategy_id);
         setStockID(stock_id);
+        setInvestChoice(stock_option);
         setShowForm(true);
       })
       .catch(err => console.log(err));
@@ -59,7 +73,7 @@ export default function Calendar() {
           events={ calendarData }
           dateClick={ handleDateClick }
           eventClick={ handleRecordClick }
-          selectable={true}
+          selectable={ true }
           unselectAuto
         />
       </div>
@@ -74,14 +88,14 @@ export default function Calendar() {
             setNetBalance = { setNetBalance }
             investAmount={ investAmount }
             setInvestAmount={ setInvestAmount }
-            // strategy={ strategy }
-            // setStrategy={ setStrategy }
             strategyID={ strategyID }
             setStrategyID={ setStrategyID }
             stockID={ stockID }
             setStockID={ setStockID }
             recordID={ recordID }
             setRecordID={ setRecordID }
+            investChoice={ investChoice }
+            setInvestChoice={ setInvestChoice }
             render={ render }
             setRender={ setRender }
           /> : <></>

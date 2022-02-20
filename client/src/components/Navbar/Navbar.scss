@@ -69,6 +69,10 @@
     img {
       display: block;
       margin-right: 0.5rem;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
     p {
       font-weight:bolder;

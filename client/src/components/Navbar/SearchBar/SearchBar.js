@@ -47,7 +47,7 @@ const SearchBar = ({placeholder, data}) => {
       {filteredData.length !== 0 && (<div className="dataResult">
         {filteredData.slice(0, 15).map((item) => {
           return <a className="dataItem" href="" onClick={() => {navigate(`/profile/${item.id}`)}}>
-                    <p className="search-row"><div className="hidden-id">{item.id}</div><Avatar id="img-id" src={`${item.avatar_url}`}/>{item.username}</p>
+                    <p className="search-row"><Avatar id="img-id" src={`${item.avatar_url}`}/>{item.username}</p>
                   </a>
         })}
       </div>)}
