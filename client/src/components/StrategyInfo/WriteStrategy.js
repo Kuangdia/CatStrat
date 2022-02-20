@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function WriteStrategy(props) {
 
-    const { name, description, type, setName, setDescription, save, cancel} = props;
+    const { name, description, type, setName, setDescription, save, cancel } = props;
 
     return (
         <>
