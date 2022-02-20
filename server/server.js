@@ -44,8 +44,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
 
-const secret = "secretString12345"
-
 // app.get('/', (req, res) => {
 //   res.json({ greetings: 'hello' });
 // })

@@ -48,6 +48,7 @@ function App() {
         <Route path="/strategyInfo" element={<DashboardStrategyInfo/>}/>
         <Route path="/catecoins/:id" element={<DashboardCoins/>}/>
         <Route path="/newprofile" element={<DashboardNewProfile />}/>
+        <Route path="/leaderBoard" element={<DashboardLeaderBoard />}/>
       </Routes>
     </Router>
   );
