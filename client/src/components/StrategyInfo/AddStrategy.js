@@ -6,7 +6,7 @@ export default function AddStrategy(props) {
 
     return (
         <div >
-            <details className="alert" onClick={props.onClick}>
+            <details className="custom" onClick={props.onClick}>
                 <summary className="add-strat">
                     <img
                         className="add"

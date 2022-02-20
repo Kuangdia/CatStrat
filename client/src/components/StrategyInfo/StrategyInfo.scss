@@ -115,7 +115,13 @@
       padding: 0;
     }
     
-    &.alert {
+    &.default {
+      --highlight: #FFC48B ;
+      background: #FFF6EE;
+      border-left-color: var(--highlight);
+    }
+
+    &.custom {
       --highlight: var(--color-summary-highlight) ;
       background: var(--color-summary);
       border-left-color: var(--highlight);

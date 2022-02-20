@@ -4,17 +4,11 @@ import Button from 'react-bootstrap/Button';
 
 export default function WriteStrategy(props) {
 
-    const { name, description, type, setName, setDescription, save, cancel, creation, setShowForm, setCreation } = props;
-
-    const onSave = () => {
-        save(name, description);
-        setShowForm(false)
-        setCreation(!creation)
-    }
+    const { name, description, type, setName, setDescription, save, cancel} = props;
 
     return (
         <>
-            <details open className="alert">
+            <details open className="custom">
                 <summary className="summary">
                     <form className="write-name" onSubmit={event => event.preventDefault()} autoComplete="off">
                         <input
@@ -22,7 +16,9 @@ export default function WriteStrategy(props) {
                             type="text"
                             placeholder="Strategy Name"
                             value={name}
-                            onChange={(event) => setName(event.target.value)}
+                            onChange={(e) => {
+                                setName(e.target.value)
+                            }}
                         />
                     </form>
                 </summary>
@@ -40,7 +36,7 @@ export default function WriteStrategy(props) {
                         <div className="strategy-type">{type}</div>
                         <div>
                             <div>
-                                <Button className="edit" variant="primary" onClick={onSave}>Save</Button>
+                                <Button className="edit" variant="primary" onClick={() => save(name, description)}>Save</Button>
                                 <Button className="edit" variant="danger" onClick={cancel}>Cancel</Button>
                             </div>
                         </div>

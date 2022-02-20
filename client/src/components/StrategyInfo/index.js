@@ -11,22 +11,11 @@ export default function StrategyInfo({ loginUserID }) {
   const userID = localStorage.getItem('userID')
   const [data, setData] = useState([]);
 
-  const { mode, transition, back } = useVisualMode("SHOW");
-
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
   const [showForm, setShowForm] = useState(false);
   const [creation, setCreation] = useState(false);
-
-  const SHOW = "SHOW";
-  const CREATE = "CREATE";
-  const EDIT = "EDIT";
-  const ADD = "ADD";
-  const SHOWOPEN = "SHOWOPEN";
-  // const SAVING = "SAVING";
-  // const DELETING = "DELETING";
-  // const CONFIRM = "CONFIRM";
 
   // let navigate = useNavigate();
 
@@ -45,41 +34,39 @@ export default function StrategyInfo({ loginUserID }) {
   }, [loginUserID, creation]);
 
 
-  // save strategy
-  function save(name, description) {
-    Axios.put('http://localhost:8080/strategy/info/${id}')
-      .then(() => {
-        transition(SHOWOPEN)
+  // create strategy
+  function create(name, description) {
+    Axios.post('http://localhost:8080/strategy/', {
+      userID,
+      name,
+      description
+    })
+      .then((data) => {
+        setName('');
+        setDescription('');
+        setShowForm(false);
+        setCreation(!creation)
+        // back();
+        console.log('post request', data)
       })
       .catch((err) => {
         console.log('err', err)
       })
   }
 
-  // create strategy
-  function create(name, description) {
-    Axios.post('http://localhost:8080/strategy/info/${id}')
-      .then(() => transition(SHOWOPEN))
-      .catch((err) => {
-        console.log('err', err)
-      })
-  }
 
   // // reset the input data and transition back to the previous mode
   function reset() {
     setName('');
     setDescription('');
     setShowForm(false);
-    back();
   }
 
   const parsedStrategies = data.map((i) =>
     <Strategy
       key={i.id}
       id={i.id}
-      mode={mode}
       reset={reset}
-      save={save}
       create={create}
       name={i.strategy_name}
       description={i.description}
@@ -108,7 +95,7 @@ export default function StrategyInfo({ loginUserID }) {
           setDescription={setDescription}
           setShowForm={setShowForm}
           setCreation={setCreation}
-          save={save}
+          save={create}
           cancel={reset}
         /> </ul> : <ul><AddStrategy onClick={() => setShowForm(true)} /></ul>}
       </div>

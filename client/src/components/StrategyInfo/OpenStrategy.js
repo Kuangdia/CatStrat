@@ -2,12 +2,12 @@ import './StrategyInfo.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from 'react-bootstrap/Button';
 
-export default function OpenStrategy({ name, description, type }) {
+export default function OpenStrategy({ name, description, type, onEdit }) {
 
 
     return (
         <>
-            <details open className="alert">
+            <details open className={type === 'Custom' ? "custom" : "default"}>
                 <summary className="summary">
                     <div style={{ paddingTop: '7px' }}>{name}</div>
                     <div><KeyboardArrowDownIcon style={{ width: '30px', height: '30px' }} /></div>
@@ -19,8 +19,8 @@ export default function OpenStrategy({ name, description, type }) {
                         <div className="strategy-type">{type}</div>
                         {type === 'Custom' &&
                             <div>
-                                <Button className="edit" variant="warning">Edit</Button>
-                                <Button className="edit" variant="danger">Delete</Button>
+                                <Button className="edit" variant="warning" onClick={onEdit}>Edit</Button>
+                                <Button className="edit" variant="danger" >Delete</Button>
                             </div>
                         }
                     </div>

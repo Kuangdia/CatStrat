@@ -56,7 +56,6 @@ app.use("/calendar", calendarRoutes(db));
 app.use("/stock", stockRoutes(db));
 app.use("/strategy", strategyRoutes(db));
 
-
 const secret = "secretString12345"
 
 app.get('/', (req, res) => {
