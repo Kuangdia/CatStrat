@@ -21,7 +21,7 @@ export default function DashboardCalendar(props) {
       Axios.post('/strategies', {loginUserID})
       .then((response) => {
         console.log(response)
-        setData(response)
+        // setData(response)
       })
       .catch((err) => {
         console.log(err);

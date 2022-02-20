@@ -15,7 +15,6 @@ export default function Calendar() {
   $(() => {
     const $records = $(".fc-event-title");
     for (let $record of $records) {
-      console.log($($record).text());
       if (parseInt($($record).text().slice(2)) < 0) {
         $($record).addClass("neg-record");
       } else {
