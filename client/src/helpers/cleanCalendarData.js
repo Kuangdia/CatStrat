@@ -4,7 +4,7 @@ export function transformCalendarData (records) {
   return records.map(record => {
     return {
       id: record.id,
-      title: record.profit.toString(),
+      title: "$ " + record.profit.toString(),
       date: record.day.slice(0, 10)
     }
   })

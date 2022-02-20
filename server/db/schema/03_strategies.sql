@@ -10,7 +10,4 @@ CREATE TABLE strategies (
   downvotes INTEGER DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
-
-update strategies set upvotes = (select upvotes from strategies where id = 1)+ 1 
+ 

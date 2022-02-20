@@ -15,8 +15,8 @@ export default function Calendar() {
   $(() => {
     const $records = $(".fc-event-title");
     for (let $record of $records) {
-  
-      if (parseInt($($record).text()) < 0) {
+      console.log($($record).text());
+      if (parseInt($($record).text().slice(2)) < 0) {
         $($record).addClass("neg-record");
       } else {
         $($record).addClass("pos-record");
@@ -40,7 +40,6 @@ export default function Calendar() {
 
   useEffect(() => {
     sendGetReq("calendar", userID, setCalendarData);
-
   }, [render])
 
   const handleDateClick = (arg) => {

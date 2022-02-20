@@ -17,7 +17,7 @@ export default function LoserListCoin(props) {
 
   return (
     <>
-      <h2 className="ld__loser__title">Other Popular Strategies</h2>
+      <h2 className="ld__loser__title">Other Rich Users</h2>
       <table className="ld__loser__table">
         <thead className="ld__loser__table__header">
           <LoserCoin order="#" coins="COINS" userName="USERNAME" />
