@@ -41,14 +41,22 @@
 
   &__head {
     height: 10%;
-    background-color: aqua;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 
     &__button {
-      width: 40%;
+      width: 45%;
+      background-color: $white;
+      border-radius: 1rem;
+      margin: 0 1rem;
+      background-color: $content-background;
+      font-size: larger;
+    }
+
+    &--selected {
       background-color: $white;
     }
+
   }
 
   &__top-winner {
@@ -67,7 +75,7 @@
         padding-right: 1rem;
         position: relative;
         box-shadow: 0 8px 10px rgb(0 0 0 / 10%);
-        background-color: $content-background;
+        background-color: whitesmoke;
         p {
           margin: 0;
         }
