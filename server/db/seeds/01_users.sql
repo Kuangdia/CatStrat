@@ -1,4 +1,4 @@
-INSERT INTO users (username, password, email, coins, money_bracket, avatar_url, profit_goal, likes, dislikes) 
+INSERT INTO users (username, password, email, money_bracket, avatar_url)
 VALUES 
 ('JohnTheTrader', '$2b$10$vTX7afCDZkLU97kpGBn04OrifZi5EMvVrAijacvqj4QnNvbrZaBvW', '111@gmail.com', '5', 'https://i.imgur.com/cZ4rd8C.png'),
 ('alice_trades', '$2b$10$vTX7afCDZkLU97kpGBn04OrifZi5EMvVrAijacvqj4QnNvbrZaBvW', '222@gmail.com', '2', 'https://www.kindpng.com/picc/m/747-7475396_kitty-kitten-cat-white-kawaii-soft-mochi-chibi.png'),
