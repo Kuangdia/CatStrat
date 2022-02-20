@@ -183,6 +183,9 @@ const Profile = ({setCoins, coins}) => {
   
   const upvote = (item_id) => {
     console.log("clicked")
+    if (userID == id) {
+      return;
+    }
   
     Axios.post(`/strategy/${item_id}`)
       .then(res => {
@@ -194,6 +197,9 @@ const Profile = ({setCoins, coins}) => {
 
   const downvote = (item_id) => {
     console.log("clicked")
+    if (userID == id) {
+      return;
+    }
   
     Axios.post(`/strategy/delete/${item_id}`)
       .then(res => {
