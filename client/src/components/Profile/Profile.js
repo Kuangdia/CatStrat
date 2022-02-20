@@ -16,7 +16,7 @@ import PieChart from './PieChart2';
 import { FcDown, FcUp } from "react-icons/fc";
 import classNames from 'classnames'
 
-import 'devextreme/dist/css/dx.material.blue.dark.css';
+import 'devextreme/dist/css/dx.material.blue.dark.compact.css';
 import { ProgressBar } from 'devextreme-react/progress-bar';
 
 
@@ -264,14 +264,14 @@ const Profile = ({setCoins, coins}) => {
           </div>
           <div className="stock-profile">
             {editProfile && <Button id="edit-btn" size="small" variant="contained">Edit</Button>}
-            <div className="progress" >
+            <div className="progressbar" >
             <div className="profit-goal"></div>
               <h4 className="profit-goal-text">{`Profit Goal: $ ${getData.profit_goal}`}</h4>
               <ProgressBar
                 min={0}
                 max={100}
                 value={(parseInt(getData.profit) / getData.profit_goal) * 100}
-                width={340}
+                width={300}
                 height={0}
               />
             <div className="votes">
@@ -291,8 +291,6 @@ const Profile = ({setCoins, coins}) => {
               <tr className="table-columns">
                 <th className="one-a">Strategy Name</th>
                 <th className="one-b">Description</th>
-                <th className="one-c"><Upvotes /></th>
-                <th className="one-d"><Downvotes /></th>
               </tr>
               {showStrat ? 
               <>{stratData.map((item) => {
