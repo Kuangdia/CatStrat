@@ -11,7 +11,7 @@ import Axios from 'axios';
 
 export default function Strategy(props) {
 
-    const { id, name, description, type, reset, create } = props;
+    const { id, name, description, type, reset, create, creation, setCreation, userID } = props;
 
     const { mode, transition, back } = useVisualMode("SHOW");
 
@@ -47,9 +47,23 @@ export default function Strategy(props) {
             })
     }
 
-    function cancel() {
-        editName('');
-        editDescription('');
+    // save strategy
+    function deleteStrategy() {
+        Axios.delete(`http://localhost:8080/strategy/${id}/${userID}`)
+            .then((response) => {
+                console.log('delete request', response);
+                setCreation(!creation)
+            })
+            .catch((err) => {
+                console.log('err', err)
+            })
+    }
+
+    const cancel = () => {
+        setEditName(name);
+        setEditDescription(description);
+        transition(SHOWOPEN);
+        console.log('cancel')
     };
 
     return (
@@ -58,7 +72,8 @@ export default function Strategy(props) {
                 name={name}
                 description={description}
                 type={type}
-                onEdit={() => transition(EDIT)} />}
+                onEdit={() => transition(EDIT)}
+                onDelete={deleteStrategy} />}
 
             {mode === ADD && <AddStrategy onAdd={() => transition(CREATE)} />}
 
@@ -67,6 +82,7 @@ export default function Strategy(props) {
                 description={editDescription}
                 type={type}
                 onEdit={() => transition(EDIT)}
+                onDelete={deleteStrategy}
             />}
 
             {mode === EDIT && <WriteStrategy

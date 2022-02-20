@@ -57,6 +57,16 @@ const strategy = (db) => {
       });
   });
 
+  router.delete("/:id/:userID", (req, res) => {
+    // const { id, userID } = req.body;
+    // console.log('req', req);
+    const id = req.params.id;
+    const userID = req.params.userID;
+    return db.query(`DELETE FROM users_strategies WHERE user_id = $1 AND strategy_id = $2`, [userID, id])
+      .then(data => res.send("Delete 1 record successfully!"))
+      .catch(err => console.log(err.message));
+  });
+
 
   return router;
 }

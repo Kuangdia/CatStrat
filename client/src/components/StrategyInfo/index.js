@@ -52,7 +52,7 @@ export default function StrategyInfo({ loginUserID }) {
       .catch((err) => {
         console.log('err', err)
       })
-  }
+  }    
 
 
   // // reset the input data and transition back to the previous mode
@@ -66,8 +66,11 @@ export default function StrategyInfo({ loginUserID }) {
     <Strategy
       key={i.id}
       id={i.id}
+      userID={userID}
       reset={reset}
       create={create}
+      creation={creation}
+      setCreation={setCreation}
       name={i.strategy_name}
       description={i.description}
       setName={setName}
@@ -75,10 +78,6 @@ export default function StrategyInfo({ loginUserID }) {
       type={i.custom === true ? 'Custom' : 'Standard'}
     />
   );
-
-  const edit = () => {
-
-  }
 
 
 
