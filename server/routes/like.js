@@ -5,7 +5,7 @@ const like = (db) => {
   router.post("/", (req, res) => {
     const id = req.body.id
   
-    db.query(`update users set likes = (select likes from users where id = $1)+ 1 where id = $1`, [id])
+    db.query(`update users set likes = (select likes from users where id = $1)+ 1, coins = (select coins from users where id = $1)+1 where id = $1`, [id])
       .then((result) => {
         res.send(result.rows)
       })

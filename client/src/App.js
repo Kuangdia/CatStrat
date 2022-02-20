@@ -1,3 +1,7 @@
+import 'devextreme/dist/css/dx.common.css';
+import 'devextreme/dist/css/dx.light.css';
+import 'devextreme/dist/css/dx.common.css';
+import 'devextreme/dist/css/dx.light.css';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -8,6 +12,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Axios from 'axios'
 import React from 'react';
 import DashboardProfile from './pages/DashboardProfile';
+import DashboardNewProfile from './pages/DashboardNewProfile';
+import DashboardCoins from './pages/DashboardCoins';
 import DashboardStrategyInfo from './pages/DashboardStrategyInfo';
 import {useState, useEffect} from 'react'
 
@@ -39,6 +45,8 @@ function App() {
         <Route path="/profile/:id" element={<DashboardProfile />}/>
         <Route path="/comparison/:id" element={<DashboardComparison />} />
         <Route path="/strategyInfo" element={<DashboardStrategyInfo/>}/>
+        <Route path="/catecoins/:id" element={<DashboardCoins/>}/>
+        <Route path="/newprofile" element={<DashboardNewProfile />}/>
       </Routes>
     </Router>
   );

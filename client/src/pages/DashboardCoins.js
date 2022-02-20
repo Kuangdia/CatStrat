@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import Profile from "../components/Profile/Profile";
 import "../styles/dashboard.scss";
+import CateCoins from '../components/CateCoins';
 import {useState, useEffect} from 'react';
 import Axios from 'axios';
 import {useParams} from 'react-router-dom'
@@ -39,7 +39,7 @@ export default function DashboardProfile(props) {
         <Sidebar />
         <div className="layout__right">
           <Navbar coins={coins}/>
-          <Profile setCoins={setCoins} coins={coins}/>
+          <CateCoins />
         </div>
       </main>
     </>

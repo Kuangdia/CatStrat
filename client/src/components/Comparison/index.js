@@ -2,15 +2,25 @@ import React from 'react'
 import "./comparison.scss"
 import Button from '@mui/material/Button';
 import PieChart from './PieChartC';
+import PieChartS from '../Summary/PieChart';
 import {useState, useEffect} from 'react'
 import Axios from "axios";
 import {useParams} from 'react-router-dom'
+import BarChart from './BarChartC';
+import LineGraph from './LineGraphC';
 
 const Comparison = () => {
+  const [userData, setUserData] = useState([])
   const [graphData, setGraphData] = useState([]);
-  const [compare, setCompare] = useState(false);
+  const [graphDataB, setGraphDataB] = useState([]);
+  const [compare, setCompare] = useState(true);
+
+  const [showDefault, setShowDefault] = useState(true)
+  const [showLineChart, setShowLineChart] = useState(false)
+  const [showBarChart, setShowBarChart] = useState(false)
 
   const userID = localStorage.getItem("userID");
+  const user = localStorage.getItem("username");
   const params = useParams();
   const id = params.id;
 
@@ -18,7 +28,7 @@ const Comparison = () => {
   useEffect(() => {
 
     if (userID == id) {
-      setCompare(false)
+      setCompare(true)
 
       Axios.get(`http://localhost:8080/dashboard`, { params: { user_id: userID } })
       .then((all) => {
@@ -26,50 +36,94 @@ const Comparison = () => {
       console.log("all1", all.data)
       })
       .catch(err => console.log("comparison page", err))
+    } else {
+      setCompare(false)
+
+      Promise.all([
+        Axios.get(`http://localhost:8080/dashboard`, { params: { user_id: userID } }),
+        Axios.get(`http://localhost:8080/dashboard`, { params: { user_id: id } }),
+        Axios.get(`/username/${id}`, { params: { id } }),
+      ]).then((all) => {
+        console.log("all0", all[0].data)
+        setGraphData(all[0].data)
+        console.log("all1", all[1].data)
+        setGraphDataB(all[1].data)
+        console.log("all2", all[2].data)
+        setUserData(all[2].data[0])
+      }).catch(err => console.log("comparison page", err))
+
     }
 
-  }, []);
+  }, [compare, id]);
+
+  const showPie = () => {
+    console.log("clicked")
+    setShowDefault(true)
+    setShowBarChart(false)
+    setShowLineChart(false)
+  }
+
+  const showBar = () => {
+    console.log("clicked")
+    setShowDefault(false)
+    setShowBarChart(true)
+    setShowLineChart(false)
+  }
+
+
+  const showLine = () => {
+    console.log("clicked")
+    setShowDefault(false)
+    setShowLineChart(true)
+    setShowBarChart(false)
+  }
 
   return (
     <div className="comparison-container">
-      {!compare ? 
+      {compare ? 
       <>
         <div className="nocomparison-container">
           <div className="no-compare-txt">
-            No Comparison
+            {`${user}`}
           </div>
           <div className="no-compare-btn">
-            <Button size="small" variant="contained">Line</Button>
-            <Button size="small" variant="contained">Pie</Button>
-            <Button size="small" variant="contained">Bar</Button>
+            <Button id="btn-color" size="small" variant="contained" onClick={showLine}>Line</Button>
+            <Button id="btn-color" size="small" variant="contained" onClick={showPie}>Pie</Button>
+            <Button id="btn-color" size="small" variant="contained" onClick={showBar}>Bar</Button>
           </div>
           <div className="no-compare-graph">
-            <PieChart id="graph-chart" data={graphData}/>
+            {showLineChart ? <div id="line-graph"><LineGraph data={graphData}/></div> : <></>}
+            {showDefault ? <PieChart id="graph-chart" data={graphData}/> : <></>}
+            {showBarChart ? <BarChart data={graphData}/> : <></>}
           </div>
         </div>
       </> 
       : 
       <>
-      <div className="comparison-container-middle">Comparison Chart</div>
+      <div className="comparison-container-middle">{`${user} vs ${userData.username}`}</div>
       <div className="comparison-container-bottom">
         <div className="comparison-container-left">
           <div className="a-btn">
-            <Button size="small" variant="contained">Line</Button>
-            <Button size="small" variant="contained">Pie</Button>
-            <Button size="small" variant="contained">Bar</Button>
+            <Button id="btn-color" size="small" variant="contained" onClick={showLine}>Line</Button>
+            <Button id="btn-color" size="small" variant="contained" onClick={showPie}>Pie</Button>
+            <Button id="btn-color" size="small" variant="contained" onClick={showBar}>Bar</Button>
           </div>
           <div className="a-graphs">
-            <PieChart id="graph-chart" data={graphData}/>
+            {showLineChart ? <div id="line-graph"><LineGraph data={graphData}/></div> : <></>}
+            {showDefault ? <PieChart id="graph-chart" data={graphData}/> : <></>}
+            {showBarChart ? <BarChart data={graphData}/> : <></>}
           </div>
         </div>
         <div className="comparison-container-right">
           <div className="c-btn">
-            <Button size="small" variant="contained">Line</Button>
-            <Button size="small" variant="contained">Pie</Button>
-            <Button size="small" variant="contained">Bar</Button>
+            {/* <Button id="btn-color" size="small" variant="contained">Line</Button>
+            <Button id="btn-color" size="small" variant="contained">Pie</Button>
+            <Button id="btn-color" size="small" variant="contained">Bar</Button> */}
           </div>
           <div className="c-graphs">
-
+            {showLineChart ? <div id="line-graph"><LineGraph data={graphDataB}/></div> : <></>}
+            {showDefault ? <PieChart id="graph-chart" data={graphDataB}/> : <></>}
+            {showBarChart ? <BarChart data={graphDataB}/> : <></>}
           </div>
         </div>
       </div>

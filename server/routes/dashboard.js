@@ -21,7 +21,7 @@ const dashboard = (db) => {
         return db
           .query(query, [userID])
           .then((result) => {
-            console.log("res post", result.rows)
+            // console.log("res post", result.rows)
             res.send(result.rows);
           })
           .catch((err) => {

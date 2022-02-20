@@ -21,26 +21,28 @@ import { ProgressBar } from 'devextreme-react/progress-bar';
 
 
 
-const Profile = () => {
+const Profile = ({setCoins, coins}) => {
   const navigate = useNavigate();
 
   // const [loginID, setLoginID] = useState("")
   const [getData, setGetData] = useState("");
   const [stratData, setStratData] = useState([]);
-  const [graphData, setGraphData] = useState([])
-  const [editProfile, setEditProfile] = useState(false)
-  const [follow, setFollow] = useState(false)
-  const [removeFollow, setRemoveFollow] = useState(false)
-  const [unfollow, setUnfollow] = useState(true)
-  const [showFollow, setShowFollow] = useState(false);
+  const [graphData, setGraphData] = useState([]);
+  const [purchaseData, setPurchaseData] = useState([])
+
+  const [editProfile, setEditProfile] = useState(false);
+  const [follow, setFollow] = useState(false);
   const [showPurchase, setShowPurchase] = useState(true);
   const [showStrat, setShowStrat] = useState(false);
+  const [showCompare, setShowCompare] = useState(false);
+  const [showFollow, setShowFollow] = useState(false);
+  const [removeFollow, setRemoveFollow] = useState(false);
 
-  const [bought, setBought] = useState(false)
-  const [addLike, setAddLike] = useState(false)
-  const userID = localStorage.getItem("userID")
-  const params = useParams()
-  const id = params.id
+  const [bought, setBought] = useState(false);
+  const [addLike, setAddLike] = useState(false);
+  const userID = localStorage.getItem("userID");
+  const params = useParams();
+  const id = params.id;
 
   const graphClass = classNames("graph-chart", {
     "graph-chart--bought": bought,
@@ -50,9 +52,9 @@ const Profile = () => {
     const userID = localStorage.getItem("userID")
 
     Promise.all([
-      Axios.get(`/profile/${id}}`, {params: {id}}),
-      Axios.get(`http://localhost:8080/dashboard`, { params: { user_id: userID } }),
-      Axios.get("/strategies", {}),
+      Axios.get(`/profile/${id}}`, {params: {id, userID}}),
+      Axios.get(`http://localhost:8080/dashboard`, { params: { user_id: id } }),
+      Axios.get("/strategies", {params: {id}}),
     ]).then((all) => {
       
       setGetData(all[0].data[0]);
@@ -62,33 +64,65 @@ const Profile = () => {
       setStratData(all[2].data)
       console.log("all2", all[2].data)
 
-      console.log(userID, id)
-      if (userID === id) {
+
+      if (userID !== id) {
+        setShowFollow(true)
+      }
+
+      if (userID == id) {
         setShowPurchase(true)
         setBought(true)
         setShowStrat(true)
-      }
-      if (userID !== id) {
-        setShowFollow(true)
-      } else {
+        setEditProfile(true)
+        setShowCompare(false)
         setShowFollow(false)
       }
-      if (parseInt(userID) !== parseInt(id) && removeFollow === false) {
-        setFollow(true)
-        setUnfollow(false)
-      } else {
-        setFollow(false)
-        setUnfollow(true)
-      }
-      if (userID == id) {
-        setEditProfile(true)
-      }
-    }).catch(err => console.log(err))
 
-  }, [removeFollow, id, bought, addLike])
+
+      // console.log("plz work", all[0].data[0].fid)
+      if (all[0].data[0].fid) {
+        setRemoveFollow(true)
+
+        if (parseInt(userID) !== parseInt(id) && removeFollow === false) {
+          console.log("this", removeFollow, userID, id)
+          setFollow(true)
+        } else {
+          console.log("not this", removeFollow, userID, id)
+          setFollow(false)
+        }  
+      } else {
+        setRemoveFollow(false)
+
+        if (parseInt(userID) !== parseInt(id) && removeFollow === false) {
+          console.log("this", removeFollow, userID, id)
+          setFollow(true)
+        } else {
+          console.log("not this", removeFollow, userID, id)
+          setFollow(false)
+        } 
+      }
+
+
+    
+    }).catch(err => {
+      console.log(err)
+      // navigate("/newprofile")
+    })
+
+  }, [id, addLike, bought, removeFollow])
+
 
   const purchase = () => {
-    setBought(true);
+    const userID = localStorage.getItem("userID");
+
+    Axios.post("/purchase/graph", {userID})
+      .then(res => {
+        setShowCompare(true)
+        setBought(true);
+        setCoins(coins-5);
+      })
+      .catch(err => console.log(err))
+
   }
 
   const followUser = () => {
@@ -121,6 +155,9 @@ const Profile = () => {
   
   const like = () => {
     console.log("clicked")
+    if (userID == id) {
+      return;
+    }
   
     Axios.post("/like", {id})
       .then(res => {
@@ -132,6 +169,9 @@ const Profile = () => {
   
   const dislike = () => {
     console.log("clicked")
+    if (userID == id) {
+      return;
+    }
   
     Axios.post("/dislike", {id})
       .then(res => {
@@ -152,12 +192,35 @@ const Profile = () => {
       .catch(err => console.log(err))
   }
 
+  const downvote = (item_id) => {
+    console.log("clicked")
+  
+    Axios.post(`/strategy/delete/${item_id}`)
+      .then(res => {
+        console.log("did you trigger?")
+        setAddLike(!addLike)
+      })
+      .catch(err => console.log(err))
+  }
+
   const purchaseStrat = () => {
-    setShowStrat(true);
+
+    Axios.post("/purchase/graph", {userID})
+    .then(res => {
+      console.log("success!")
+      setAddLike(!addLike)
+      setShowStrat(true);
+      setCoins(coins-15)
+    })
+    .catch(err => console.log(err));
   }
 
   const navigateCompare = (id) => {
     navigate(`/comparison/${id}`)
+  }
+
+  const navigateCoins = () => {
+    navigate(`/catecoins/${userID}`)
   }
 
   return (
@@ -170,7 +233,7 @@ const Profile = () => {
           <p className="icons-i"><FaInstagram className="fb1"/>instagram/Catstreetbets</p>
           <p className="icons-i"><FaTwitter className="fb1"/>Twitter/Catstreetbets</p>
           {/* <p className="icons-i"><FaLinkedin />LinkedIn/Catstreetbets</p> */}
-          <p className="icons-i"><img className="catecoin" src={coin} alt="catecoin"/>X100</p>
+          <p className="icons-i" onClick={navigateCoins}><img className="catecoin" src={coin} alt="catecoin" onClick={navigateCoins}/>{`X ${getData.coins}`}</p>
           <p className="icons-t"><Trophy className="icons-t-inside"/>X1</p>
         </div>
       </div>
@@ -180,8 +243,9 @@ const Profile = () => {
             <div className="profile-separator">
               <div className="follow-btn">
                 <div className="profile-username">{getData.username}<VerifiedIcon/></div>
-                {follow && <Button id="compare-id" size="small" variant="contained" onClick={() => {navigateCompare(id)}}>Compare</Button>}
-                {showFollow ? <>{follow === true ? <Button size="small" variant="contained" onClick={followUser}>Follow</Button> : <Button size="small" variant="contained" onClick={unfollowUser} >Unfollow</Button>}</> : <></> }
+                {showCompare ? <Button id="compare-id" size="small" variant="contained" onClick={() => {navigateCompare(id)}}>Compare</Button> : <></>}
+                {showFollow ? <>{follow ? <Button id="follow-btn" size="small" variant="contained" onClick={followUser}>Follow</Button> : <Button size="small" variant="contained" onClick={unfollowUser} >Unfollow</Button>}</> : <></>}
+                
               </div>
               <div>
                 <div className="last-online">Last Online: 2 hours ago</div>
@@ -232,13 +296,14 @@ const Profile = () => {
               </tr>
               {showStrat ? 
               <>{stratData.map((item) => {
-                return (<div className="table-rows-content">
+                return (<details className="table-rows-content">
                 <tr className="table-rows">
                   <td className="one">{item.strategy_name}</td>
                   <td className="two">{item.description}</td>
                   <td className="three" onClick={() => {upvote(item.id)}}>{item.upvotes}<FcUp /></td>
-                  <td className="four">{item.downvotes}<FcDown/></td>
-                </tr></div>)
+                  <td className="four" onClick={() => {downvote(item.id)}}>{item.downvotes}<FcDown/></td>
+                </tr>
+                </details>)
               })}</>
               :
               <><div className="g2-container"><Button id="g2-btn" variant="contained" size="small" onClick={purchaseStrat}>Purchase</Button></div></>}

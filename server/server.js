@@ -59,6 +59,7 @@ const followingRoutes = require("./routes/following");
 const unfollowRoutes = require("./routes/unfollow");
 const likeRoutes = require("./routes/like");
 const dislikeRoutes = require("./routes/dislike");
+const { endOfDay } = require("date-fns");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
@@ -77,17 +78,115 @@ app.use("/dislike", dislikeRoutes(db))
 
 // Test Routes DO NOT DELETE
 app.post("/strategy/:id", (req, res) => {
-  const id = req.body.id
   const strategy_id = req.params.id
   console.log("strat", strategy_id)
 
-  db.query(`update strategies set upvotes = (select upvotes from strategies where id = $1)+ 1`, [strategy_id])
+  db.query(`update strategies set upvotes = (select upvotes from strategies where id = $1)+ 1 where id = $1`, [strategy_id])
     .then((result) => {
       console.log("success!")
       res.send(result.rows)
     })
     .catch(err => console.log(err))
 })
+
+app.post("/strategy/delete/:id", (req, res) => {
+  const strategy_id = req.params.id
+  console.log("strat", strategy_id)
+
+  db.query(`update strategies set downvotes = (select downvotes from strategies where id = $1)+ 1 where id = $1`, [strategy_id])
+    .then((result) => {
+      console.log("success!")
+      res.send(result.rows)
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/purchase/graph", (req, res) => {
+  const userID = req.body.userID;
+
+  db.query(`update users set coins = (select coins from users where id = $1)-5 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/purchase10", (req, res) => {
+  const userID = req.body.userID;
+
+  db.query(`update users set coins = (select coins from users where id = $1)+10 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/purchase50", (req, res) => {
+  const userID = req.body.userID;
+
+  db.query(`update users set coins = (select coins from users where id = $1)+50 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/purchase100", (req, res) => {
+  const userID = req.body.userID;
+
+  db.query(`update users set coins = (select coins from users where id = $1)+100 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/purchase250", (req, res) => {
+  const userID = req.body.userID;
+
+  db.query(`update users set coins = (select coins from users where id = $1)+250 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/purchase1000", (req, res) => {
+  const userID = req.body.userID;
+
+  db.query(`update users set coins = (select coins from users where id = $1)+1000 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch(err => console.log(err))
+})
+
+app.post("/purchase66", (req, res) => {
+  const userID = req.body.userID;
+
+  const x = Math.floor((Math.random() * 200) + 1)
+
+  db.query(`update users set coins = (select coins from users where id = $1)+$2 where id = $1`, [userID, x])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch(err => console.log(err))
+})
+
+// app.get("/purchasers/:id", (req, res) => {
+//   const userID = req.query.userID
+//   const id = req.params.id
+//   console.log("purchase db success", id, userID)
+
+//   db.query(``, [id, userID])
+//     .then(result => {
+//       console.log("purchase db 2", result.rows)
+//       res.send(result.rows)
+//     })
+//     .catch(err => console.log(err))
+// })
+
+// select coalesce ((select id, user_id from purchasers where id = 1 and user_id = 2), 0)
 
 // How to authenticate JWT TOKEN - Don't DELETE //
 // app.get('/api', function(req, res){
