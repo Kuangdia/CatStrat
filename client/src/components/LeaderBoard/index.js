@@ -33,7 +33,8 @@ export default function LeaderBoard() {
             order: index++,
             strategyName: stratObj.strategy_name,
             upvotes: stratObj.upvotes,
-            userName: stratObj.username
+            userName: stratObj.username,
+            avatar_url: stratObj.avatar_url
           }
         });
         

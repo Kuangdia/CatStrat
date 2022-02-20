@@ -12,6 +12,7 @@ export default function Top3List(props) {
         strategyName={ winObj.strategyName }
         upvotes={ winObj.upvotes }
         userName={ winObj.userName}
+        avatar_url={ winObj.avatar_url }
       />
     )
   })
