@@ -23,8 +23,14 @@ export default function getBarChartData(data) {
     console.log('barLabels', barLabels)
     console.log('barData', barData)
 
+    const availableColors = ["#2F3C7E", "#FBEAEB", "#FEE715", "#e52165", "#a2d5c6", "#b20238", "#fbcbc9", "#6b7b8c", "#ff6e40"]
+    const colors =[];
+    for (let i = 0; i < barLabels.length; i++) {
+        colors.push(availableColors[i])
 
-    return { barData, barLabels };
+    }
+
+    return { barData, barLabels, colors };
 }
 
 

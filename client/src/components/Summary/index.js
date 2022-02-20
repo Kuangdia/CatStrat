@@ -4,8 +4,6 @@ import getTotalEarnings from '../../helpers/getTotalEarnings';
 import getAverageEarnings from '../../helpers/getAverageEarnings';
 
 import LineGraph from './LineGraph';
-import PieChart from './PieChart';
-import BarChart from './BarChart';
 import Statistic from './Statistic';
 import StrategyContainer from './StrategyContainer';
 

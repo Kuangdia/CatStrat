@@ -1,8 +1,4 @@
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
-
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -14,9 +10,7 @@ import "./ListTabs.scss";
 import "./Sidebar.scss";
 
 import Axios from "axios";
-
 import { useNavigate } from 'react-router-dom';
-import Today from '@mui/icons-material/Today';
 
 
 export default function ListTabs(props) {
@@ -57,6 +51,12 @@ export default function ListTabs(props) {
     }
   };
 
+  const leaderBoardRoute = (userID) => {
+    if (userID) {
+      navigate(`/leaderBoard`)
+    }
+  };
+
   return (
     <div className='sidebar'>
       <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
@@ -73,7 +73,7 @@ export default function ListTabs(props) {
       </div>
 
 
-      <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
+      <div onClick={() => { calendarRoute(userID) }} className="nav-item" >
         <div> 
         <TodayIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>
         <div className="label">Calendar </div>
@@ -90,7 +90,7 @@ export default function ListTabs(props) {
         <div className="label">Comparison </div>
       </div>
 
-      <div onClick={() => { dashboardRoute(userID) }} className="nav-item"  >
+      <div onClick={() => { leaderBoardRoute(userID) }} className="nav-item"  >
         <div >
           <LeaderboardIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
         </div>

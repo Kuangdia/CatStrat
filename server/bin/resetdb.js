@@ -8,9 +8,10 @@ const chalk = require('chalk');
 const { Client } = require("pg");
 const dbParams = require("../lib/db.js");
 const db = new Client(dbParams);
-
+const Axios = require("axios");
 //stock symbols setup
 const finnhub = require('finnhub');
+const stock = require('../routes/stock.js');
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = process.env.FINNHUB_API_KEY;
 const finnhubClient = new finnhub.DefaultApi();
@@ -44,29 +45,30 @@ const runSeedFiles = async () => {
 };
 
 const getStockSymbols = async () => {
-
-  finnhubClient.symbolSearch('', async (error, data, response) => {
-    const symbolLists = []
-    await data.result.map(symbolObj => {
-      symbolLists.push(symbolObj.symbol);
-    });
-    function generateQuerySyntax(num) {
-      let res ="";
-      for (let i = 1; i < num; i++) {
-        res += `($${i}), ` //9
-      }
-      res += `($${num})`;
-      return res;
+  function generateQuerySyntax(num) {
+    let res ="";
+    for (let i = 1; i < num; i++) {
+      res += `($${i}), ` //9
     }
-    const subQuery = generateQuerySyntax(symbolLists.length);
-
-    const query = `INSERT INTO stocks (stock_symbol) VALUES ${subQuery};`;
-
-    db.query(query, [...symbolLists], (err, res) => {
-      console.log(err);
-      db.end();
-    });
-  });
+    res += `($${num})`;
+    return res;
+  }
+  const symbolLists = []
+  Axios.get("https://finnhub.io/api/v1/stock/symbol?exchange=US&token=c87b1maad3i9lkntitsg")
+    .then(res => {
+      const stockObjs = res.data;
+      stockObjs.map(stockObj => {
+        if (stockObj.type === "Common Stock") {
+          symbolLists.push(stockObj.symbol);
+        }
+      });
+      const subQuery = generateQuerySyntax(symbolLists.length);
+      const query = `INSERT INTO stocks (stock_symbol) VALUES ${subQuery};`;
+      db.query(query, [...symbolLists], (err, res) => {
+        console.log(err);
+        db.end();
+      });
+    })
 }
 
 const runResetDB = async () => {

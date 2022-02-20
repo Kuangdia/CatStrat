@@ -2,20 +2,16 @@ import './Summary.scss';
 import getBarChartData from '../../helpers/getBarChartData';
 
 import { Bar } from "react-chartjs-2";
-import {
-    Chart as ChartJS,
-    Legend
-} from 'chart.js';
 
-ChartJS.register(
-    Legend
-);
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 
 export default function BarChart({ data }) {
 
     const { barData, barLabels } = getBarChartData(data)
 
+    
     const dataset = {
         labels: barLabels,
         datasets: [
@@ -35,7 +31,6 @@ export default function BarChart({ data }) {
                     // '#35014F'
                 ],
                 data: barData,
-                label: 'label remove me!'
             }
         ]
     }
@@ -50,26 +45,15 @@ export default function BarChart({ data }) {
                 options={{
                     responsive: true,
                     maintainAspectRatio: false,
-                    // title: {
-                    //   display: true,
-                    //   text: 'Average Rainfall per month',
-                    //   fontSize: 20
-                    // },
-                    legend: {
-                        display: false,
-                        position: 'top'
-                    },
-                    // animation: {
-                    //   animateScale: true,
-                    //   animateRotate: true
-                    // },
                     datalabels: {
                         display: false,
                         color: "white",
                     },
-                    tooltips: {
-                        backgroundColor: "#FFFFFF",
-                    },
+                    plugins: {
+                        legend: {
+                          display: false
+                        }
+                      },
                     layout: {
                         padding: {
                             top: 0,

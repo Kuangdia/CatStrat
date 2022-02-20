@@ -10,12 +10,13 @@ import DashboardCalendar from './pages/DashboardCalendar';
 import DashboardComparison from './pages/DashboardComparison';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Axios from 'axios'
+import {useState, useEffect} from 'react'
 import React from 'react';
 import DashboardProfile from './pages/DashboardProfile';
 import DashboardNewProfile from './pages/DashboardNewProfile';
 import DashboardCoins from './pages/DashboardCoins';
 import DashboardStrategyInfo from './pages/DashboardStrategyInfo';
-import {useState, useEffect} from 'react'
+import DashboardLeaderBoard from './pages/DashboardLeaderBoard';
 
 function App() {
   // const [user, setUser] = useState({})
@@ -41,15 +42,16 @@ function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
-        <Route path="/calendar" element={<DashboardCalendar/>} />
+        <Route path="/calendar" element={<DashboardCalendar />} />
         <Route path="/profile/:id" element={<DashboardProfile />}/>
         <Route path="/comparison/:id" element={<DashboardComparison />} />
         <Route path="/strategyInfo" element={<DashboardStrategyInfo/>}/>
         <Route path="/catecoins/:id" element={<DashboardCoins/>}/>
         <Route path="/newprofile" element={<DashboardNewProfile />}/>
+        <Route path="/leaderBoard" element={<DashboardLeaderBoard />}/>
       </Routes>
     </Router>
   );
-}
+} 
 
 export default App;

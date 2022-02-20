@@ -1,9 +1,16 @@
 import "react-widgets/scss/styles.scss";
 import "./RecordInput.scss";
+import * as React from 'react';
 import { useEffect, useState } from "react";
 import NumberPicker from "react-widgets/NumberPicker";
 import DropdownList from "react-widgets/DropdownList";
 import Axios from "axios";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function RecordInput(props) {
   const userID = localStorage.getItem("userID");
@@ -21,6 +28,8 @@ export default function RecordInput(props) {
     recordID,
     setRecordID,
     setRender,
+    investChoice,
+    setInvestChoice,
     render
   } = props;
 
@@ -58,6 +67,10 @@ export default function RecordInput(props) {
     e.preventDefault();
   }
 
+  function handleInvestChoiceChange(e) {
+    setInvestChoice(e.target.value);
+  }
+
   function clear() {
     setNetBalance(0);
     setInvestAmount(0);
@@ -87,6 +100,7 @@ export default function RecordInput(props) {
         strategyID,
         stockID,
         date,
+        investChoice,
         userID,
       })
         .then(res => {
@@ -102,6 +116,7 @@ export default function RecordInput(props) {
         strategyID,
         stockID,
         date,
+        investChoice,
         userID
       })
         .then(res => {
@@ -119,76 +134,125 @@ export default function RecordInput(props) {
   }
 
   return (
-    <>
+    <div className="paper__container">
       <form 
         className="record-input" 
         onSubmit={ handleSubmit }
       >
-        <button onClick={ close }>X</button>
 
-        <label htmlFor="balance">Gain/loss</label>
-        <input
-          id="balance"
-          name="balance"
-          type="text"
-          value={ netBalance }
-          onChange={(e) => {
-            setNetBalance(e.target.value)
-          }}
+        <CloseIcon 
+          id="button__close"
+          onClick={ close }
         />
+
+        <label htmlFor="balance" className="input__title">
+          Gain/Loss
+        </label>
+        <div className="input__container">
+          <span className="input__container__symbol">
+            $
+          </span>
+          <input
+            className="input__container__box"
+            id="balance"
+            name="balance"
+            type="text"
+            value={ netBalance }
+            onChange={(e) => {
+              setNetBalance(e.target.value)
+            }}
+          />
+        </div>
+
         <br />
-        <label htmlFor="investAmount">
+
+        <label htmlFor="investAmount" className="input__title">
           Invest Amount
         </label>
-        <NumberPicker
-          id="investAmount"
-          value={ investAmount }
-          step={ 100 }
-          onChange={ value => setInvestAmount(value) }
-        />
+        <div className="input__container">
+          <span className="input__container__symbol">
+            $
+          </span>
+          <NumberPicker
+            className="input__container__box"
+            id="investAmount"
+            value={ investAmount }
+            step={ 100 }
+            onChange={ value => setInvestAmount(value) }
+          />
+        </div>
         <br />
-        <label htmlFor="strategy">
+
+        <FormControl>
+          <FormLabel id="demo-controlled-radio-buttons-group"
+          className="input__title">Investment Options</FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              value={ investChoice }
+              onChange={ handleInvestChoiceChange }
+              className="input__radio"
+            >
+            <FormControlLabel className="input__radio__label" value={true} control={<Radio />} label="Stock" />
+            <FormControlLabel className="input__radio__label" value={false} control={<Radio />} label="Option" />
+          </RadioGroup>
+        </FormControl>
+        <br />
+
+        <label htmlFor="strategy" className="input__title">
           Investment Strategy
         </label>
-        <DropdownList
-          id="strategy"
-          value={ strategyID }
-          onChange={nextValue => {
-            setStrategyID(nextValue.id);
-          }}
-          dataKey="id"
-          textField="strategy"
-          data={ stratData }
-        />
+        <div className="input__container">
+          <DropdownList
+            id="strategy"
+            value={ strategyID }
+            onChange={nextValue => {
+              setStrategyID(nextValue.id);
+            }}
+            dataKey="id"
+            textField="strategy"
+            data={ stratData }
+          />
+        </div>
         <br />
-        <label htmlFor="stock">
+
+        <label htmlFor="stock" className="input__title">
           Stock/Option ticker
         </label>
-        <DropdownList
-          id="stock"
-          value={ stockID }
-          onChange={nextValue => {
-            setStockID(nextValue.id);
-          }}
-          dataKey="id"
-          textField="stock"
-          data={ stockData }
-        />
-        <br />
-        <p>{ date }</p>
-        <p>RecordID: { recordID }</p>
+        <div className="input__container">
+          <DropdownList
+            id="stock"
+            value={ stockID }
+            onChange={nextValue => {
+              setStockID(nextValue.id);
+            }}
+            dataKey="id"
+            textField="stock"
+            data={ stockData }
+          />
+        </div>
         <br />
 
-        <button 
-          type="submit"
-          onClick={ deleteRecord }
-        >Delete</button>
+        <p className="input__title" >{ date }</p>
 
-        <button 
-          type="submit"
-          onClick={ submit }
-        >Submit</button>
+        <p className="input__hidden">RecordID: { recordID }</p>
+        <br />
+        
+        <section className="button__submit">
+          <button
+            className="button__submit__delete"
+            type="submit"
+            onClick={ deleteRecord }
+          >Delete</button>
+
+          <button
+            className="button__submit__submit"
+            type="submit"
+            onClick={ submit }
+          >Submit</button>
+        </section>
       </form>
-    </>
+    </div>
   );
 }

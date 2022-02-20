@@ -44,11 +44,16 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
 
+// app.get('/', (req, res) => {
+//   res.json({ greetings: 'hello' });
+// })
 
 // Require routes
 const dashboardRoutes = require('./routes/dashboard');
 const calendarRoutes = require("./routes/calendar");
 const stockRoutes = require("./routes/stock");
+const strategyRoutes = require("./routes/strategy");
+const leaderBoardRoutes = require("./routes/leaderBoard");
 const { renderSync } = require("sass");
 const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
@@ -65,6 +70,8 @@ const { endOfDay } = require("date-fns");
 app.use('/dashboard', dashboardRoutes(db));
 app.use("/calendar", calendarRoutes(db));
 app.use("/stock", stockRoutes(db));
+app.use("/strategy", strategyRoutes(db));
+app.use("/leaderBoard", leaderBoardRoutes(db));
 app.use("/login", loginRoutes(db))
 app.use("/register", registerRoutes(db))
 app.use("/strategies", strategiesRoutes(db))

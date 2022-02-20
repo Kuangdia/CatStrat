@@ -59,6 +59,11 @@ export default function BarChart({ data }) {
                         display: false,
                         position: 'top'
                     },
+                    plugins: {
+                        legend: {
+                          display: false
+                        }
+                      },
                     // animation: {
                     //   animateScale: true,
                     //   animateRotate: true
