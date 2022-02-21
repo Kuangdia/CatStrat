@@ -1,6 +1,11 @@
 import React from "react";
 import History from "./History";
 
+
+// target_strategy: null
+// target_user: null
+// user_id: 1
+
 export default function HistoryList(props) {
   const { historyData } = props;
 
@@ -13,6 +18,10 @@ export default function HistoryList(props) {
         desc={ historyObj.description }
         amount={ historyObj.amount }
         date={ historyObj.created_at.replace("T", " ").split(".")[0] }
+        username={ historyObj.username }
+        strategy_name={ historyObj.strategy_name }
+        unlock_chart={ historyObj.unlock_chart }
+        unlock_strategies={ historyObj.unlock_strategies }
       />
     )
   })

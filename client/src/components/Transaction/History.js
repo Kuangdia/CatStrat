@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function History(props) {
-  const {desc, amount, date, id, is_spending } = props;
+  const {desc, amount, date, id, is_spending, username, strategy_name, unlock_chart, unlock_strategies } = props;
 
   let classname = "history__table__";
   if (!id) {
@@ -15,10 +15,18 @@ export default function History(props) {
     }
   }
 
+  let descText = desc;
+  if (unlock_chart || unlock_strategies || username || strategy_name) {
+    descText = descText.replace("other", username);
+  } 
+  if (strategy_name) {
+    descText = descText.replace("strat_place_holder", strategy_name);
+  }
+
   return (
     <tr className={ classname }>
-      <td className="desc">{ desc }</td>
-      <td>{ !id? amount : is_spending? `-${amount}` : `+${amount}` }</td>
+      <td className="desc">{ descText }</td>
+      <td>{ amount }</td>
       <td>{ date }</td>
     </tr>
   );

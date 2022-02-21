@@ -5,7 +5,14 @@ const history = (db) => {
   router.get("/", (req, res) => {
     const userID = req.query.userID
   
-    db.query(`SELECT * FROM transactions WHERE user_id = $1 ORDER BY id desc;`, [userID])
+    db.query(`
+      SELECT transactions.*, username, strategy_name  
+      FROM transactions LEFT JOIN users 
+      ON target_user = users.id
+      LEFT JOIN strategies
+      ON target_strategy = strategies.id
+      WHERE user_id = $1 ORDER BY id desc;
+    `, [userID])
       .then((result) => {
         res.send(result.rows);
       })

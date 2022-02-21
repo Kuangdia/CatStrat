@@ -110,80 +110,96 @@ app.post("/strategy/delete/:id", (req, res) => {
     .catch(err => console.log(err))
 })
 
+//handle graph purchase
 app.post("/purchase/graph", (req, res) => {
   const userID = req.body.userID;
+  const targetUserID = req.body.id;
 
-  db.query(`update users set coins = (select coins from users where id = $1)-5 where id = $1`, [userID])
+  db.query(`update users set coins = (select coins from users where id = $1) - 5 where id = $1`, [userID])
     .then((result) => {
       res.send(result.rows);
+      db.query(`
+        INSERT INTO transactions (user_id, target_user, description, amount, unlock_chart) VALUES
+        ($1, $2, $3, 5, true)
+      `, [userID, targetUserID, `Unlock other's Graph Info`])
+        .then(result => res.send(result));
     })
     .catch(err => console.log(err))
 })
 
-app.post("/purchase10", (req, res) => {
+//handle coins purchase
+app.post("/purchase/catecoins/:amount", (req, res) => {
   const userID = req.body.userID;
+  let amount = req.params.amount;
+  let randomCoins = 0;
 
-  db.query(`update users set coins = (select coins from users where id = $1) + 10 where id = $1 returning *`, [userID])
+  if (amount === "random") {
+    randomCoins = Math.floor((Math.random() * 200) + 1);
+  } else {
+    amount = parseInt(amount);
+  }
+
+  db.query(`update users set coins = (select coins from users where id = $1) + $2 where id = $1 returning *`, [userID, randomCoins? randomCoins : amount])
     .then((result) => {
       res.send(result.rows);
       db.query(`
         INSERT INTO transactions 
-        (user_id, is_spending, amount, description) VALUES ($1, $2, $3, $4)`, [userID, false, 10, "Purchased coins"]);
+        (user_id, is_spending, amount, description) VALUES ($1, $2, $3, $4)`, [userID, false, randomCoins? randomCoins : amount, "Purchased coins"]);
     })
     .catch(err => console.log(err))
 })
 
-app.post("/purchase50", (req, res) => {
-  const userID = req.body.userID;
+// app.post("/purchase50", (req, res) => {
+//   const userID = req.body.userID;
 
-  db.query(`update users set coins = (select coins from users where id = $1)+50 where id = $1`, [userID])
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch(err => console.log(err))
-})
+//   db.query(`update users set coins = (select coins from users where id = $1)+50 where id = $1`, [userID])
+//     .then((result) => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => console.log(err))
+// })
 
-app.post("/purchase100", (req, res) => {
-  const userID = req.body.userID;
+// app.post("/purchase100", (req, res) => {
+//   const userID = req.body.userID;
 
-  db.query(`update users set coins = (select coins from users where id = $1)+100 where id = $1`, [userID])
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch(err => console.log(err))
-})
+//   db.query(`update users set coins = (select coins from users where id = $1)+100 where id = $1`, [userID])
+//     .then((result) => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => console.log(err))
+// })
 
-app.post("/purchase250", (req, res) => {
-  const userID = req.body.userID;
+// app.post("/purchase250", (req, res) => {
+//   const userID = req.body.userID;
 
-  db.query(`update users set coins = (select coins from users where id = $1)+250 where id = $1`, [userID])
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch(err => console.log(err))
-})
+//   db.query(`update users set coins = (select coins from users where id = $1)+250 where id = $1`, [userID])
+//     .then((result) => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => console.log(err))
+// })
 
-app.post("/purchase1000", (req, res) => {
-  const userID = req.body.userID;
+// app.post("/purchase1000", (req, res) => {
+//   const userID = req.body.userID;
 
-  db.query(`update users set coins = (select coins from users where id = $1)+1000 where id = $1`, [userID])
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch(err => console.log(err))
-})
+//   db.query(`update users set coins = (select coins from users where id = $1)+1000 where id = $1`, [userID])
+//     .then((result) => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => console.log(err))
+// })
 
-app.post("/purchase66", (req, res) => {
-  const userID = req.body.userID;
+// app.post("/purchase66", (req, res) => {
+//   const userID = req.body.userID;
 
-  const x = Math.floor((Math.random() * 200) + 1)
+//   const x = Math.floor((Math.random() * 200) + 1)
 
-  db.query(`update users set coins = (select coins from users where id = $1)+$2 where id = $1`, [userID, x])
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch(err => console.log(err))
-})
+//   db.query(`update users set coins = (select coins from users where id = $1)+$2 where id = $1`, [userID, x])
+//     .then((result) => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => console.log(err))
+// })
 
 // app.get("/purchasers/:id", (req, res) => {
 //   const userID = req.query.userID
@@ -197,6 +213,12 @@ app.post("/purchase66", (req, res) => {
 //     })
 //     .catch(err => console.log(err))
 // })
+
+
+
+
+
+
 
 // select coalesce ((select id, user_id from purchasers where id = 1 and user_id = 2), 0)
 

@@ -19,8 +19,6 @@ import classNames from 'classnames'
 import 'devextreme/dist/css/dx.material.blue.dark.compact.css';
 import { ProgressBar } from 'devextreme-react/progress-bar';
 
-
-
 const Profile = ({setCoins, coins}) => {
   const navigate = useNavigate();
 
@@ -40,6 +38,8 @@ const Profile = ({setCoins, coins}) => {
 
   const [bought, setBought] = useState(false);
   const [addLike, setAddLike] = useState(false);
+
+
   const userID = localStorage.getItem("userID");
   const params = useParams();
   const id = params.id;
@@ -49,7 +49,7 @@ const Profile = ({setCoins, coins}) => {
   })
 
   useEffect(() => {
-    const userID = localStorage.getItem("userID")
+    //const userID = localStorage.getItem("userID")
 
     Promise.all([
       Axios.get(`/profile/${id}}`, {params: {id, userID}}),
@@ -57,12 +57,14 @@ const Profile = ({setCoins, coins}) => {
       Axios.get("/strategies", {params: {id}}),
     ]).then((all) => {
       
-      setGetData(all[0].data[0]);
-      console.log("all0", all[0].data)
+      setGetData(all[0].data[0]); //data is an array, data[0] is an obj
+      console.log("GetData", all[0].data)
+
       setGraphData(all[1].data)
-      console.log("all1", all[1].data)
+      console.log("GraphData", all[1].data)
+
       setStratData(all[2].data)
-      console.log("all2", all[2].data)
+      console.log("StratData", all[2].data)
 
 
       if (userID !== id) {
@@ -70,14 +72,13 @@ const Profile = ({setCoins, coins}) => {
       }
 
       if (userID == id) {
-        setShowPurchase(true)
-        setBought(true)
+        setShowPurchase(true) //for graph
+        setBought(true) //for?
         setShowStrat(true)
         setEditProfile(true)
         setShowCompare(false)
         setShowFollow(false)
       }
-
 
       // console.log("plz work", all[0].data[0].fid)
       if (all[0].data[0].fid) {
@@ -101,9 +102,6 @@ const Profile = ({setCoins, coins}) => {
           setFollow(false)
         } 
       }
-
-
-    
     }).catch(err => {
       console.log(err)
       // navigate("/newprofile")
@@ -113,16 +111,16 @@ const Profile = ({setCoins, coins}) => {
 
 
   const purchase = () => {
-    const userID = localStorage.getItem("userID");
-
-    Axios.post("/purchase/graph", {userID})
+    //const userID = localStorage.getItem("userID");
+    Axios.post("/purchase/graph", {userID, id})
       .then(res => {
-        setShowCompare(true)
+        alert("Graph Purchased Successfully!");
+        console.log("only need this info!", res);
+        setShowCompare(true);
         setBought(true);
         setCoins(coins-5);
       })
       .catch(err => console.log(err))
-
   }
 
   const followUser = () => {
