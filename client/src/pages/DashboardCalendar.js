@@ -6,30 +6,33 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from 'react-router-dom';
 import "../components/Calendar/Calendar.scss";
 import Calendar from '../components/Calendar';
+import {useParams} from 'react-router-dom'
 
 export default function DashboardCalendar(props) {
-  let navigate = useNavigate();
+  const [coins, setCoins] = useState(0);
 
-  const [loginUserID, setLoginUserID] = useState(localStorage.getItem('userID'));
-
-  const [data, setData] = useState({strategies: [],
-                                    records: []
-                                  });
+  const params = useParams();
+  const id = params.id;
 
   useEffect(() => {
-    if (loginUserID) {
-      Axios.post('/strategies', {loginUserID})
-      .then((response) => {
-        console.log(response)
-        setData(response)
+    const userID = localStorage.getItem("userID")
+    console.log("is userid console", userID)
+
+    Axios.get("/username", {params: {userID}})
+      .then(res => {
+        console.log("dashboardprofile", res.data)
+        
+        res.data.map((item) => {
+          if (userID == item.id) {
+            // console.log("itemid", item.id)
+            setCoins(item.coins);
+            // console.log("coin set", item.coins)
+            return;
+          }
+        })
       })
-      .catch((err) => {
-        console.log(err);
-      });
-    } else {
-      navigate("/");
-    }
-  }, [loginUserID]);
+
+  }, [id])
 
   return(
     <>
@@ -37,8 +40,7 @@ export default function DashboardCalendar(props) {
         <Sidebar />
         <div className="layout__right">
           <Navbar 
-            loginUserID={loginUserID} 
-            setLoginUserID={setLoginUserID} />
+            coins={coins} />
           <div className="content">
             <Calendar />
           </div>

@@ -6,11 +6,35 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from 'react-router-dom';
 import "../components/Calendar/Calendar.scss";
 import StrategyInfo from '../components/StrategyInfo';
+import {useParams} from 'react-router-dom'
 
 export default function DashboardStrategyInfo() {
-  
-  
-  const [loginUserID, setLoginUserID] = useState(localStorage.getItem('userID'));
+  const loginUserID = localStorage.getItem("userID")
+
+  const [coins, setCoins] = useState(0);
+
+  const params = useParams();
+  const id = params.id;
+
+  useEffect(() => {
+    const userID = localStorage.getItem("userID")
+    console.log("is userid console", userID)
+
+    Axios.get("/username", {params: {userID}})
+      .then(res => {
+        console.log("dashboardprofile", res.data)
+        
+        res.data.map((item) => {
+          if (userID == item.id) {
+            // console.log("itemid", item.id)
+            setCoins(item.coins);
+            // console.log("coin set", item.coins)
+            return;
+          }
+        })
+      })
+
+  }, [id])
   
 
   return(
@@ -19,8 +43,7 @@ export default function DashboardStrategyInfo() {
         <Sidebar />
         <div className="layout__right">
           <Navbar 
-            loginUserID={loginUserID} 
-            setLoginUserID = {setLoginUserID} />
+            coins={coins} />
           <div className="content">
             <StrategyInfo loginUserID={loginUserID}/>
           </div>

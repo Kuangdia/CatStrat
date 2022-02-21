@@ -11,49 +11,49 @@ const CateCoins = () => {
     console.log("token", token)
   }
 
-  const buy10 = () => {
-    Axios.post("/purchase/10", {userID})
-      .then(res => {
-        console.log("purchase success!")
-      })
-      .catch(err => console.log(err))
-  }
-  const buy50 = () => {
-    Axios.post("/purchase/50", {userID})
-      .then(res => {
-        console.log("purchase success!")
-      })
-      .catch(err => console.log(err))
-  }
-  const buy100 = () => {
-    Axios.post("/purchase/100", {userID})
-      .then(res => {
-        console.log("purchase success!")
-      })
-      .catch(err => console.log(err))
-  }
-  const buy250 = () => {
-    Axios.post("/purchase/250", {userID})
-      .then(res => {
-        console.log("purchase success!")
-      })
-      .catch(err => console.log(err))
-  }
-  const buy1000 = () => {
-    Axios.post("/purchase/1000", {userID})
-      .then(res => {
-        console.log("purchase success!")
-      })
-      .catch(err => console.log(err))
-  }
-  const buy66 = () => {
+  // const buy10 = () => {
+  //   Axios.post("/purchase/10", {userID})
+  //     .then(res => {
+  //       console.log("purchase success!")
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+  // const buy50 = () => {
+  //   Axios.post("/purchase/50", {userID})
+  //     .then(res => {
+  //       console.log("purchase success!")
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+  // const buy100 = () => {
+  //   Axios.post("/purchase/100", {userID})
+  //     .then(res => {
+  //       console.log("purchase success!")
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+  // const buy250 = () => {
+  //   Axios.post("/purchase/250", {userID})
+  //     .then(res => {
+  //       console.log("purchase success!")
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+  // const buy1000 = () => {
+  //   Axios.post("/purchase/1000", {userID})
+  //     .then(res => {
+  //       console.log("purchase success!")
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+  // const buy66 = () => {
 
-    Axios.post("/purchase/66", {userID})
-      .then(res => {
-        console.log("purchase success!")
-      })
-      .catch(err => console.log(err))
-  }
+  //   Axios.post("/purchase/66", {userID})
+  //     .then(res => {
+  //       console.log("purchase success!")
+  //     })
+  //     .catch(err => console.log(err))
+  // }
 
 
   return (

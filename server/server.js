@@ -65,7 +65,7 @@ const unfollowRoutes = require("./routes/unfollow");
 const likeRoutes = require("./routes/like");
 const dislikeRoutes = require("./routes/dislike");
 const { endOfDay } = require("date-fns");
-const purchaseRoutes = require("./routes/purchase");
+// const purchaseRoutes = require("./routes/purchase");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
@@ -82,7 +82,7 @@ app.use("/following", followingRoutes(db))
 app.use("/unfollow", unfollowRoutes(db))
 app.use("/like", likeRoutes(db))
 app.use("/dislike", dislikeRoutes(db))
-app.use("/purchase", purchaseRoutes(db))
+// app.use("/purchase", purchaseRoutes(db))
 
 
 // Test Routes DO NOT DELETE
