@@ -49,15 +49,15 @@ export default function Summary({ data }) {
           />
 
           <Statistic
-            label={'Return on Investment'}
-            data={'34%'}
-            image='logo192.png'
+            label={'Most Purchased Stock'}
+            data={'AAPL'}
+            image='trend.png'
           />
 
           <Statistic
-            label={'Better than others in your money bracket'}
-            data={'15%'}
-            image='logo192.png'
+            label={'Highest gain in a day!'}
+            data={'$12,000'}
+            image='gain.png'
           />
         </div>
 
