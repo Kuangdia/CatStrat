@@ -158,7 +158,7 @@ app.post("/purchase/catecoins/:amount", (req, res) => {
     amount = parseInt(amount);
   }
 
-  db.query(`update users set coins = (select coins from users where id = $1) + $2 where id = $1 returning *`, [userID, randomCoins? randomCoins : amount])
+  db.query(`update users set coins = (select coins from users where id = $1) + $2 where id = $1`, [userID, randomCoins? randomCoins : amount])
     .then((result) => {
       res.send(result.rows);
       db.query(`

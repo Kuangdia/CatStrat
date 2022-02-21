@@ -16,7 +16,7 @@ const CateCoins = (props) => {
   const buyCateCoins = (amount) => {
     Axios.post(`/purchase/catecoins/${amount}`, { userID })
       .then(res => {
-        alert("Purchase Successfully!");
+        console.log("Purchase Successfully!");
         setCoins(res.data.coins);
       })
       .catch(err => err.message);
@@ -76,7 +76,7 @@ const CateCoins = (props) => {
             <img className="img-resize" src="https://thumbs.dreamstime.com/b/coins-vector-icon-illustration-stack-coins-coin-front-digital-currency-flat-style-gold-coins-isolated-coins-116254670.jpg" />
             
             
-            <StripeCheckout amount="199" stripeKey="pk_test_51KOVomLl6Bd8nSfz4hmUZcP8DvOt1OS84lBttCRAqUIJ4oSmwvM8K8AE1OJBFrmDhh4KGZHiymJdMwrWhhuEu3MY00oH5MTsmH" token={handleToken} closed={ () => {buyCateCoins(10)} } email="111@qq.com">
+            <StripeCheckout amount="199" stripeKey="pk_test_51KOVomLl6Bd8nSfz4hmUZcP8DvOt1OS84lBttCRAqUIJ4oSmwvM8K8AE1OJBFrmDhh4KGZHiymJdMwrWhhuEu3MY00oH5MTsmH" token={handleToken} closed={ () => {buyCateCoins(10) } } email="111@qq.com">
               <button className="coin-btn" >$1.99</button>
             </StripeCheckout>
           </div>

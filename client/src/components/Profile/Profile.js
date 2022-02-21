@@ -115,7 +115,7 @@ const Profile = ({setCoins, coins}) => {
     Axios.post("/purchase/graph", {userID, id})
       .then(res => {
         alert("Graph Purchased Successfully!");
-        console.log("only need this info!", res);
+        // console.log("only need this info!", res);
         setShowCompare(true);
         setBought(true);
         setCoins(coins - 5);
