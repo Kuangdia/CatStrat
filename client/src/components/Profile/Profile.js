@@ -26,7 +26,9 @@ const Profile = ({setCoins, coins}) => {
   const [getData, setGetData] = useState("");
   const [stratData, setStratData] = useState([]);
   const [graphData, setGraphData] = useState([]);
-  const [purchaseData, setPurchaseData] = useState([])
+  const [likeData, setLikeData] = useState([])
+  const [dislikeData, setDislikeData] = useState([])
+  // const [purchaseData, setPurchaseData] = useState([])
 
   const [editProfile, setEditProfile] = useState(false);
   const [follow, setFollow] = useState(false);
@@ -49,12 +51,15 @@ const Profile = ({setCoins, coins}) => {
   })
 
   useEffect(() => {
-    //const userID = localStorage.getItem("userID")
 
     Promise.all([
       Axios.get(`/profile/${id}}`, {params: {id, userID}}),
       Axios.get(`http://localhost:8080/dashboard`, { params: { user_id: id } }),
       Axios.get("/strategies", {params: {id}}),
+      Axios.get("/sellers", {params: {id, userID}}),
+      Axios.get("/likers", {params: {id, userID}}),
+      Axios.get("/dislikers", {params: {id, userID}}),
+      Axios.get("/stratsellers", {params: {id, userID}}),
     ]).then((all) => {
       
       setGetData(all[0].data[0]); //data is an array, data[0] is an obj
@@ -64,8 +69,13 @@ const Profile = ({setCoins, coins}) => {
       console.log("GraphData", all[1].data)
 
       setStratData(all[2].data)
-      console.log("StratData", all[2].data)
-
+      console.log("all2", all[2].data)
+      console.log("all3", all[3].data)
+      setLikeData(all[4].data)
+      console.log("all4", all[4].data)
+      setDislikeData(all[5].data)
+      console.log("all5", all[5].data)
+      console.log("all6", all[6].data)
 
       if (userID !== id) {
         setShowFollow(true)
@@ -79,7 +89,15 @@ const Profile = ({setCoins, coins}) => {
         setShowCompare(false)
         setShowFollow(false)
       }
+      
+      if (all[3].data.length > 0) {
+        setBought(true);
+      }
 
+      if (all[6].data.length > 0) {
+        setShowStrat(true);
+      }
+      
       // console.log("plz work", all[0].data[0].fid)
       if (all[0].data[0].fid) {
         setRemoveFollow(true)
@@ -109,31 +127,7 @@ const Profile = ({setCoins, coins}) => {
 
   }, [id, addLike, bought, removeFollow])
 
-  //PURCHASE graph
-  const purchase = () => { 
-    //const userID = localStorage.getItem("userID");
-    Axios.post("/purchase/graph", {userID, id})
-      .then(res => {
-        alert("Graph Purchased Successfully!");
-        // console.log("only need this info!", res);
-        setShowCompare(true);
-        setBought(true);
-        setCoins(coins - 5);
-      })
-      .catch(err => console.log(err))
-  }
-  //PURCHASE strats
-  const purchaseStrat = () => {
-    Axios.post("/purchase/strategies", {userID, id})
-    .then(res => {
-      alert("Strategies are now unlocked!");
-      setAddLike(!addLike)
-      setShowStrat(true);
-      setCoins(coins - 15);
-    })
-    .catch(err => console.log(err));
-  }
-
+ 
   const followUser = () => {
     console.log("clicked")
     const userID = localStorage.getItem("userID")
@@ -161,30 +155,47 @@ const Profile = ({setCoins, coins}) => {
       })
       .catch(err => console.log(err));
   }
-  //Like orofile & send 1 coin
+  //Like profile & send 1 coin
   const like = () => {
     console.log("clicked")
     if (userID == id) {
       return;
     }
-    Axios.post("/like", {userID, id})
-      .then(res => {
+
+    if (likeData.length > 0) {
+      console.log("check", likeData[0].liker_id)
+      return;
+    }
+
+    Promise.all([
+      Axios.post("/like", {id}),
+      Axios.post("/buylike", {id, userID})
+    ]).then(res => {
         alert("You liked this profile and sent 1 CateCoin!");
         setAddLike(!addLike);
         setCoins(coins - 1);
+        console.log("success!")
+
       })
       .catch(err => console.log(err));
   }
   
   const dislike = () => {
-    console.log("clicked")
+    console.log("clicked", dislikeData)
     if (userID == id) {
       return;
     }
+    
+    if (dislikeData.length > 0) {
+      console.log("we are here")
+      return;
+    }
   
-    Axios.post("/dislike", {id})
-      .then(res => {
-        console.log("success!")
+    Promise.all([
+      Axios.post("/dislike", {id}),
+      Axios.post("/buydislike", {id, userID}),
+    ]).then(res => {
+        console.log("success! dislike")
         setAddLike(!addLike)
       })
       .catch(err => console.log(err));
@@ -218,8 +229,35 @@ const Profile = ({setCoins, coins}) => {
       })
       .catch(err => console.log(err))
   }
-
   
+  //Purchase Graph
+  const purchase = () => {
+    Promise.all([
+      Axios.post("/purchase/graph", {userID, id}),
+      Axios.post("/buygraph", {id, userID})
+    ]).then(res => {
+        alert("Graph Purchased Successfully!");
+        setShowCompare(true)
+        setBought(true);
+        setCoins(coins-5);
+      })
+      .catch(err => console.log(err))
+  }
+  
+  //Purchase Strats
+  const purchaseStrat = () => {
+
+    Promise.all([
+      Axios.post("/purchase/strategies", {userID, id}),
+      Axios.post("/buystrat", {id, userID}),
+    ]).then(res => {
+      alert("Strategies are now unlocked!");
+      setAddLike(!addLike)
+      setShowStrat(true);
+      setCoins(coins-15)
+    })
+    .catch(err => console.log(err));
+  }
 
   const navigateCompare = (id) => {
     navigate(`/comparison/${id}`)
@@ -250,7 +288,7 @@ const Profile = ({setCoins, coins}) => {
               <div className="follow-btn">
                 <div className="profile-username">{getData.username}<VerifiedIcon/></div>
                 {showCompare ? <Button id="compare-id" size="small" variant="contained" onClick={() => {navigateCompare(id)}}>Compare</Button> : <></>}
-                {showFollow ? <>{follow ? <Button id="follow-btn" size="small" variant="contained" onClick={followUser}>Follow</Button> : <Button size="small" variant="contained" onClick={unfollowUser} >Unfollow</Button>}</> : <></>}
+                {showFollow ? <>{follow ? <Button id="follow-btn-id" size="small" variant="contained" onClick={followUser}>Follow</Button> : <Button size="small" id="follow-btn-id" variant="contained" onClick={unfollowUser} >Unfollow</Button>}</> : <></>}
                 
               </div>
               <div>
@@ -281,8 +319,8 @@ const Profile = ({setCoins, coins}) => {
                 height={0}
               />
             <div className="votes">
-              <div className="up"><Upvotes onClick={like}/>{`${getData.likes}`}</div>
-              <div className="down"><Downvotes onClick={dislike}/>{getData.dislikes}</div>
+              <div className="up" onClick={like}><Upvotes id="upvote-a" onClick={like}/>{`${getData.likes}`}</div>
+              <div className="down" onClick={dislike}><Downvotes id="downvote-b" onClick={dislike}/>{getData.dislikes}</div>
             </div>
             </div>
           </div>
@@ -295,14 +333,15 @@ const Profile = ({setCoins, coins}) => {
           <div className="graph2">
             <div className="table-container">
               <tr className="table-columns">
-                <th className="one-a">Strategy Name</th>
+                {/* <th className="one-a">Strategy Name</th> */}
                 <th className="one-b">Description</th>
               </tr>
               {showStrat ? 
               <>{stratData.map((item) => {
-                return (<details className="table-rows-content">
+                return (<details >
+                <summary className="table-content">{item.strategy_name}</summary>
                 <tr className="table-rows">
-                  <td className="one">{item.strategy_name}</td>
+                  {/* <td className="one">{item.strategy_name}</td> */}
                   <td className="two">{item.description}</td>
                   <td className="three" onClick={() => {upvote(item.id)}}>{item.upvotes}<FcUp /></td>
                   <td className="four" onClick={() => {downvote(item.id)}}>{item.downvotes}<FcDown/></td>

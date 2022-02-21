@@ -15,13 +15,6 @@ export default function Dashboard(props) {
 
   let navigate = useNavigate();
 
-  const [loginUserID, setLoginUserID] = useState(localStorage.getItem('userID'));
-
-  // const [data, setData] = useState({
-  //   strategies: [],
-  //   records: []
-  // });
-
 
   useEffect(() => {
 
@@ -35,8 +28,7 @@ export default function Dashboard(props) {
     } else {
       navigate("/");
     }
-  }, [loginUserID]);
-
+  }, []);
 
   return (
     <>
@@ -44,8 +36,7 @@ export default function Dashboard(props) {
         <Sidebar />
         <div className="layout__right">
           <Navbar
-            loginUserID={loginUserID}
-            setLoginUserID={setLoginUserID} />
+             />
           <div className="content">
             <Summary data={data} />
           </div>

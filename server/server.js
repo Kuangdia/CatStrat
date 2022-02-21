@@ -66,6 +66,7 @@ const likeRoutes = require("./routes/like");
 const dislikeRoutes = require("./routes/dislike");
 const historyRoutes = require("./routes/history");
 const { endOfDay } = require("date-fns");
+// const purchaseRoutes = require("./routes/purchase");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
@@ -168,57 +169,116 @@ app.post("/purchase/catecoins/:amount", (req, res) => {
     .catch(err => console.log(err))
 })
 
-// app.post("/purchase50", (req, res) => {
-//   const userID = req.body.userID;
 
-//   db.query(`update users set coins = (select coins from users where id = $1)+50 where id = $1`, [userID])
-//     .then((result) => {
-//       res.send(result.rows);
-//     })
-//     .catch(err => console.log(err))
-// })
+app.get("/sellers", (req, res) => {
+  const userID = req.query.userID;
+  const id = req.query.id;
 
-// app.post("/purchase100", (req, res) => {
-//   const userID = req.body.userID;
+  db.query(`select * from sellers where user_id = $1 and buyer_id = $2`, [id, userID])
+  .then((result) => {
+    console.log("success purchase!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
+})
 
-//   db.query(`update users set coins = (select coins from users where id = $1)+100 where id = $1`, [userID])
-//     .then((result) => {
-//       res.send(result.rows);
-//     })
-//     .catch(err => console.log(err))
-// })
+app.get("/stratsellers", (req, res) => {
+  const userID = req.query.userID;
+  const id = req.query.id;
 
-// app.post("/purchase250", (req, res) => {
-//   const userID = req.body.userID;
+  db.query(`select * from strat_sellers where user_id = $1 and buyer_id = $2`, [id, userID])
+  .then((result) => {
+    console.log("success purchase!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
+})
 
-//   db.query(`update users set coins = (select coins from users where id = $1)+250 where id = $1`, [userID])
-//     .then((result) => {
-//       res.send(result.rows);
-//     })
-//     .catch(err => console.log(err))
-// })
+app.get("/dislikers", (req, res) => {
+  const userID = req.query.userID;
+  const id = req.query.id;
 
-// app.post("/purchase1000", (req, res) => {
-//   const userID = req.body.userID;
+  db.query(`select * from dislikers where user_id = $1 and disliker_id = $2`, [id, userID])
+  .then((result) => {
+    console.log("success dislike!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
+})
 
-//   db.query(`update users set coins = (select coins from users where id = $1)+1000 where id = $1`, [userID])
-//     .then((result) => {
-//       res.send(result.rows);
-//     })
-//     .catch(err => console.log(err))
-// })
+app.post("/buydislike", (req, res) => {
+  const userID = req.body.userID
+  const id = req.body.id;
 
-// app.post("/purchase66", (req, res) => {
-//   const userID = req.body.userID;
+  db.query(`insert into dislikers (user_id, disliker_id) values ($1, $2)`, [id, userID])
+  .then((result) => {
+    console.log("DB dislike!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
+})
 
-//   const x = Math.floor((Math.random() * 200) + 1)
+app.get("/likers", (req, res) => {
+  const userID = req.query.userID;
+  const id = req.query.id;
 
-//   db.query(`update users set coins = (select coins from users where id = $1)+$2 where id = $1`, [userID, x])
-//     .then((result) => {
-//       res.send(result.rows);
-//     })
-//     .catch(err => console.log(err))
-// })
+  db.query(`select * from likers where user_id = $1 and liker_id = $2`, [id, userID])
+  .then((result) => {
+    console.log("success like!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
+})
+
+app.post("/buylike", (req, res) => {
+  const userID = req.body.userID
+  const id = req.body.id;
+
+  db.query(`insert into likers (user_id, liker_id) values ($1, $2)`, [id, userID])
+  .then((result) => {
+    console.log("DB like!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
+})
+
+app.post("/buygraph", (req, res) => {
+  const userID = req.body.userID
+  const id = req.body.id;
+
+  db.query(`insert into sellers (user_id, buyer_id) values ($1, $2)`, [id, userID])
+  .then((result) => {
+    console.log("DB purchase!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
+})
+
+app.post("/buystrat", (req, res) => {
+  const userID = req.body.userID
+  const id = req.body.id;
+
+  db.query(`insert into strat_sellers (user_id, buyer_id) values ($1, $2)`, [id, userID])
+  .then((result) => {
+    console.log("DB purchase!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
+})
+
+app.post("/logincoins", (req, res) => {
+  const userID = req.body.userID
+
+  db
+  .query(`update users set coins = (select coins from users where id = $1)+10`, [userID])
+  .then((result) => {
+    console.log("login coin success!")
+    res.send(result.rows)
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+})
 
 // app.get("/purchasers/:id", (req, res) => {
 //   const userID = req.query.userID

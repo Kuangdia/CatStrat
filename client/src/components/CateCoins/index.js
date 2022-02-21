@@ -70,6 +70,7 @@ const CateCoins = (props) => {
   return (
     <div className="coin-container">
       <div className="coin-container-inner">
+
         <div className="coin-boxes">
           <div className="coin-boxes-inner">
             <div className="coin-txt">10 Catcoin</div>
@@ -81,6 +82,7 @@ const CateCoins = (props) => {
             </StripeCheckout>
           </div>
         </div>
+
         <div className="coin-boxes">
           <div className="coin-boxes-inner">
             <div className="coin-txt">50 Catcoin</div>  
@@ -88,6 +90,7 @@ const CateCoins = (props) => {
             <StripeCheckout amount="499" stripeKey="pk_test_51KOVomLl6Bd8nSfz4hmUZcP8DvOt1OS84lBttCRAqUIJ4oSmwvM8K8AE1OJBFrmDhh4KGZHiymJdMwrWhhuEu3MY00oH5MTsmH" token={handleToken} closed={ () => {buyCateCoins(50)} } email="111@qq.com"><button className="coin-btn">$4.99</button></StripeCheckout>
           </div>
         </div>
+
         <div className="coin-boxes">
           <div className="coin-boxes-inner">
             <div className="coin-txt">100 Catcoin</div>
@@ -95,6 +98,7 @@ const CateCoins = (props) => {
             <StripeCheckout amount="999" stripeKey="pk_test_51KOVomLl6Bd8nSfz4hmUZcP8DvOt1OS84lBttCRAqUIJ4oSmwvM8K8AE1OJBFrmDhh4KGZHiymJdMwrWhhuEu3MY00oH5MTsmH" token={handleToken} closed={ () => {buyCateCoins(100)} } email="111@qq.com"><button className="coin-btn">$9.99</button></StripeCheckout>
           </div>
         </div>
+
         <div className="coin-boxes">
           <div className="coin-boxes-inner">
             <img className="img-resize" src="https://img.freepik.com/free-vector/treasure-chest-open-ancient-large-trunk-full-shiny-gems-jewelry-medieval-mystery-pirate-treasures-topaz-sapphire-gemstones-wooden-box-winning-prize-symbol-cartoon-vector-isolated-icon_176411-3244.jpg?size=626&ext=jpg" />
@@ -102,6 +106,7 @@ const CateCoins = (props) => {
             <StripeCheckout amount="1999" stripeKey="pk_test_51KOVomLl6Bd8nSfz4hmUZcP8DvOt1OS84lBttCRAqUIJ4oSmwvM8K8AE1OJBFrmDhh4KGZHiymJdMwrWhhuEu3MY00oH5MTsmH" token={handleToken} closed={ () => {buyCateCoins(250)} } email="111@qq.com"><button className="coin-btn" >$19.99</button></StripeCheckout>
           </div>
         </div>
+
         <div className="coin-boxes">
           <div className="coin-boxes-inner">
             <img className="img-resize" src="https://thumbs.dreamstime.com/b/chest-glowing-treasure-25354925.jpg" />
@@ -109,6 +114,7 @@ const CateCoins = (props) => {
             <StripeCheckout amount="4999" stripeKey="pk_test_51KOVomLl6Bd8nSfz4hmUZcP8DvOt1OS84lBttCRAqUIJ4oSmwvM8K8AE1OJBFrmDhh4KGZHiymJdMwrWhhuEu3MY00oH5MTsmH" token={handleToken} closed={ () => {buyCateCoins(1000)} } email="111@qq.com"><button className="coin-btn">$49.99</button></StripeCheckout>
           </div>
         </div>
+
         <div className="coin-boxes">
           <div className="coin-boxes-inner">
             <img className="img-resize" src="http://content.puzzlepirates.com/images/spyglass/2011july/plum_box_blog.png" />
