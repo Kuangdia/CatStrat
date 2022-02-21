@@ -27,7 +27,7 @@ export default function HistoryList(props) {
   })
   return (
     <>
-      <h2 className="history__title">CateCoins Transaction</h2>
+      <h2 className="history__title">CatCoin Transactions</h2>
       <table className="history__table">
         <thead className="history__table__header">
           <History id="" is_spending="" desc="DESCRIPTION" amount="AMOUNT" date="DATE" />

@@ -114,7 +114,7 @@ export default function ListTabs(props) {
         <div >
           <HistoryToggleOffIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
         </div>
-        <div className="label">Transaction </div>
+        <div className="label">Transactions </div>
       </div>
       
       <div onClick={() => { FAQRoute(userID) }} className="nav-item"  >
