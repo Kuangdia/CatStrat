@@ -39,8 +39,8 @@ export default function PieChart({ data }) {
   return (
       <div className="pie">
         <Pie
-          width={350}
-          height={350}
+          width={450}
+          height={450}
           data={dataset}
           options={{
             responsive: true,
