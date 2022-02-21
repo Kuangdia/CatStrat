@@ -85,15 +85,19 @@ app.use("/dislike", dislikeRoutes(db))
 app.use("/history", historyRoutes(db))
 
 
-// Test Routes DO NOT DELETE
+// Handle Upvote a strategy
 app.post("/strategy/:id", (req, res) => {
-  const strategy_id = req.params.id
-  console.log("strat", strategy_id)
+  const strategy_id = req.params.id;
+  const userID = req.body.userID;
+  const targetUserID = req.body.id;
 
-  db.query(`update strategies set upvotes = (select upvotes from strategies where id = $1)+ 1 where id = $1`, [strategy_id])
+  db.query(`update strategies set upvotes = (select upvotes from strategies where id = $1) + 1 where id = $1`, [strategy_id])
     .then((result) => {
-      console.log("success!")
-      res.send(result.rows)
+      res.send(result.rows);
+      db.query(`
+          INSERT INTO transactions (user_id, target_user, target_strategy, description, amount) VALUES
+          ($1, $2, $3, $4, 1)
+        `, [userID, targetUserID, strategy_id, `Upvote other''s strat_place_holder strategy`]);
     })
     .catch(err => console.log(err))
 })
@@ -121,7 +125,7 @@ app.post("/purchase/graph", (req, res) => {
       db.query(`
         INSERT INTO transactions (user_id, target_user, description, amount, unlock_chart) VALUES
         ($1, $2, $3, 5, true)
-      `, [userID, targetUserID, `Unlock other's graph Info`])
+      `, [userID, targetUserID, `Unlock other's graph Info`]);
     })
     .catch(err => console.log(err))
 });
@@ -137,7 +141,7 @@ app.post("/purchase/strategies", (req, res) => {
       db.query(`
         INSERT INTO transactions (user_id, target_user, description, amount, unlock_strategies) VALUES
         ($1, $2, $3, 15, true)
-      `, [userID, targetUserID, `Unlock other's strategies info`])
+      `, [userID, targetUserID, `Unlock other's strategies info`]);
     })
     .catch(err => console.log(err))
 });

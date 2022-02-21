@@ -109,8 +109,8 @@ const Profile = ({setCoins, coins}) => {
 
   }, [id, addLike, bought, removeFollow])
 
-
-  const purchase = () => {
+  //PURCHASE graph
+  const purchase = () => { 
     //const userID = localStorage.getItem("userID");
     Axios.post("/purchase/graph", {userID, id})
       .then(res => {
@@ -122,14 +122,14 @@ const Profile = ({setCoins, coins}) => {
       })
       .catch(err => console.log(err))
   }
-
+  //PURCHASE strats
   const purchaseStrat = () => {
     Axios.post("/purchase/strategies", {userID, id})
     .then(res => {
       alert("Strategies are now unlocked!");
       setAddLike(!addLike)
       setShowStrat(true);
-      setCoins(coins - 15)
+      setCoins(coins - 15);
     })
     .catch(err => console.log(err));
   }
@@ -161,17 +161,17 @@ const Profile = ({setCoins, coins}) => {
       })
       .catch(err => console.log(err));
   }
-  
+  //Like orofile & send 1 coin
   const like = () => {
     console.log("clicked")
     if (userID == id) {
       return;
     }
-  
-    Axios.post("/like", {id})
+    Axios.post("/like", {userID, id})
       .then(res => {
-        console.log("success!")
-        setAddLike(!addLike)
+        alert("You liked this profile and sent 1 CateCoin!");
+        setAddLike(!addLike);
+        setCoins(coins - 1);
       })
       .catch(err => console.log(err));
   }
@@ -189,17 +189,18 @@ const Profile = ({setCoins, coins}) => {
       })
       .catch(err => console.log(err));
   }
-  
+  //Upvote a strat and send 1 coin
   const upvote = (item_id) => {
     console.log("clicked")
     if (userID == id) {
       return;
     }
   
-    Axios.post(`/strategy/${item_id}`)
+    Axios.post(`/strategy/${item_id}`, {userID, id})
       .then(res => {
-        console.log("did you trigger?")
-        setAddLike(!addLike)
+        alert("You upvoted this strategy and sent 1 CateCoin!");
+        setAddLike(!addLike);
+        setCoins(coins - 1);
       })
       .catch(err => console.log(err))
   }
