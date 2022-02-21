@@ -23,8 +23,13 @@ export default function getPieChartData(data) {
     // console.log('pieLabels', pieLabels)
     // console.log('pieData', pieData)
 
+    const availableColors = ["#2F3C7E", "#FBEAEB", "#FEE715", "#e52165", "#a2d5c6", "#b20238", "#fbcbc9", "#6b7b8c", "#ff6e40", "F6EAD4", "A4A595", "B50472", "79CBB8", "16ACEA", "4203C9", "B99523", "1978A5", "141414"]
+    const colors =[];
+    for (let i = 0; i < pieLabels.length; i++) {
+        colors.push(availableColors[i])
+    }
 
-    return { pieData, pieLabels };
+    return { pieData, pieLabels, colors };
 }
 
 

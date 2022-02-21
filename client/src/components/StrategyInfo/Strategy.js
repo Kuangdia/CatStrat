@@ -27,6 +27,7 @@ export default function Strategy(props) {
     // const DELETING = "DELETING";
     // const CONFIRM = "CONFIRM";
 
+
     // save strategy
     function save(name, description) {
         Axios.put('http://localhost:8080/strategy/', {
@@ -60,9 +61,9 @@ export default function Strategy(props) {
     }
 
     const cancel = () => {
+        transition(SHOWOPEN);
         setEditName(name);
         setEditDescription(description);
-        transition(SHOWOPEN);
         console.log('cancel')
     };
 

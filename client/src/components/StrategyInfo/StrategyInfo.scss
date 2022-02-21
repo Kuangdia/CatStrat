@@ -18,6 +18,32 @@
   --color-summary-highlight: #B4B3FF;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, .05);
+  border-left: 15px solid #B4B3FF;;
+  padding:15px;
+  margin-top: 15px;
+}
+
+.name-input {
+  width:350px;
+  margin:15px;
+}
+
+.description-input {                    
+  height:150px;
+  width:1000px;
+  padding-left:0;
+  padding-top:0;
+  padding-bottom:7em;
+  padding-right: 7em;
+}
+
 .write-name {
   padding-bottom: 0px;
 }
