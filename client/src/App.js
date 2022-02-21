@@ -1,13 +1,5 @@
 import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.light.css';
-import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.light.css';
-import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.light.css';
-import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.light.css';
-import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.light.css';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -15,8 +7,6 @@ import Landing from './pages/Landing';
 import DashboardCalendar from './pages/DashboardCalendar';
 import DashboardComparison from './pages/DashboardComparison';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Axios from 'axios'
-import {useState, useEffect} from 'react'
 import React from 'react';
 import DashboardProfile from './pages/DashboardProfile';
 import DashboardNewProfile from './pages/DashboardNewProfile';

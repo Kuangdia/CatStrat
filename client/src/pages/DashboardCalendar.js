@@ -12,24 +12,24 @@ export default function DashboardCalendar(props) {
 
   const [loginUserID, setLoginUserID] = useState(localStorage.getItem('userID'));
 
-  const [data, setData] = useState({strategies: [],
-                                    records: []
-                                  });
+  // const [data, setData] = useState({strategies: [],
+  //                                   records: []
+  //                                 });
 
-  useEffect(() => {
-    if (loginUserID) {
-      Axios.post('/strategies', {loginUserID})
-      .then((response) => {
-        console.log(response)
-        // setData(response)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    } else {
-      navigate("/");
-    }
-  }, [loginUserID]);
+  // useEffect(() => {
+  //   if (loginUserID) {
+  //     Axios.post('/strategies', {loginUserID})
+  //     .then((response) => {
+  //       console.log(response)
+  //       // setData(response)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   } else {
+  //     navigate("/");
+  //   }
+  // }, [loginUserID]);
 
   return(
     <>
