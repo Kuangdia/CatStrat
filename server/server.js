@@ -64,6 +64,7 @@ const followingRoutes = require("./routes/following");
 const unfollowRoutes = require("./routes/unfollow");
 const likeRoutes = require("./routes/like");
 const dislikeRoutes = require("./routes/dislike");
+const historyRoutes = require("./routes/history");
 const { endOfDay } = require("date-fns");
 
 // Routes
@@ -81,6 +82,7 @@ app.use("/following", followingRoutes(db))
 app.use("/unfollow", unfollowRoutes(db))
 app.use("/like", likeRoutes(db))
 app.use("/dislike", dislikeRoutes(db))
+app.use("/history", historyRoutes(db))
 
 
 // Test Routes DO NOT DELETE
@@ -121,9 +123,12 @@ app.post("/purchase/graph", (req, res) => {
 app.post("/purchase10", (req, res) => {
   const userID = req.body.userID;
 
-  db.query(`update users set coins = (select coins from users where id = $1)+10 where id = $1`, [userID])
+  db.query(`update users set coins = (select coins from users where id = $1) + 10 where id = $1 returning *`, [userID])
     .then((result) => {
       res.send(result.rows);
+      db.query(`
+        INSERT INTO transactions 
+        (user_id, is_spending, amount, description) VALUES ($1, $2, $3, $4)`, [userID, false, 10, "Purchased coins"]);
     })
     .catch(err => console.log(err))
 })

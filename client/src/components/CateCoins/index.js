@@ -4,17 +4,28 @@ import StripeCheckout from 'react-stripe-checkout'
 import Axios from "axios"
 import { useState, useEffect } from 'react'
 
-const CateCoins = () => {
-  const userID = localStorage.getItem("userID")
+const CateCoins = (props) => {
+  const userID = localStorage.getItem("userID");
+  const { setCoins } = props;
 
   const handleToken = (token) => {
     console.log("token", token)
   }
 
+  // const buy = (amount) => {
+  //   Axios.post(`/purchase/${amount}`, { userID })
+  //     .then(res => {
+  //       console.log("Purchase Successfully!");
+  //     })
+  //     .catch(err => err.message);
+  // }
+
+
   const buy10 = () => {
     Axios.post("/purchase10", {userID})
       .then(res => {
-        console.log("purchase success!")
+        alert("purchase success!");
+        setCoins(res.data.coins);
       })
       .catch(err => console.log(err))
   }
@@ -64,7 +75,9 @@ const CateCoins = () => {
             <img className="img-resize" src="https://thumbs.dreamstime.com/b/coins-vector-icon-illustration-stack-coins-coin-front-digital-currency-flat-style-gold-coins-isolated-coins-116254670.jpg" />
             
             
-            <StripeCheckout amount="199" stripeKey="pk_test_51KOVomLl6Bd8nSfz4hmUZcP8DvOt1OS84lBttCRAqUIJ4oSmwvM8K8AE1OJBFrmDhh4KGZHiymJdMwrWhhuEu3MY00oH5MTsmH" token={handleToken}><button className="coin-btn" onClick={buy10}>$1.99</button></StripeCheckout>
+            <StripeCheckout amount="199" stripeKey="pk_test_51KOVomLl6Bd8nSfz4hmUZcP8DvOt1OS84lBttCRAqUIJ4oSmwvM8K8AE1OJBFrmDhh4KGZHiymJdMwrWhhuEu3MY00oH5MTsmH" token={handleToken} closed={ buy10 } email="111@qq.com">
+              <button className="coin-btn" >$1.99</button>
+            </StripeCheckout>
           </div>
         </div>
         <div className="coin-boxes">
@@ -102,8 +115,6 @@ const CateCoins = () => {
             <StripeCheckout amount="999" description="Receive 1-200 Coins" stripeKey="pk_test_51KOVomLl6Bd8nSfz4hmUZcP8DvOt1OS84lBttCRAqUIJ4oSmwvM8K8AE1OJBFrmDhh4KGZHiymJdMwrWhhuEu3MY00oH5MTsmH" token={handleToken}><button className="coin-btn" onClick={buy66}>$9.99</button></StripeCheckout>
           </div>
         </div>
-       
-
       </div>
     </div>
   )

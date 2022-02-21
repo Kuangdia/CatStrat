@@ -13,6 +13,7 @@ import DashboardNewProfile from './pages/DashboardNewProfile';
 import DashboardCoins from './pages/DashboardCoins';
 import DashboardStrategyInfo from './pages/DashboardStrategyInfo';
 import DashboardLeaderBoard from './pages/DashboardLeaderBoard';
+import DashboardTransaction from './pages/DashboardTransaction';
 
 function App() {
   // const [user, setUser] = useState({})
@@ -45,6 +46,7 @@ function App() {
         <Route path="/catecoins/:id" element={<DashboardCoins/>}/>
         <Route path="/newprofile" element={<DashboardNewProfile />}/>
         <Route path="/leaderBoard" element={<DashboardLeaderBoard />}/>
+        <Route path="/transaction" element={<DashboardTransaction />}/>
       </Routes>
     </Router>
   );

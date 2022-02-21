@@ -19,7 +19,6 @@ export default function Navbar(props) {
   // console.log(coins)
 
   useEffect(() => {
-    
     axios.get("/username")
       .then(res => {
         console.log("nav data", res.data)
@@ -27,7 +26,7 @@ export default function Navbar(props) {
       })
       .catch(err => console.log(err))
 
-  }, [])
+  }, [coins])
 
   const logout = () => {
     console.log("logout")
@@ -64,7 +63,7 @@ export default function Navbar(props) {
               className="navbar__icon"
               onClick={navigateCoins}
             />
-            <p>X<span>{coins}</span></p>
+            <p>X<span>{ coins }</span></p>
 
           </div>
         </div>
