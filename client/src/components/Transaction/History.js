@@ -26,7 +26,7 @@ export default function History(props) {
   return (
     <tr className={ classname }>
       <td className="desc">{ descText }</td>
-      <td>{ amount }</td>
+      <td>{ is_spending? `- ${amount} ` : `+ ${amount}` }</td>
       <td>{ date }</td>
     </tr>
   );

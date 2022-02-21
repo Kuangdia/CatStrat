@@ -110,7 +110,7 @@ app.post("/strategy/delete/:id", (req, res) => {
     .catch(err => console.log(err))
 })
 
-//handle graph purchase
+//handle graph purchase - DONE
 app.post("/purchase/graph", (req, res) => {
   const userID = req.body.userID;
   const targetUserID = req.body.id;
@@ -121,13 +121,28 @@ app.post("/purchase/graph", (req, res) => {
       db.query(`
         INSERT INTO transactions (user_id, target_user, description, amount, unlock_chart) VALUES
         ($1, $2, $3, 5, true)
-      `, [userID, targetUserID, `Unlock other's Graph Info`])
-        .then(result => res.send(result));
+      `, [userID, targetUserID, `Unlock other's graph Info`])
     })
     .catch(err => console.log(err))
-})
+});
 
-//handle coins purchase
+//handle strategies purchase - DONE
+app.post("/purchase/strategies", (req, res) => {
+  const userID = req.body.userID;
+  const targetUserID = req.body.id;
+
+  db.query(`update users set coins = (select coins from users where id = $1) - 15 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+      db.query(`
+        INSERT INTO transactions (user_id, target_user, description, amount, unlock_strategies) VALUES
+        ($1, $2, $3, 15, true)
+      `, [userID, targetUserID, `Unlock other's strategies info`])
+    })
+    .catch(err => console.log(err))
+});
+
+//handle coins purchase - DONE
 app.post("/purchase/catecoins/:amount", (req, res) => {
   const userID = req.body.userID;
   let amount = req.params.amount;
@@ -213,11 +228,6 @@ app.post("/purchase/catecoins/:amount", (req, res) => {
 //     })
 //     .catch(err => console.log(err))
 // })
-
-
-
-
-
 
 
 // select coalesce ((select id, user_id from purchasers where id = 1 and user_id = 2), 0)

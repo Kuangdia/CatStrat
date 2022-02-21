@@ -4,7 +4,6 @@ VALUES
 (1, TRUE, 'Unlock other''s chart info', 5, 2, true);
 
 -- unlock user's strategies
-
 INSERT INTO transactions (user_id, is_spending, description, amount, target_user, unlock_strategies) 
 VALUES 
 (1, TRUE, 'Unlock other''s strategies info', 5, 3, true);

@@ -118,9 +118,20 @@ const Profile = ({setCoins, coins}) => {
         console.log("only need this info!", res);
         setShowCompare(true);
         setBought(true);
-        setCoins(coins-5);
+        setCoins(coins - 5);
       })
       .catch(err => console.log(err))
+  }
+
+  const purchaseStrat = () => {
+    Axios.post("/purchase/strategies", {userID, id})
+    .then(res => {
+      alert("Strategies are now unlocked!");
+      setAddLike(!addLike)
+      setShowStrat(true);
+      setCoins(coins - 15)
+    })
+    .catch(err => console.log(err));
   }
 
   const followUser = () => {
@@ -207,17 +218,7 @@ const Profile = ({setCoins, coins}) => {
       .catch(err => console.log(err))
   }
 
-  const purchaseStrat = () => {
-
-    Axios.post("/purchase/graph", {userID})
-    .then(res => {
-      console.log("success!")
-      setAddLike(!addLike)
-      setShowStrat(true);
-      setCoins(coins-15)
-    })
-    .catch(err => console.log(err));
-  }
+  
 
   const navigateCompare = (id) => {
     navigate(`/comparison/${id}`)
