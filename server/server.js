@@ -65,7 +65,7 @@ const unfollowRoutes = require("./routes/unfollow");
 const likeRoutes = require("./routes/like");
 const dislikeRoutes = require("./routes/dislike");
 const { endOfDay } = require("date-fns");
-// const purchaseRoutes = require("./routes/purchase");
+const purchaseRoutes = require("./routes/purchase");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
@@ -82,10 +82,32 @@ app.use("/following", followingRoutes(db))
 app.use("/unfollow", unfollowRoutes(db))
 app.use("/like", likeRoutes(db))
 app.use("/dislike", dislikeRoutes(db))
-// app.use("/purchase", purchaseRoutes(db))
+app.use("/purchase", purchaseRoutes(db))
 
 
 // Test Routes DO NOT DELETE
+app.post("/purchase/catecoins/:amount", (req, res) => {
+  const userID = req.body.userID;
+  let amount = req.params.amount;
+  let randomCoins = 0;
+
+  if (amount === "random") {
+    randomCoins = Math.floor((Math.random() * 200) + 1);
+  } else {
+    amount = parseInt(amount);
+  }
+
+  db.query(`update users set coins = (select coins from users where id = $1) + $2 where id = $1`, [userID, randomCoins? randomCoins : amount])
+    .then((result) => {
+      res.send(result.rows);
+      db.query(`
+        INSERT INTO transactions 
+        (user_id, is_spending, amount, description) VALUES ($1, $2, $3, $4)`, [userID, false, randomCoins? randomCoins : amount, "Purchased coins"]);
+    })
+    .catch(err => console.log(err))
+})
+
+
 app.post("/strategy/:id", (req, res) => {
   const strategy_id = req.params.id
   console.log("strat", strategy_id)
