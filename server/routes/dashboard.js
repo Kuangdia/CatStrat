@@ -30,7 +30,7 @@ const dashboard = (db) => {
   })
 
 
-  router.get('/stock', (req, res) => {
+  router.get('/top-stock', (req, res) => {
     console.log('req.query', req.query)
     // console.log('req.body', req.body)
     const userID = req.query.user_id;
