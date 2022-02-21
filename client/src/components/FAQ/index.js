@@ -25,43 +25,43 @@ export default function FAQ({ loginUserID }) {
             <div className="strategies">
                 <h1>Frequently Asked Questions</h1>
                 <details className="faq">
-                    <summary className="question">Custom trading</summary>
-                    <p>The end-of-day trading strategy involves trading near the close of markets. End-of-day traders become active when it becomes clear that the price is going to ‘settle’ or close..</p>
+                    <summary className="question">How can I purchase more CatCoins?</summary>
+                    <p>Click on the CatCoin icon on the Navbar. That will redirect you to a page where you can purchase bundles of CatCoins.</p>
+                </details>
+            
+                <details className="faq">
+                    <summary>Where can I see my friend's CatStrat Profile?</summary>
+                    <p>As long as you know your friend's username, you can search for your friend using the search function in the Navbar.</p>
                 </details>
 
                 <details className="faq">
-                    <summary>Custom trading</summary>
-                    <p>I made this custom trading strategy that uses psychic powers.</p>
+                    <summary>How can I see my CatCoin purchase history?</summary>
+                    <p>Click on the CatCoin history tab on the sidebar to see a list of your CatCoin transactions.</p>
                 </details>
 
                 <details className="faq">
-                    <summary>Custom trading</summary>
-                    <p>I made this custom trading strategy that uses psychic powers.</p>
+                    <summary>Who are the founders of CatStrat?</summary>
+                    <p>James Huang, Allen Zhao, and Diana Kuang. You can connect with us on LinkedIn!</p>
                 </details>
 
                 <details className="faq">
-                    <summary>Custom trading</summary>
-                    <p>I made this custom trading strategy that uses psychic powers.</p>
+                    <summary>Why do I have 100 CatCoins on my account already?</summary>
+                    <p>There is currently a promotion for new users to gain 100 CatCoins for registering!</p>
                 </details>
 
                 <details className="faq">
-                    <summary>Custom trading</summary>
-                    <p>I made this custom trading strategy that uses psychic powers.</p>
+                    <summary>How can I create custom strategies?</summary>
+                    <p>Go to the Strategy Info tab and click on the plus sign at the bottom of the strategy list. That will open up a form to create a new custom strategy.</p>
                 </details>
 
                 <details className="faq">
-                    <summary>Custom trading</summary>
-                    <p>I made this custom trading strategy that uses psychic powers.</p>
+                    <summary>Why is it called CatStrat and not DogStrat?</summary>
+                    <p>Because we are cat people.</p>
                 </details>
 
                 <details className="faq">
-                    <summary>Custom trading</summary>
-                    <p>I made this custom trading strategy that uses psychic powers.</p>
-                </details>
-
-                <details className="faq">
-                    <summary>Custom trading</summary>
-                    <p>I made this custom trading strategy that uses psychic powers.</p>
+                    <summary>How can I delete a record in my calendar?</summary>
+                    <p>Click on the specific record in the calendar. That will open a form on the right-side. Click the delete button at the bottom of the form to delete the record.</p>
                 </details>
 
             </div>
