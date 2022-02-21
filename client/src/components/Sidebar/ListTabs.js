@@ -6,6 +6,7 @@ import TodayIcon from '@mui/icons-material/Today';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 
 import "./ListTabs.scss";
 import "./Sidebar.scss";
@@ -62,6 +63,11 @@ export default function ListTabs(props) {
     if (userID) {
       navigate(`/FAQ`)
     }
+  }
+  const transactionRoute = (userID) => {
+    if (userID) {
+      navigate(`/transaction`)
+    }
   };
 
   return (
@@ -103,14 +109,21 @@ export default function ListTabs(props) {
         </div>
         <div className="label">Leaderboard </div>
       </div>
-
+      
+      <div onClick={() => { transactionRoute(userID) }} className="nav-item"  >
+        <div >
+          <HistoryToggleOffIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
+        </div>
+        <div className="label">Transaction </div>
+      </div>
+      
       <div onClick={() => { FAQRoute(userID) }} className="nav-item"  >
         <div >
           <LiveHelpIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
         </div>
         <div className="label">FAQ </div>
       </div>
-
+      
     </div>
   );
 }

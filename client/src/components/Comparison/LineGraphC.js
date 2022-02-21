@@ -61,7 +61,7 @@ export default function LineGraph({ data }) {
                     options={options}
                     data={lineGraphData}
                     width={600}
-                    height={360}
+                    height={460}
                 />
             </div>
         </Paper>

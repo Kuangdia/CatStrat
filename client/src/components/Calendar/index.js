@@ -13,15 +13,26 @@ import { sendGetReq } from '../../helpers/cleanCalendarData';
 
 export default function Calendar() {
   $(() => {
-    const $records = $(".fc-event-title");
-    for (let $record of $records) {
-      console.log($($record).text());
-      if (parseInt($($record).text().slice(2)) < 0) {
-        $($record).addClass("neg-record");
-      } else {
-        $($record).addClass("pos-record");
+    function changeEventColor() {
+      const $records = $(".fc-event-title");
+      for (let $record of $records) {
+        if (parseInt($($record).text().slice(2)) < 0) {
+          $($record).addClass("neg-record");
+        } else {
+          $($record).addClass("pos-record");
+        }
       }
     }
+
+    changeEventColor();
+
+    $('button[title="Previous month"]').on("click", () => {
+      setTimeout(changeEventColor, 50);
+    });
+
+    $('button[title="Next month"]').on("click", () => {
+      setTimeout(changeEventColor, 50);
+    });
   })
   
   const [calendarData, setCalendarData] = useState([]);
