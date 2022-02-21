@@ -35,10 +35,7 @@ const dashboard = (db) => {
     // console.log('req.body', req.body)
     const userID = req.query.user_id;
 
-    const query = `SELECT DISTINCT records.*, strategy_name FROM records
-        JOIN strategies ON records.strategy_id = strategies.id
-        WHERE user_id = $1
-        ORDER BY records.day`
+    const query = `SELECT COUNT(stock_id)`
 
     return db
       .query(query, [userID])
