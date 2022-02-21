@@ -5,6 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import TodayIcon from '@mui/icons-material/Today';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 
 import "./ListTabs.scss";
 import "./Sidebar.scss";
@@ -57,6 +58,12 @@ export default function ListTabs(props) {
     }
   };
 
+  const FAQRoute = (userID) => {
+    if (userID) {
+      navigate(`/FAQ`)
+    }
+  };
+
   return (
     <div className='sidebar'>
       <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
@@ -97,6 +104,12 @@ export default function ListTabs(props) {
         <div className="label">Leaderboard </div>
       </div>
 
+      <div onClick={() => { FAQRoute(userID) }} className="nav-item"  >
+        <div >
+          <LiveHelpIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
+        </div>
+        <div className="label">FAQ </div>
+      </div>
 
     </div>
   );

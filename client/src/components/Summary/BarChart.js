@@ -17,7 +17,7 @@ export default function BarChart({ data }) {
         datasets: [
             {
                 backgroundColor: colors,
-                hoverBackgroundColor: '#0B2038',
+                hoverBackgroundColor: '#651e3e',
                 data: barData,
             }
         ]

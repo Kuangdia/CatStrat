@@ -22,7 +22,7 @@ export default function PieChart({ data }) {
       {
         label: 'Rainfall',
         backgroundColor: colors,
-        hoverBackgroundColor: '#0B2038',
+        hoverBackgroundColor: '#651e3e',
         data: pieData
       }
     ]
