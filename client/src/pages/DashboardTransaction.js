@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Transaction from "../components/Transaction";
 import "../components/Transaction/Transaction.scss";
 
-export default function DashboardLeaderBoard(props) {
+export default function DashboardTransaction(props) {
 
   return(
     <>

@@ -168,7 +168,7 @@ const Profile = ({setCoins, coins}) => {
     }
 
     Promise.all([
-      Axios.post("/like", {id}),
+      Axios.post("/like", {id, userID}),
       Axios.post("/buylike", {id, userID})
     ]).then(res => {
         alert("You liked this profile and sent 1 CateCoin!");
