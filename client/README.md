@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Design Patten
+- side-bar      20% width 100% height
+- layout--right 80% width 100% height
+- nav-bar       100% width 20% height
+- content       100% width 80% height
+  - first child element of content 90% width height    
+
+
 ## Available Scripts
 
 In the project directory, you can run:

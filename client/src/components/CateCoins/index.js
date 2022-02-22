@@ -2,7 +2,6 @@ import React from 'react'
 import "./CateCoins.scss"
 import StripeCheckout from 'react-stripe-checkout'
 import Axios from "axios"
-import { useState, useEffect } from 'react'
 
 const CateCoins = (props) => {
   const userID = localStorage.getItem("userID");

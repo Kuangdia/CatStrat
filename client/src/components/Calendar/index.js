@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState} from 'react';
-
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 import Axios from "axios";
 import RecordInput from "./RecordInput";
 import $ from 'jquery';
+import "./Calendar.scss";
 
 // import "./Calendar.scss";
 import { sendGetReq } from '../../helpers/cleanCalendarData';
@@ -96,9 +96,6 @@ export default function Calendar() {
           <RecordInput 
             setShowForm={ setShowForm }
             date={ date }
-            // setCalendarData={ 
-            //   setCalendarData 
-            // }
             netBalance={ netBalance }
             setNetBalance = { setNetBalance }
             investAmount={ investAmount }

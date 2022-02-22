@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Axios from "axios";
 import EmptyHistory from './EmptyHistory';
 import HistoryList from "./HistoryList";
+import "./Transaction.scss";
 
 export default function Transaction() {
   const userID = localStorage.getItem("userID");

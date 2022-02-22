@@ -1,3 +1,4 @@
+import "./FAQ.scss";
 
 export default function FAQ({ loginUserID }) {
 
@@ -21,7 +22,7 @@ export default function FAQ({ loginUserID }) {
 
 
     return (
-        <section className="full-container">
+        <section className="faq-full-container">
             <div className="strategies">
                 <h1>Frequently Asked Questions</h1>
                 <details className="faq">
