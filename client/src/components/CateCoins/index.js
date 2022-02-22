@@ -22,51 +22,6 @@ const CateCoins = (props) => {
       .catch(err => err.message);
   }
 
-
-  // const buy10 = () => {
-  //   Axios.post("/purchase10", {userID})
-  //     .then(res => {
-  //       alert("purchase success!");
-  //       setCoins(res.data.coins);
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-  // const buy50 = () => {
-  //   Axios.post("/purchase50", {userID})
-  //     .then(res => {
-  //       console.log("purchase success!")
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-  // const buy100 = () => {
-  //   Axios.post("/purchase100", {userID})
-  //     .then(res => {
-  //       console.log("purchase success!")
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-  // const buy250 = () => {
-  //   Axios.post("/purchase250", {userID})
-  //     .then(res => {
-  //       console.log("purchase success!")
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-  // const buy1000 = () => {
-  //   Axios.post("/purchase1000", {userID})
-  //     .then(res => {
-  //       console.log("purchase success!")
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-  // const buy66 = () => {
-  //   Axios.post("/purchase66", {userID})
-  //     .then(res => {
-  //       console.log("purchase success!")
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-
   return (
     <div className="coin-container">
       <div className="coin-container-inner">
