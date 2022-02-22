@@ -13,7 +13,8 @@ const dashboard = (db) => {
     //   WHERE records.user_id = $1
     //   ORDER BY records.id`
 
-    const query = `SELECT DISTINCT records.*, strategy_name FROM records
+    const query = `SELECT DISTINCT records.*, strategy_name 
+          FROM records
           JOIN strategies ON records.strategy_id = strategies.id
           WHERE user_id = $1
           ORDER BY records.day`
@@ -35,7 +36,12 @@ const dashboard = (db) => {
     // console.log('req.body', req.body)
     const userID = req.query.user_id;
 
-    const query = `SELECT COUNT(stock_id) AS count, stocks.stock_symbol FROM records JOIN stocks ON stock_id = stocks.id WHERE records.user_id = $1 GROUP BY stock_symbol ORDER BY count DESC LIMIT 1`
+    const query = `SELECT COUNT(stock_id) AS count, stocks.stock_symbol 
+      FROM records JOIN stocks ON stock_id = stocks.id 
+      WHERE records.user_id = $1 GROUP 
+      BY stock_symbol 
+      ORDER BY count DESC 
+      LIMIT 1`
 
     return db
       .query(query, [userID])

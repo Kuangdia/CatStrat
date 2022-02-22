@@ -7,6 +7,7 @@ import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
+import PaidIcon from '@mui/icons-material/Paid';
 
 import "./ListTabs.scss";
 import "./Sidebar.scss";
@@ -112,7 +113,7 @@ export default function ListTabs(props) {
       
       <div onClick={() => { transactionRoute(userID) }} className="nav-item"  >
         <div >
-          <HistoryToggleOffIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
+          <PaidIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
         </div>
         <div className="label">Transactions </div>
       </div>
