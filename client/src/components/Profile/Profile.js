@@ -232,7 +232,7 @@ const Profile = ({setCoins, coins}) => {
     const userID = localStorage.getItem("userID");
 
     Promise.all([
-      Axios.post("/purchase/graph", {userID}),
+      Axios.post("/purchase/graph", {id, userID}),
       Axios.post("/buygraph", {id, userID})
     ]).then(res => {
         setShowCompare(true)
@@ -317,8 +317,14 @@ const Profile = ({setCoins, coins}) => {
                 height={0}
               />
             <div className="votes">
-              <div className="up" onClick={like}><Upvotes id="upvote-a" onClick={like}/>{`${getData.likes}`}</div>
-              <div className="down" onClick={dislike}><Downvotes id="downvote-b" onClick={dislike}/>{getData.dislikes}</div>
+              <div className="up" onClick={like}>
+                <Upvotes id="upvote-a" />
+                {`${getData.likes}`}
+              </div>
+              <div className="down" onClick={dislike}>
+                <Downvotes id="downvote-b" />
+                {getData.dislikes}
+              </div>
             </div>
             </div>
           </div>
