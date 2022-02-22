@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from 'react-router-dom';
 import Summary from '../components/Summary';
 
-export default function Dashboard(props) {
+export default function Dashboard({coins, setCoins}) {
   const userID = localStorage.getItem('userID')
 
   // Store all data in state and manipulate it as need be
@@ -35,10 +35,9 @@ export default function Dashboard(props) {
       <main className="layout">
         <Sidebar />
         <div className="layout__right">
-          <Navbar
-             />
+          <Navbar coins={coins} setCoins={ setCoins }/>
           <div className="content">
-            <Summary data={data} />
+            <Summary data={data} coins={coins} setCoins={ setCoins }/>
           </div>
         </div>
       </main>

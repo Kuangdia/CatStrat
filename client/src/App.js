@@ -7,29 +7,40 @@ import DashboardComparison from './pages/DashboardComparison';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import DashboardProfile from './pages/DashboardProfile';
-import DashboardNewProfile from './pages/DashboardNewProfile';
 import DashboardCoins from './pages/DashboardCoins';
 import DashboardStrategyInfo from './pages/DashboardStrategyInfo';
 import DashboardLeaderBoard from './pages/DashboardLeaderBoard';
 import DashboardFAQ from './pages/DashboardFAQ';
 import DashboardTransaction from './pages/DashboardTransaction';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Axios from 'axios';
 
 function App() {
-  // const [user, setUser] = useState({})
+  const [coins, setCoins] = useState(0);
 
-  // const loggedUser = () => {
-  //   const token = localStorage.getItem("token")
-  //   axios.get("/api", {params: {token}})
-  //     .then((res) => {
-  //       console.log("client res", res.data)
-  //       setUser(res.data)
-  //     })
-  //     .catch(err => console.log(err));
-  // }
+  const params = useParams();
+  const id = params.id;
 
-  // useEffect(() => {
-  //   loggedUser();
-  // })
+  useEffect(() => {
+    const userID = localStorage.getItem("userID")
+    console.log("is userid console", userID)
+
+    Axios.get("/username", {params: {userID}})
+      .then(res => {
+        console.log("dashboardprofile", res.data)
+        
+        res.data.map((item) => {
+          if (userID == item.id) {
+            // console.log("itemid", item.id)
+            setCoins(item.coins);
+            // console.log("coin set", item.coins)
+            return;
+          }
+        })
+      })
+
+  }, [id, coins])
 
   return (
     <Router>
@@ -37,16 +48,15 @@ function App() {
         <Route path="/" element={<Landing />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
-        <Route path="/dashboard" element={<Dashboard />}/>
-        <Route path="/calendar" element={<DashboardCalendar />} />
-        <Route path="/profile/:id" element={<DashboardProfile />}/>
-        <Route path="/comparison/:id" element={<DashboardComparison />} />
-        <Route path="/strategyInfo" element={<DashboardStrategyInfo/>}/>
-        <Route path="/catecoins/:id" element={<DashboardCoins/>}/>
-        <Route path="/newprofile" element={<DashboardNewProfile />}/>
-        <Route path="/leaderBoard" element={<DashboardLeaderBoard />}/>
-        <Route path="/FAQ" element={<DashboardFAQ />}/>
-        <Route path="/transaction" element={<DashboardTransaction />}/>
+        <Route path="/dashboard" element={<Dashboard coins={coins} setCoins={setCoins}/>}/>
+        <Route path="/calendar" element={<DashboardCalendar coins={coins} setCoins={setCoins}/>} />
+        <Route path="/profile/:id" element={<DashboardProfile coins={coins} setCoins={setCoins}/>}/>
+        <Route path="/comparison/:id" element={<DashboardComparison coins={coins} setCoins={setCoins}/>} />
+        <Route path="/strategyInfo" element={<DashboardStrategyInfo coins={coins} setCoins={setCoins}/>}/>
+        <Route path="/catecoins/:id" element={<DashboardCoins coins={coins} setCoins={setCoins}/>}/>
+        <Route path="/leaderBoard" element={<DashboardLeaderBoard coins={coins} setCoins={setCoins}/>}/>
+        <Route path="/FAQ" element={<DashboardFAQ coins={coins} setCoins={setCoins}/>}/>
+        <Route path="/transaction" element={<DashboardTransaction coins={coins} setCoins={setCoins}/>}/>
       </Routes>
     </Router>
   );
