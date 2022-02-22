@@ -16,11 +16,13 @@
     justify-content: space-evenly;
     box-sizing: border-box;
     // border: 2px solid rgb(234, 0, 255);
-    margin-left: 140px;
+    margin-left: 190px;
     margin-top: 45px;
     height: 90%;
-    width: 80%;
+    width: 75%;
     position: relative;
+    padding-left:50px;
+    padding-right: 50px;
 
     .coin-boxes {
       background: linear-gradient(rgb(234, 234, 234), rgb(155, 155, 155));
@@ -35,6 +37,7 @@
       height: 260px;
       width: 290px;
       padding-top: 30px;
+      margin-left:10px;
       box-shadow: 4px 10px 16px rgb(0, 0, 0);
 
       &-inner {

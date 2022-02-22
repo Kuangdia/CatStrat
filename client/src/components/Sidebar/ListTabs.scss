@@ -32,6 +32,12 @@
 
   }
 
+  &--selected {
+    // background-color: $white;
+    background-color: #ffd55a;
+    font-weight: bold;
+  }
+
   // &:active {
   //   background-color: yellow;
   // }

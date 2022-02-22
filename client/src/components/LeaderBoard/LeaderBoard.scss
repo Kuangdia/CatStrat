@@ -26,15 +26,16 @@
 
     &__button {
       width: 45%;
-      background-color: $white;
+      background-color: white;
       border-radius: 1rem;
       margin: 0 1rem;
-      background-color: $content-background;
       font-size: larger;
     }
 
     &--selected {
-      background-color: $white;
+      // background-color: $white;
+      background-color: #ffd55a;
+      font-weight: bold;
     }
 
   }
@@ -89,8 +90,13 @@
     &__title {
       color:black;
       height: 15%;
-      padding-bottom: 1rem;
-      font-family: 'Noto Serif Display', serif;
+      padding-bottom: .5rem;
+      padding-top: .75rem;
+      // font-family: 'Noto Serif Display', serif;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 26px;
     }
 
     &__table {
@@ -105,7 +111,7 @@
 
         &__item {
           text-align: center;
-          background-color: aliceblue;
+          background-color: white;
           font-family: 'Mukta', sans-serif;
           border-bottom: 2px solid black;
         }
@@ -125,7 +131,9 @@
 }
 
 .even-tr {
-  background-color: azure;
+  // background-color: azure;
+  background-color: white;
+
 }
 
 .odd-tr {
@@ -145,7 +153,7 @@
   }
   &__img {
     height: 100%;
-    width: 50%;
+    // width: 50%;
     display: block;
     border-radius: 1rem;
     padding-right: 0.5rem;

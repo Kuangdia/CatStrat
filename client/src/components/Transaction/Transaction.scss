@@ -13,7 +13,12 @@
 
   &__title {
     text-align: center;
-    font-family: 'Noto Serif Display', serif;
+    // font-family: 'Noto Serif Display', serif;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 20px;
   }
 
   &__table {
@@ -28,7 +33,7 @@
 
       &__item {
         text-align: center;
-        background-color: aliceblue;
+        background-color: white;
         font-family: 'Mukta', sans-serif;
         border-bottom: 2px solid black;
       }
@@ -47,11 +52,14 @@
 }
 
 .even-tr {
-  background-color: azure;
+  background-color: white;
+  // border-bottom: .5px solid grey;
 }
 
 .odd-tr {
   background-color:beige;
+  // border-bottom: .5px solid grey;
+
 }
 
 .desc {

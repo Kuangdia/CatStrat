@@ -14,6 +14,7 @@ export default function Navbar({coins, setCoins}) {
   const [data, setData] = useState([]);
 
   const userID = localStorage.getItem("userID")
+  const username = localStorage.getItem("username")
 
   useEffect(() => {
     axios.get("/username")
@@ -67,7 +68,7 @@ export default function Navbar({coins, setCoins}) {
 
       <div className="navbar__user">
         <IoLogoOctocat className="navbar__avatar navbar__icon" />
-        <p className="navbar__user__name">John Doe</p>
+        <p className="navbar__user__name">{username}</p>
       </div>
     </section>
   );
