@@ -66,8 +66,6 @@ const likeRoutes = require("./routes/like");
 const dislikeRoutes = require("./routes/dislike");
 const historyRoutes = require("./routes/history");
 const { endOfDay } = require("date-fns");
-const historyRoutes = require("./routes/history");
-// const purchaseRoutes = require("./routes/purchase");
 
 // Routes
 app.use('/dashboard', dashboardRoutes(db));
