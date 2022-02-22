@@ -86,17 +86,7 @@ app.use("/history", historyRoutes(db))
 
 
 
-app.post("/strategy/delete/:id", (req, res) => {
-  const strategy_id = req.params.id
-  console.log("strat", strategy_id)
-  
-  db.query(`update strategies set downvotes = (select downvotes from strategies where id = $1)+ 1 where id = $1`, [strategy_id])
-  .then((result) => {
-    console.log("success!")
-    res.send(result.rows)
-  })
-  .catch(err => console.log(err))
-})
+
 
 // Handle Upvote a strategy
 app.post("/strategy/:id", (req, res) => {
@@ -115,7 +105,39 @@ app.post("/strategy/:id", (req, res) => {
     .catch(err => console.log(err))
 })
 
-//handle graph purchase - DONE
+app.post("/upvotecoins", (req, res) => {
+  const userID = req.body.userID;
+
+  db.query(`update users set coins = (select coins from users where id = $1) - 1 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+    }).catch(err => console.log(err))
+})
+
+app.post("/purchase/catecoins/:amount", (req, res) => {
+  const userID = req.body.userID;
+  let amount = req.params.amount;
+  let randomCoins = 0;
+
+  if (amount === "random") {
+    randomCoins = Math.floor((Math.random() * 200) + 1);
+  } else {
+    amount = parseInt(amount);
+  }
+  console.log("did it pass here?")
+
+  db.query(`update users set coins = (select coins from users where id = $1) + $2 where id = $1`, [userID, randomCoins? randomCoins : amount])
+    .then((result) => {
+      res.send(result.rows);
+      console.log("here working?")
+      db.query(`
+        INSERT INTO transactions 
+        (user_id, is_spending, amount, description) VALUES ($1, $2, $3, $4)`, [userID, false, randomCoins? randomCoins : amount, "Purchased coins"]);
+    })
+    .catch(err => console.log(err))
+})
+
+
 app.post("/purchase/graph", (req, res) => {
   const userID = req.body.userID;
   const targetUserID = req.body.id;
@@ -147,26 +169,16 @@ app.post("/purchase/strategies", (req, res) => {
     .catch(err => console.log(err))
 });
 
-//handle coins purchase - DONE
-app.post("/purchase/catecoins/:amount", (req, res) => {
-  const userID = req.body.userID;
-  let amount = req.params.amount;
-  let randomCoins = 0;
-
-  if (amount === "random") {
-    randomCoins = Math.floor((Math.random() * 200) + 1);
-  } else {
-    amount = parseInt(amount);
-  }
-
-  db.query(`update users set coins = (select coins from users where id = $1) + $2 where id = $1`, [userID, randomCoins? randomCoins : amount])
-    .then((result) => {
-      res.send(result.rows);
-      db.query(`
-        INSERT INTO transactions 
-        (user_id, is_spending, amount, description) VALUES ($1, $2, $3, $4)`, [userID, false, randomCoins? randomCoins : amount, "Purchased coins"]);
-    })
-    .catch(err => console.log(err))
+app.post("/strategy/delete/:id", (req, res) => {
+  const strategy_id = req.params.id
+  console.log("strat", strategy_id)
+  
+  db.query(`update strategies set downvotes = (select downvotes from strategies where id = $1) + 1 where id = $1`, [strategy_id])
+  .then((result) => {
+    console.log("success!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
 })
 
 app.get("/sellers", (req, res) => {
@@ -266,6 +278,7 @@ app.post("/buystrat", (req, res) => {
 })
 
 //give user coins when they (first) login daily
+
 // app.post("/logincoins", (req, res) => {
 //   const userID = req.body.userID
 

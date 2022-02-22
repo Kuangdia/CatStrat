@@ -357,6 +357,8 @@
 }
 
 #edit-btn {
+  font-size: 18px;
+  padding: 5px 10px;
   border-radius: 12px;
   color: white;
   float: right;
@@ -405,6 +407,25 @@
   background-color: rgb(160, 45, 198);
 }
 
-.table-content {
-  font-size: 24px;
+.accordian-content {
+  display: flex;
+  justify-content: end;
+}
+
+.typography-upvote {
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.typography-downvote {
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.fc-upvote {
+  margin-right: 20px;
 }

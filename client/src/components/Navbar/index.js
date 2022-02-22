@@ -9,14 +9,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Navbar(props) {
-  const { coins } = props
+export default function Navbar({coins, setCoins}) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   const userID = localStorage.getItem("userID")
-
-  // console.log(coins)
 
   useEffect(() => {
     axios.get("/username")
