@@ -31,16 +31,16 @@ const dashboard = (db) => {
 
 
   router.get('/top-stock', (req, res) => {
-    console.log('req.query', req.query)
+    console.log('stock req.query', req.query)
     // console.log('req.body', req.body)
     const userID = req.query.user_id;
 
-    const query = `SELECT COUNT(stock_id)`
+    const query = `SELECT COUNT(stock_id) AS count, stocks.stock_symbol FROM records JOIN stocks ON stock_id = stocks.id WHERE records.user_id = $1 GROUP BY stock_symbol ORDER BY count DESC LIMIT 1`
 
     return db
       .query(query, [userID])
       .then((result) => {
-        // console.log("res post", result.rows)
+        console.log("get req stocks", result.rows)
         res.send(result.rows);
       })
       .catch((err) => {
