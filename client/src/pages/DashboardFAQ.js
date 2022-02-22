@@ -12,7 +12,7 @@ export default function DashboardFAQ({coins, setCoins}) {
         <div className="layout__right">
           <Navbar coins={coins} setCoins={setCoins} />
           <div className='content'>
-            <FAQ />
+            <FAQ coins={coins} setCoins={ setCoins }/>
           </div>
         </div>
       </main>

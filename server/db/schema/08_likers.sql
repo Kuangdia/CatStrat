@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS followers CASCADE;
+DROP TABLE IF EXISTS likers CASCADE;
 
 CREATE TABLE likers (
   PRIMARY KEY (user_id, liker_id),

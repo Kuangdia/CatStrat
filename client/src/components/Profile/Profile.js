@@ -13,8 +13,8 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import {useNavigate, useParams} from 'react-router-dom'
 import Axios from "axios";
 import PieChart from './PieChart2';
-import { FcDown, FcUp } from "react-icons/fc";
 import classNames from 'classnames'
+import ProfileStrategy from './ProfileStrategy';
 
 import 'devextreme/dist/css/dx.material.blue.dark.compact.css';
 import { ProgressBar } from 'devextreme-react/progress-bar';
@@ -169,6 +169,7 @@ const Profile = ({setCoins, coins}) => {
 
     Promise.all([
       Axios.post("/like", {id, userID}),
+      Axios.post("/like/user", {id, userID}),
       Axios.post("/buylike", {id, userID})
     ]).then(res => {
         alert("You liked this profile and sent 1 CateCoin!")
@@ -205,12 +206,13 @@ const Profile = ({setCoins, coins}) => {
       return;
     }
   
-    Axios.post(`/strategy/${item_id}`, {userID, id})
-      .then(res => {
-        alert("You upvoted this strategy!")
-        console.log("did you trigger?")
-        setAddLike(!addLike)
-      })
+    Promise.all([
+      Axios.post(`/strategy/${item_id}`, {userID, id}),
+      Axios.post("/upvotecoins", {userID})
+    ]).then(res => {
+      setCoins(coins - 1)
+      setAddLike(!addLike)
+    })
       .catch(err => console.log(err))
   }
 
@@ -219,10 +221,10 @@ const Profile = ({setCoins, coins}) => {
     if (userID == id) {
       return;
     }
-  
-    Axios.post(`/strategy/delete/${item_id}`)
-      .then(res => {
-        console.log("did you trigger?")
+
+    Promise.all([
+      Axios.post(`/strategy/delete/${item_id}`),
+    ]).then(res => {
         setAddLike(!addLike)
       })
       .catch(err => console.log(err))
@@ -232,7 +234,7 @@ const Profile = ({setCoins, coins}) => {
     const userID = localStorage.getItem("userID");
 
     Promise.all([
-      Axios.post("/purchase/graph", {userID}),
+      Axios.post("/purchase/graph", {id, userID}),
       Axios.post("/buygraph", {id, userID})
     ]).then(res => {
         setShowCompare(true)
@@ -263,6 +265,10 @@ const Profile = ({setCoins, coins}) => {
 
   const navigateCoins = () => {
     navigate(`/catecoins/${userID}`)
+  }
+
+  const navigateTransaction = () => {
+    navigate(`/transaction`)
   }
 
   return (
@@ -305,7 +311,7 @@ const Profile = ({setCoins, coins}) => {
             </div>
           </div>
           <div className="stock-profile">
-            {editProfile && <Button id="edit-btn" size="small" variant="contained">Edit</Button>}
+            {editProfile && <Button id="edit-btn" size="small" variant="contained" onClick={navigateTransaction}>History</Button>}
             <div className="progressbar" >
             <div className="profit-goal"></div>
               <h4 className="profit-goal-text">{`Profit Goal: $ ${getData.profit_goal}`}</h4>
@@ -332,22 +338,20 @@ const Profile = ({setCoins, coins}) => {
             <div className="table-container">
               <tr className="table-columns">
                 {/* <th className="one-a">Strategy Name</th> */}
-                <th className="one-b">Description</th>
+                <th className="one-b">Strategies</th>
               </tr>
               {showStrat ? 
-              <>{stratData.map((item) => {
-                return (<details >
-                <summary className="table-content">{item.strategy_name}</summary>
-                <tr className="table-rows">
-                  {/* <td className="one">{item.strategy_name}</td> */}
-                  <td className="two">{item.description}</td>
-                  <td className="three" onClick={() => {upvote(item.id)}}>{item.upvotes}<FcUp /></td>
-                  <td className="four" onClick={() => {downvote(item.id)}}>{item.downvotes}<FcDown/></td>
-                </tr>
-                </details>)
-              })}</>
+                <ProfileStrategy 
+                  stratData={stratData} 
+                  upvote={upvote} 
+                  downvote={downvote}
+                />
               :
-              <><div className="g2-container"><Button id="g2-btn" variant="contained" size="small" onClick={purchaseStrat}>Purchase</Button></div></>}
+                <>
+                  <div className="g2-container">
+                    <Button id="g2-btn" variant="contained" size="small" onClick={purchaseStrat}>Purchase</Button>
+                    </div>
+                </>}
             </div>
           </div>
         </div>

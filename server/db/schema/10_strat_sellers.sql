@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS followers CASCADE;
+DROP TABLE IF EXISTS strat_sellers CASCADE;
 
 CREATE TABLE strat_sellers (
   PRIMARY KEY (user_id, buyer_id),
