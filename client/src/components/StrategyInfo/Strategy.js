@@ -102,7 +102,7 @@ export default function Strategy(props) {
             />}
 
             {mode === CONFIRM && <Confirm
-                delete={deleteStrategy}
+                onDelete={deleteStrategy}
                 cancel={back}
             />}
 

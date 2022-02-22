@@ -2,23 +2,20 @@ import './StrategyInfo.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from 'react-bootstrap/Button';
 
-export default function Confirm({delete, cancel}) {
+export default function Confirm({ onDelete, cancel }) {
 
 
     return (
         <>
-            <div className="form">
-                <div className="summary">
-                    Are you sure?
+            <div className="form delete">
+                <div className="summary delete-message">
+                    Are you sure you would like to delete?
                 </div>
                 <section className="footer">
                     <div className="buttons">
-                        <div className="strategy-type">{type}</div>
                         <div>
-                            <div>
-                                <Button className="edit" variant="danger" onClick={delete}>Yes</Button>
-                                <Button className="edit" variant="warning" onClick={cancel}>No</Button>
-                            </div>
+                            <Button className="edit" variant="danger" onClick={onDelete} >Yes</Button>
+                            <Button className="edit" variant="warning" onClick={cancel} >No</Button>
                         </div>
                     </div>
                 </section>

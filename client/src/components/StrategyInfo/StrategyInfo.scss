@@ -18,6 +18,19 @@
   --color-summary-highlight: #B4B3FF;
 }
 
+.delete {
+  display:flex;
+  flex-direction: column;
+  min-height: 220px;
+  align-items: center;
+}
+
+.delete-message{
+  font-weight:450;
+  font-size: 30px;
+  margin-top: 50px;
+}
+
 .faq {
   --highlight: #FFC48B ;
   background: #FFF6EE;
@@ -90,7 +103,7 @@
   border-radius: 8px;
   padding: 8px 20px;
   font-size: 1.25rem;
-  margin-right: .35em;
+  margin-right: .7em;
 }
 
 .strategies {
