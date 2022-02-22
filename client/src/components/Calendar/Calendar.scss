@@ -18,8 +18,9 @@
   }
   
   .fc-event-title-container {
-    background-color: #F7E9E7;
-    border-color: #F7E9E7;
+    background-color: lighten(#9CC0E7,20%);
+    border-color: lighten(#9CC0E7,20%);
+    cursor:pointer;
   }
   
   .fc-event-title:hover {
