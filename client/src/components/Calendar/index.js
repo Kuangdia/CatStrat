@@ -33,6 +33,10 @@ export default function Calendar() {
     $('button[title="Next month"]').on("click", () => {
       setTimeout(changeEventColor, 50);
     });
+
+    $('button[title="This month"]').on("click", () => {
+      setTimeout(changeEventColor, 50);
+    });
   })
   
   const [calendarData, setCalendarData] = useState([]);
