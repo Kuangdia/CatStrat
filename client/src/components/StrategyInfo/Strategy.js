@@ -27,6 +27,8 @@ export default function Strategy(props) {
     // const DELETING = "DELETING";
     // const CONFIRM = "CONFIRM";
 
+    const [stateName, setStateName] = useState(name)
+    const [stateDescription, setStateDescription] = useState(description)
     // save strategy
     function save(name, description) {
         Axios.put('http://localhost:8080/strategy/', {
@@ -40,6 +42,8 @@ export default function Strategy(props) {
                 // console.log('response.data[0].strategy_name', response.data[0].strategy_name)
                 setEditName(data.strategy_name);
                 setEditDescription(data.description);
+                setStateName(data.strategy_name);
+                setStateDescription(data.description);
                 transition(SHOWOPEN);
             })
             .catch((err) => {
@@ -60,9 +64,9 @@ export default function Strategy(props) {
     }
 
     const cancel = () => {
-        setEditName(name);
-        setEditDescription(description);
         transition(SHOWOPEN);
+        setEditName(stateName);
+        setEditDescription(stateDescription);
         console.log('cancel')
     };
 

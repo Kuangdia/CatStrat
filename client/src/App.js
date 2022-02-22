@@ -5,14 +5,13 @@ import Landing from './pages/Landing';
 import DashboardCalendar from './pages/DashboardCalendar';
 import DashboardComparison from './pages/DashboardComparison';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Axios from 'axios'
-import {useState, useEffect} from 'react'
 import React from 'react';
 import DashboardProfile from './pages/DashboardProfile';
 import DashboardNewProfile from './pages/DashboardNewProfile';
 import DashboardCoins from './pages/DashboardCoins';
 import DashboardStrategyInfo from './pages/DashboardStrategyInfo';
 import DashboardLeaderBoard from './pages/DashboardLeaderBoard';
+import DashboardFAQ from './pages/DashboardFAQ';
 import DashboardTransaction from './pages/DashboardTransaction';
 
 function App() {
@@ -46,6 +45,7 @@ function App() {
         <Route path="/catecoins/:id" element={<DashboardCoins/>}/>
         <Route path="/newprofile" element={<DashboardNewProfile />}/>
         <Route path="/leaderBoard" element={<DashboardLeaderBoard />}/>
+        <Route path="/FAQ" element={<DashboardFAQ />}/>
         <Route path="/transaction" element={<DashboardTransaction />}/>
       </Routes>
     </Router>

@@ -19,8 +19,6 @@ import classNames from 'classnames'
 import 'devextreme/dist/css/dx.material.blue.dark.compact.css';
 import { ProgressBar } from 'devextreme-react/progress-bar';
 
-
-
 const Profile = ({setCoins, coins}) => {
   const navigate = useNavigate();
 
@@ -42,6 +40,8 @@ const Profile = ({setCoins, coins}) => {
 
   const [bought, setBought] = useState(false);
   const [addLike, setAddLike] = useState(false);
+
+
   const userID = localStorage.getItem("userID");
   const params = useParams();
   const id = params.id;
@@ -51,7 +51,6 @@ const Profile = ({setCoins, coins}) => {
   })
 
   useEffect(() => {
-    const userID = localStorage.getItem("userID")
 
     Promise.all([
       Axios.get(`/profile/${id}}`, {params: {id, userID}}),
@@ -63,10 +62,12 @@ const Profile = ({setCoins, coins}) => {
       Axios.get("/stratsellers", {params: {id, userID}}),
     ]).then((all) => {
       
-      setGetData(all[0].data[0]);
-      console.log("all0", all[0].data)
+      setGetData(all[0].data[0]); //data is an array, data[0] is an obj
+      console.log("GetData", all[0].data)
+
       setGraphData(all[1].data)
-      console.log("all1", all[1].data)
+      console.log("GraphData", all[1].data)
+
       setStratData(all[2].data)
       console.log("all2", all[2].data)
       console.log("all3", all[3].data)
@@ -81,8 +82,8 @@ const Profile = ({setCoins, coins}) => {
       }
 
       if (userID == id) {
-        setShowPurchase(true)
-        setBought(true)
+        setShowPurchase(true) //for graph
+        setBought(true) //for?
         setShowStrat(true)
         setEditProfile(true)
         setShowCompare(false)
@@ -97,7 +98,6 @@ const Profile = ({setCoins, coins}) => {
         setShowStrat(true);
       }
       
-
       // console.log("plz work", all[0].data[0].fid)
       if (all[0].data[0].fid) {
         setRemoveFollow(true)
@@ -120,9 +120,6 @@ const Profile = ({setCoins, coins}) => {
           setFollow(false)
         } 
       }
-
-
-    
     }).catch(err => {
       console.log(err)
       // navigate("/newprofile")
@@ -130,6 +127,7 @@ const Profile = ({setCoins, coins}) => {
 
   }, [id, addLike, bought, removeFollow])
 
+ 
   const followUser = () => {
     console.log("clicked")
     const userID = localStorage.getItem("userID")
@@ -157,7 +155,7 @@ const Profile = ({setCoins, coins}) => {
       })
       .catch(err => console.log(err));
   }
-  
+  //Like profile & send 1 coin
   const like = () => {
     console.log("clicked")
     if (userID == id) {
@@ -173,9 +171,17 @@ const Profile = ({setCoins, coins}) => {
       Axios.post("/like", {id, userID}),
       Axios.post("/buylike", {id, userID})
     ]).then(res => {
+<<<<<<< HEAD
         alert("You liked this profile and sent 1 CateCoin!")
         setAddLike(!addLike)
         setCoins(coins-1)
+=======
+        alert("You liked this profile and sent 1 CateCoin!");
+        setAddLike(!addLike);
+        setCoins(coins - 1);
+        console.log("success!")
+
+>>>>>>> 2ddc48e0951ac54cff19413424cd6ac75bb73b6e
       })
       .catch(err => console.log(err));
   }
@@ -200,7 +206,7 @@ const Profile = ({setCoins, coins}) => {
       })
       .catch(err => console.log(err));
   }
-  
+  //Upvote a strat and send 1 coin
   const upvote = (item_id) => {
     console.log("clicked")
     if (userID == id) {
@@ -209,8 +215,9 @@ const Profile = ({setCoins, coins}) => {
   
     Axios.post(`/strategy/${item_id}`, {userID, id})
       .then(res => {
-        console.log("did you trigger?")
-        setAddLike(!addLike)
+        alert("You upvoted this strategy and sent 1 CateCoin!");
+        setAddLike(!addLike);
+        setCoins(coins - 1);
       })
       .catch(err => console.log(err))
   }
@@ -228,30 +235,40 @@ const Profile = ({setCoins, coins}) => {
       })
       .catch(err => console.log(err))
   }
-
+  
+  //Purchase Graph
   const purchase = () => {
-    const userID = localStorage.getItem("userID");
-
     Promise.all([
-      Axios.post("/purchase/graph", {userID}),
+      Axios.post("/purchase/graph", {userID, id}),
       Axios.post("/buygraph", {id, userID})
     ]).then(res => {
+<<<<<<< HEAD
         alert("Graph Purchased Successfully!")
+=======
+        alert("Graph Purchased Successfully!");
+>>>>>>> 2ddc48e0951ac54cff19413424cd6ac75bb73b6e
         setShowCompare(true)
         setBought(true);
         setCoins(coins-5);
       })
       .catch(err => console.log(err))
   }
-
+  
+  //Purchase Strats
   const purchaseStrat = () => {
-    const userID = localStorage.getItem("userID");
 
     Promise.all([
+<<<<<<< HEAD
       Axios.post("/purchase/strategies", {id, userID}),
       Axios.post("/buystrat", {id, userID}),
     ]).then(res => {
       alert("Strategies are now unlocked!")
+=======
+      Axios.post("/purchase/strategies", {userID, id}),
+      Axios.post("/buystrat", {id, userID}),
+    ]).then(res => {
+      alert("Strategies are now unlocked!");
+>>>>>>> 2ddc48e0951ac54cff19413424cd6ac75bb73b6e
       setAddLike(!addLike)
       setShowStrat(true);
       setCoins(coins-15)

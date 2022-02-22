@@ -4,8 +4,9 @@ import StripeCheckout from 'react-stripe-checkout'
 import Axios from "axios"
 import { useState, useEffect } from 'react'
 
-const CateCoins = ({coins, setCoins}) => {
-  const userID = localStorage.getItem("userID")
+const CateCoins = (props) => {
+  const userID = localStorage.getItem("userID");
+  const { setCoins } = props;
 
   const handleToken = (token) => {
     console.log("token", token)
@@ -20,7 +21,6 @@ const CateCoins = ({coins, setCoins}) => {
       })
       .catch(err => err.message);
   }
-
 
   return (
     <div className="coin-container">

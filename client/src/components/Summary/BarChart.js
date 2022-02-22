@@ -9,27 +9,15 @@ Chart.register(...registerables);
 
 export default function BarChart({ data }) {
 
-    const { barData, barLabels } = getBarChartData(data)
+    const { barData, barLabels, colors } = getBarChartData(data)
 
     
     const dataset = {
         labels: barLabels,
         datasets: [
             {
-                backgroundColor: [
-                    '#B21F00',
-                    '#C9DE00',
-                    '#2FDE00',
-                    '#00A6B4',
-                    // '#6800B4'
-                ],
-                hoverBackgroundColor: [
-                    '#501800',
-                    '#4B5000',
-                    '#175000',
-                    '#003350',
-                    // '#35014F'
-                ],
+                backgroundColor: colors,
+                hoverBackgroundColor: '#651e3e',
                 data: barData,
             }
         ]

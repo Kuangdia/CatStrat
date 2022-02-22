@@ -64,6 +64,7 @@ const followingRoutes = require("./routes/following");
 const unfollowRoutes = require("./routes/unfollow");
 const likeRoutes = require("./routes/like");
 const dislikeRoutes = require("./routes/dislike");
+const historyRoutes = require("./routes/history");
 const { endOfDay } = require("date-fns");
 const historyRoutes = require("./routes/history");
 // const purchaseRoutes = require("./routes/purchase");
@@ -83,12 +84,10 @@ app.use("/following", followingRoutes(db))
 app.use("/unfollow", unfollowRoutes(db))
 app.use("/like", likeRoutes(db))
 app.use("/dislike", dislikeRoutes(db))
-// app.use("/purchase", purchaseRoutes(db))
 app.use("/history", historyRoutes(db))
 
 
-
-// Test Routes DO NOT DELETE
+// Handle Upvote a strategy
 app.post("/strategy/:id", (req, res) => {
   const strategy_id = req.params.id;
   const userID = req.body.userID;
@@ -183,6 +182,61 @@ app.post("/strategy/delete/:id", (req, res) => {
     })
     .catch(err => console.log(err))
 })
+
+//handle graph purchase - DONE
+app.post("/purchase/graph", (req, res) => {
+  const userID = req.body.userID;
+  const targetUserID = req.body.id;
+
+  db.query(`update users set coins = (select coins from users where id = $1) - 5 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+      db.query(`
+        INSERT INTO transactions (user_id, target_user, description, amount, unlock_chart) VALUES
+        ($1, $2, $3, 5, true)
+      `, [userID, targetUserID, `Unlock other's graph Info`]);
+    })
+    .catch(err => console.log(err))
+});
+
+//handle strategies purchase - DONE
+app.post("/purchase/strategies", (req, res) => {
+  const userID = req.body.userID;
+  const targetUserID = req.body.id;
+
+  db.query(`update users set coins = (select coins from users where id = $1) - 15 where id = $1`, [userID])
+    .then((result) => {
+      res.send(result.rows);
+      db.query(`
+        INSERT INTO transactions (user_id, target_user, description, amount, unlock_strategies) VALUES
+        ($1, $2, $3, 15, true)
+      `, [userID, targetUserID, `Unlock other's strategies info`]);
+    })
+    .catch(err => console.log(err))
+});
+
+//handle coins purchase - DONE
+app.post("/purchase/catecoins/:amount", (req, res) => {
+  const userID = req.body.userID;
+  let amount = req.params.amount;
+  let randomCoins = 0;
+
+  if (amount === "random") {
+    randomCoins = Math.floor((Math.random() * 200) + 1);
+  } else {
+    amount = parseInt(amount);
+  }
+
+  db.query(`update users set coins = (select coins from users where id = $1) + $2 where id = $1`, [userID, randomCoins? randomCoins : amount])
+    .then((result) => {
+      res.send(result.rows);
+      db.query(`
+        INSERT INTO transactions 
+        (user_id, is_spending, amount, description) VALUES ($1, $2, $3, $4)`, [userID, false, randomCoins? randomCoins : amount, "Purchased coins"]);
+    })
+    .catch(err => console.log(err))
+})
+
 
 app.get("/sellers", (req, res) => {
   const userID = req.query.userID;
@@ -306,6 +360,7 @@ app.post("/logincoins", (req, res) => {
 //     })
 //     .catch(err => console.log(err))
 // })
+
 
 // select coalesce ((select id, user_id from purchasers where id = 1 and user_id = 2), 0)
 

@@ -2,27 +2,27 @@ import './Summary.scss';
 import getPieChartData from '../../helpers/getPieChartData';
 
 import { Doughnut, Pie } from "react-chartjs-2";
-import { randomColor } from 'randomcolor'
+// import { randomColor } from 'randomcolor'
 
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 export default function PieChart({ data }) {
 
-  const { pieData, pieLabels } = getPieChartData(data)
+  const { pieData, pieLabels, colors } = getPieChartData(data)
   let randomColors = [];
-  for (let i = 0; i < pieLabels.length; i++) {
-    randomColors.push(randomColor());
-    console.log(randomColors[i])
-  }
+  // for (let i = 0; i < pieLabels.length; i++) {
+  //   randomColors.push(randomColor());
+  //   console.log(randomColors[i])
+  // }
 
   const dataset = {
     labels: pieLabels,
     datasets: [
       {
         label: 'Rainfall',
-        backgroundColor: randomColors,
-        hoverBackgroundColor: '#0B2038',
+        backgroundColor: colors,
+        hoverBackgroundColor: '#651e3e',
         data: pieData
       }
     ]

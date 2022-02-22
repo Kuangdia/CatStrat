@@ -1,10 +1,9 @@
 import React from 'react'
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import Transaction from "../components/Transaction";
-import "../components/Transaction/Transaction.scss";
+import FAQ from '../components/FAQ';
 
-export default function DashboardTransaction(props) {
+export default function DashboardFAQ(props) {
 
   return(
     <>
@@ -13,7 +12,7 @@ export default function DashboardTransaction(props) {
         <div className="layout__right">
           <Navbar />
           <div className='content'>
-            <Transaction />
+            <FAQ />
           </div>
         </div>
       </main>

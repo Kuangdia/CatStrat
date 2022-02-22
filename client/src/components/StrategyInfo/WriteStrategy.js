@@ -8,29 +8,42 @@ export default function WriteStrategy(props) {
 
     return (
         <>
-            <details open className="custom">
-                <summary className="summary">
+            <div className="form">
+                <div className="summary">
                     <form className="write-name" onSubmit={event => event.preventDefault()} autoComplete="off">
                         <input
                             name="name"
                             type="text"
                             placeholder="Strategy Name"
+                            className="name-input"
                             value={name}
                             onChange={(e) => {
                                 setName(e.target.value)
                             }}
                         />
                     </form>
-                </summary>
+                </div>
                 <section className="footer">
                     <form className="write-description" onSubmit={event => event.preventDefault()} autoComplete="off">
-                        <input
+                        <textarea
+                            cols="30" 
+                            rows="10"
                             name="name"
                             type="text"
                             placeholder="Strategy Description"
+                            className="description-input"
+                            value={description}
+                            onChange={(event) => setDescription(event.target.value)}>
+
+                        </textarea>
+                        {/* <input
+                            name="name"
+                            type="text"
+                            placeholder="Strategy Description"
+                            className="description-input"
                             value={description}
                             onChange={(event) => setDescription(event.target.value)}
-                        />
+                        /> */}
                     </form>
                     <div className="buttons">
                         <div className="strategy-type">{type}</div>
@@ -42,7 +55,7 @@ export default function WriteStrategy(props) {
                         </div>
                     </div>
                 </section>
-            </details>
+            </div>
         </>
     );
 }
