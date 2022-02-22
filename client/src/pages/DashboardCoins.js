@@ -31,14 +31,14 @@ export default function DashboardProfile(props) {
         })
       })
 
-  }, [id])
+  }, [id, coins])
 
   return(
     <>
       <main className="layout">
         <Sidebar />
         <div className="layout__right">
-          <Navbar coins={coins}/>
+          <Navbar coins={coins} setCoins={setCoins}/>
           <CateCoins />
         </div>
       </main>

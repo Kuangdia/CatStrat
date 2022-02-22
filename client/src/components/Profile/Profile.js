@@ -170,11 +170,12 @@ const Profile = ({setCoins, coins}) => {
     }
 
     Promise.all([
-      Axios.post("/like", {id}),
+      Axios.post("/like", {id, userID}),
       Axios.post("/buylike", {id, userID})
     ]).then(res => {
-        console.log("success!")
+        alert("You liked this profile and sent 1 CateCoin!")
         setAddLike(!addLike)
+        setCoins(coins-1)
       })
       .catch(err => console.log(err));
   }
@@ -206,7 +207,7 @@ const Profile = ({setCoins, coins}) => {
       return;
     }
   
-    Axios.post(`/strategy/${item_id}`)
+    Axios.post(`/strategy/${item_id}`, {userID, id})
       .then(res => {
         console.log("did you trigger?")
         setAddLike(!addLike)
@@ -235,6 +236,7 @@ const Profile = ({setCoins, coins}) => {
       Axios.post("/purchase/graph", {userID}),
       Axios.post("/buygraph", {id, userID})
     ]).then(res => {
+        alert("Graph Purchased Successfully!")
         setShowCompare(true)
         setBought(true);
         setCoins(coins-5);
@@ -246,10 +248,10 @@ const Profile = ({setCoins, coins}) => {
     const userID = localStorage.getItem("userID");
 
     Promise.all([
-      Axios.post("/purchase/strat", {userID}),
+      Axios.post("/purchase/strategies", {id, userID}),
       Axios.post("/buystrat", {id, userID}),
     ]).then(res => {
-      console.log("success!")
+      alert("Strategies are now unlocked!")
       setAddLike(!addLike)
       setShowStrat(true);
       setCoins(coins-15)

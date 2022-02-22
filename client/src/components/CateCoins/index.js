@@ -4,7 +4,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import Axios from "axios"
 import { useState, useEffect } from 'react'
 
-const CateCoins = () => {
+const CateCoins = ({coins, setCoins}) => {
   const userID = localStorage.getItem("userID")
 
   const handleToken = (token) => {

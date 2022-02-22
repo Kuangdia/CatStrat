@@ -5,6 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import TodayIcon from '@mui/icons-material/Today';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 
 import "./ListTabs.scss";
 import "./Sidebar.scss";
@@ -57,6 +58,12 @@ export default function ListTabs(props) {
     }
   };
 
+  const transactionRoute = (userID) => {
+    if (userID) {
+      navigate(`/transaction`)
+    }
+  };
+
   return (
     <div className='sidebar'>
       <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
@@ -95,6 +102,13 @@ export default function ListTabs(props) {
           <LeaderboardIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
         </div>
         <div className="label">Leaderboard </div>
+      </div>
+
+      <div onClick={() => { transactionRoute(userID) }} className="nav-item"  >
+        <div >
+          <HistoryToggleOffIcon className='icon' style={{ width: '1.5em', height: '1.5em'}}/> 
+        </div>
+        <div className="label">Transaction </div>
       </div>
 
 
