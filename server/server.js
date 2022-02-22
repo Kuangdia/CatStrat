@@ -145,10 +145,13 @@ app.post("/purchase/graph", (req, res) => {
   db.query(`update users set coins = (select coins from users where id = $1) - 5 where id = $1`, [userID])
     .then((result) => {
       res.send(result.rows);
+
       db.query(`
         INSERT INTO transactions (user_id, target_user, description, amount, unlock_chart) VALUES
         ($1, $2, $3, 5, true)
       `, [userID, targetUserID, `Unlock other's graph Info`]);
+
+      db.query(`update users set coins = (select coins from users where id = $1) + 5 where id = $1`, [targetUserID]);
     })
     .catch(err => console.log(err))
 });
@@ -165,6 +168,8 @@ app.post("/purchase/strategies", (req, res) => {
         INSERT INTO transactions (user_id, target_user, description, amount, unlock_strategies) VALUES
         ($1, $2, $3, 15, true)
       `, [userID, targetUserID, `Unlock other's strategies info`]);
+
+      db.query(`update users set coins = (select coins from users where id = $1) + 15 where id = $1`, [targetUserID]);
     })
     .catch(err => console.log(err))
 });

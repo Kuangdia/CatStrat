@@ -118,9 +118,6 @@ const Profile = ({setCoins, coins}) => {
           setFollow(false)
         } 
       }
-
-
-    
     }).catch(err => {
       console.log(err)
       // navigate("/newprofile")
