@@ -50,11 +50,7 @@ const Login = () => {
     } 
 
     if (loginStatus) {
-      Axios.post("/logincoins", {userID})
-      .then(res => {
-        return navigate("/dashboard");
-      }).catch(err => console.log(err))
-      
+      navigate("/dashboard")
     }
 
   }, [loginStatus]);

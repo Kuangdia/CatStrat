@@ -38,7 +38,7 @@ export default function DashboardProfile(props) {
       <main className="layout">
         <Sidebar />
         <div className="layout__right">
-          <Navbar coins={coins} />
+          <Navbar coins={coins} setCoins={ setCoins }/>
           <CateCoins coins= { coins } setCoins={ setCoins } />
         </div>
       </main>
