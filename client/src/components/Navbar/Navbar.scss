@@ -3,10 +3,12 @@
 .navbar {
   width: 100%;
   background-color: lighten($navbar-background, 15%);
-  height: 6rem;
+  min-height: 5rem;
   display: flex;
   justify-content: flex-end;
   z-index: 10;
+  position:relative;
+
 
   button {
     margin: 0;

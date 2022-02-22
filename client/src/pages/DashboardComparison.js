@@ -37,7 +37,7 @@ export default function DashboardProfile(props) {
     <>
       <main className="layout">
         <Sidebar />
-        <div className="layout__right">
+        <div className="layout__right other_layout">
           <Navbar coins={coins}/>
           <Comparison />
         </div>

@@ -34,7 +34,7 @@ export default function Dashboard(props) {
     <>
       <main className="layout">
         <Sidebar />
-        <div className="layout__right">
+        <div className="layout__right other_layout">
           <Navbar
              />
           <div className="content">

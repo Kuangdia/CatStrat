@@ -1,22 +1,12 @@
 @import "../../styles/variables.scss";
 
 .label {
-  color: $navbar-button;
   font-size: 1.25em;
   align-self: center;
   margin-top: 15px;
-
-
 }
 
-.icon {
-  width: 1.5em;
-  height: 1.5em;
-  color: $navbar-button;
-  margin-right: .75em;
-  margin-left: .75em;
-  margin-top: .6em;
-}
+
 
 .nav-item {
   display:flex;
@@ -25,13 +15,25 @@
   padding-top: .75em;
   padding-bottom: .9em;
   background-color: $dark-background;
+  color: $navbar-button;
+
+  &__icon {
+    width: 1.5em;
+    height: 1.5em;
+    // color: $navbar-button;
+    margin-right: .75em;
+    margin-left: .75em;
+    margin-top: .6em;
+  }
 
   &:hover {
     cursor: pointer;
-    background-color:$content-background;
+    color:white !important;
 
-    color: black !important;
   }
 
+  // &:active {
+  //   background-color: yellow;
+  // }
 
 }

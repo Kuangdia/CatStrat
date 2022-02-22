@@ -17,7 +17,7 @@ export default function Sidebar(props) {
       </div>
       <hr className="sidebar__separator sidebar--centered"/>
       <nav className="siderbar__menu">
-        <ListTabs wow="yes" />
+        <ListTabs />
       </nav>
     </div>
   );
