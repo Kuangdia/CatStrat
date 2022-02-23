@@ -85,6 +85,9 @@ app.use("/dislike", dislikeRoutes(db))
 app.use("/history", historyRoutes(db))
 
 
+
+
+
 // Handle Upvote a strategy
 app.post("/strategy/:id", (req, res) => {
   const strategy_id = req.params.id;
@@ -142,14 +145,18 @@ app.post("/purchase/graph", (req, res) => {
   db.query(`update users set coins = (select coins from users where id = $1) - 5 where id = $1`, [userID])
     .then((result) => {
       res.send(result.rows);
+
       db.query(`
         INSERT INTO transactions (user_id, target_user, description, amount, unlock_chart) VALUES
         ($1, $2, $3, 5, true)
       `, [userID, targetUserID, `Unlock other's graph Info`]);
+
+      db.query(`update users set coins = (select coins from users where id = $1) + 5 where id = $1`, [targetUserID]);
     })
     .catch(err => console.log(err))
 });
 
+//handle strategies purchase - DONE
 app.post("/purchase/strategies", (req, res) => {
   const userID = req.body.userID;
   const targetUserID = req.body.id;
@@ -161,33 +168,22 @@ app.post("/purchase/strategies", (req, res) => {
         INSERT INTO transactions (user_id, target_user, description, amount, unlock_strategies) VALUES
         ($1, $2, $3, 15, true)
       `, [userID, targetUserID, `Unlock other's strategies info`]);
+
+      db.query(`update users set coins = (select coins from users where id = $1) + 15 where id = $1`, [targetUserID]);
     })
     .catch(err => console.log(err))
 });
 
-
-// app.post("/strategy/:id", (req, res) => {
-//   const strategy_id = req.params.id
-//   console.log("strat", strategy_id)
-
-//   db.query(`update strategies set upvotes = (select upvotes from strategies where id = $1)+ 1 where id = $1`, [strategy_id])
-//     .then((result) => {
-//       console.log("success!")
-//       res.send(result.rows)
-//     })
-//     .catch(err => console.log(err))
-// })
-
 app.post("/strategy/delete/:id", (req, res) => {
   const strategy_id = req.params.id
   console.log("strat", strategy_id)
-
-  db.query(`update strategies set downvotes = (select downvotes from strategies where id = $1)+ 1 where id = $1`, [strategy_id])
-    .then((result) => {
-      console.log("success!")
-      res.send(result.rows)
-    })
-    .catch(err => console.log(err))
+  
+  db.query(`update strategies set downvotes = (select downvotes from strategies where id = $1) + 1 where id = $1`, [strategy_id])
+  .then((result) => {
+    console.log("success!")
+    res.send(result.rows)
+  })
+  .catch(err => console.log(err))
 })
 
 app.get("/sellers", (req, res) => {
@@ -286,35 +282,21 @@ app.post("/buystrat", (req, res) => {
   .catch(err => console.log(err))
 })
 
-app.post("/logincoins", (req, res) => {
-  const userID = req.body.userID
+//give user coins when they (first) login daily
 
-  db
-  .query(`update users set coins = (select coins from users where id = $1)+10`, [userID])
-  .then((result) => {
-    console.log("login coin success!")
-    res.send(result.rows)
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-})
+// app.post("/logincoins", (req, res) => {
+//   const userID = req.body.userID
 
-// app.get("/purchasers/:id", (req, res) => {
-//   const userID = req.query.userID
-//   const id = req.params.id
-//   console.log("purchase db success", id, userID)
-
-//   db.query(``, [id, userID])
-//     .then(result => {
-//       console.log("purchase db 2", result.rows)
-//       res.send(result.rows)
-//     })
-//     .catch(err => console.log(err))
+//   db
+//   .query(`update users set coins = (select coins from users where id = $1)+10`, [userID])
+//   .then((result) => {
+//     console.log("login coin success!")
+//     res.send(result.rows)
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 // })
-
-
-// select coalesce ((select id, user_id from purchasers where id = 1 and user_id = 2), 0)
 
 // How to authenticate JWT TOKEN - Don't DELETE //
 // app.get('/api', function(req, res){
