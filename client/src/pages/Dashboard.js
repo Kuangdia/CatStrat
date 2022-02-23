@@ -35,7 +35,7 @@ export default function Dashboard({ coins, setCoins, tab, setTab }) {
       <main className="layout">
         <Sidebar tab={tab} setTab={setTab}/>
         <div className="layout__right other_layout">
-          <Navbar coins={coins} setCoins={setCoins} />
+          <Navbar coins={coins} setCoins={setCoins} tab={tab} setTab={setTab}/>
           <div className="content">
             <Summary data={data} coins={coins} setCoins={setCoins} />
           </div>

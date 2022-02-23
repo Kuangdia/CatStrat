@@ -15,7 +15,7 @@ export default function DashboardCalendar({coins, setCoins, tab, setTab}) {
       <main className="layout">
         <Sidebar tab={tab} setTab={setTab}/>
         <div className="layout__right">
-          <Navbar coins={coins} setCoins={setCoins} />
+          <Navbar coins={coins} setCoins={setCoins} tab={tab} setTab={setTab} />
           <div className="content">
             <Calendar coins={coins} setCoins={setCoins}/>
           </div>

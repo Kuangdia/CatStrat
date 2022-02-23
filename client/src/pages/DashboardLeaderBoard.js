@@ -14,7 +14,7 @@ export default function DashboardLeaderBoard({coins, setCoins, tab, setTab}) {
       <main className="layout">
         <Sidebar tab={tab} setTab={setTab}/>
         <div className="layout__right other_layout">
-          <Navbar coins={coins} setCoins={ setCoins }/>
+          <Navbar coins={coins} setCoins={ setCoins } tab={tab} setTab={setTab}/>
           <div className='content-leaderboard'>
             <LeaderBoard coins={coins} setCoins={ setCoins }/>
           </div>

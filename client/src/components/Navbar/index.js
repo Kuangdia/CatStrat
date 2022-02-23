@@ -34,9 +34,15 @@ export default function Navbar({coins, setCoins, tab, setTab}) {
   }
 
   const navigateCoins = () => {
-    // setTab('coins')
+    setTab('coins')
     navigate(`/catecoins/${userID}`)
   }
+
+  const profileRoute = (userID) => {
+    setTab('Profile')
+    navigate(`/profile/${userID}`)
+  }
+
 
   return (
     <section className="navbar">
@@ -44,12 +50,6 @@ export default function Navbar({coins, setCoins, tab, setTab}) {
           <SearchBar placeholder="Search" data={data}/>
       </div>
       <div className="navbar__button">
-
-        <div className="navbar__notice">
-        </div>
-        <div onClick= { logout }>
-          <button className="logout"> Logout</button>
-        </div>
           <div className="navbar__coin">
             <img 
               src={cate}
@@ -60,12 +60,14 @@ export default function Navbar({coins, setCoins, tab, setTab}) {
             <p>X<span>{ coins }</span></p>
 
           </div>
-        </div>
-
-      <div className="navbar__user">
+      <div onClick={() => { profileRoute(userID) }} className="navbar__user">
         <IoLogoOctocat className="navbar__avatar navbar__icon" />
         <p className="navbar__user__name">{username}</p>
       </div>
+        <div onClick= { logout }>
+          <button className="logout"> Logout</button>
+        </div>
+        </div>
     </section>
   );
 

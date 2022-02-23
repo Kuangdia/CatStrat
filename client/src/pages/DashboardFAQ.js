@@ -10,7 +10,7 @@ export default function DashboardFAQ({coins, setCoins, tab, setTab}) {
       <main className="layout">
         <Sidebar tab={tab} setTab={setTab}/>
         <div className="layout__right">
-          <Navbar coins={coins} setCoins={setCoins} />
+          <Navbar coins={coins} setCoins={setCoins} tab={tab} setTab={setTab} />
           <div className='content'>
             <FAQ coins={coins} setCoins={ setCoins }/>
           </div>
