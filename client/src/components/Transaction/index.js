@@ -19,7 +19,7 @@ export default function Transaction() {
 
   return (
     <div className='history'>
-      { historyData.length === 0? <EmptyHistory /> : <HistoryList historyData={ historyData } /> }
+       <HistoryList historyData={ historyData } /> 
     </div>
   );
 }

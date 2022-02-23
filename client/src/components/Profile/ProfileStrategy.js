@@ -61,10 +61,10 @@ const ProfileStrategy = ({stratData, upvote, downvote}) => {
         <AccordionDetails>
           <Typography>{item.description}</Typography>
         </AccordionDetails>
-        <AccordionDetails className="accordian-content">
+        <div className="accordian-content">
           <Typography className="typography-upvote" onClick={() => {upvote(item.id)}}>{item.upvotes}<FcUp className="fc-upvote" /></Typography>
           <Typography className="typography-downvote" onClick={() => {downvote(item.id)}}>{item.downvotes}<FcDown /></Typography>
-        </AccordionDetails>
+        </div>
       </Accordion>)
     })}</>
   )

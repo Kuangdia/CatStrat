@@ -19,6 +19,7 @@
 #button__close {
     align-self: flex-end;
     font-size: xx-large;
+    cursor: pointer;
 }
 
 .button {
@@ -43,13 +44,33 @@
   }
 }
 
+.rw-dropdown-list-value {
+  padding: 0;
+}
 .input {
 
   &__title {
     text-align: center;
     color: $black;
+    font-size: 1.2em;
+    margin-bottom: 0.25rem;
+    margin-top:1rem;
+    // font-weight: bold;
+  }
+
+  &__date_title {
+    text-align: center;
+    color: $black;
     font-size: x-large;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  &__inputfield {
+    display: inline;
+    display: inline-block;
+    vertical-align: 0;
+    padding:0;
   }
 
   &__container {
@@ -62,8 +83,9 @@
       background-color: $content-background;
       height: 100%;
       font-size: large;
+      font-weight: bold;
       text-align: center;
-      padding-top: 1rem;
+      padding-top: .5rem;
     }
 
     &__box {
@@ -101,5 +123,5 @@
 }
 
 .rw-dropdown-list-value {
-  padding-top: 1rem;
+  padding-top: .65rem;
 }

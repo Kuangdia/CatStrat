@@ -11,19 +11,21 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import CloseIcon from '@mui/icons-material/Close';
+import { format, parseISO } from 'date-fns';
+
 
 export default function RecordInput(props) {
   const userID = localStorage.getItem("userID");
-  const { 
-    date, 
+  const {
+    date,
     setShowForm,
-    netBalance, 
+    netBalance,
     setNetBalance,
-    investAmount, 
+    investAmount,
     setInvestAmount,
-    strategyID, 
+    strategyID,
     setStrategyID,
-    stockID, 
+    stockID,
     setStockID,
     recordID,
     setRecordID,
@@ -81,15 +83,15 @@ export default function RecordInput(props) {
 
   function deleteRecord() {
     Axios.delete(`/calendar/${recordID}`)
-    .then(res => {
-      clear();
-      setShowForm(false);
-      setRender(!render);
-      alert("Delete 1 record successfully!");
-    })
-    .catch(err => {
-      console.log(err.message);
-    })
+      .then(res => {
+        clear();
+        setShowForm(false);
+        setRender(!render);
+        alert("Delete 1 record successfully!");
+      })
+      .catch(err => {
+        console.log(err.message);
+      })
   }
 
   function submit() {
@@ -135,16 +137,17 @@ export default function RecordInput(props) {
 
   return (
     <div className="paper__container">
-      <form 
-        className="record-input" 
-        onSubmit={ handleSubmit }
+      <form
+        className="record-input"
+        onSubmit={handleSubmit}
       >
 
-        <CloseIcon 
+        <CloseIcon
           id="button__close"
-          onClick={ close }
+          onClick={close}
         />
-
+        <p className="input__date_title" >{format(parseISO(date), 'PP')}</p>
+        <hr/>
         <label htmlFor="balance" className="input__title">
           Gain/Loss
         </label>
@@ -157,7 +160,7 @@ export default function RecordInput(props) {
             id="balance"
             name="balance"
             type="text"
-            value={ netBalance }
+            value={netBalance}
             onChange={(e) => {
               setNetBalance(e.target.value)
             }}
@@ -176,24 +179,24 @@ export default function RecordInput(props) {
           <NumberPicker
             className="input__container__box"
             id="investAmount"
-            value={ investAmount }
-            step={ 100 }
-            onChange={ value => setInvestAmount(value) }
+            value={investAmount}
+            step={100}
+            onChange={value => setInvestAmount(value)}
           />
         </div>
         <br />
 
         <FormControl>
           <FormLabel id="demo-controlled-radio-buttons-group"
-          className="input__title">Investment Options</FormLabel>
-            <RadioGroup
-              row
-              aria-labelledby="demo-controlled-radio-buttons-group"
-              name="controlled-radio-buttons-group"
-              value={ investChoice }
-              onChange={ handleInvestChoiceChange }
-              className="input__radio"
-            >
+            className="input__title">Investment Options</FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="controlled-radio-buttons-group"
+            value={investChoice}
+            onChange={handleInvestChoiceChange}
+            className="input__radio"
+          >
             <FormControlLabel className="input__radio__label" value={true} control={<Radio />} label="Stock" />
             <FormControlLabel className="input__radio__label" value={false} control={<Radio />} label="Option" />
           </RadioGroup>
@@ -205,14 +208,15 @@ export default function RecordInput(props) {
         </label>
         <div className="input__container">
           <DropdownList
+          className=".rw-dropdown-list-value"
             id="strategy"
-            value={ strategyID }
+            value={strategyID}
             onChange={nextValue => {
               setStrategyID(nextValue.id);
             }}
             dataKey="id"
             textField="strategy"
-            data={ stratData }
+            data={stratData}
           />
         </div>
         <br />
@@ -222,35 +226,34 @@ export default function RecordInput(props) {
         </label>
         <div className="input__container">
           <DropdownList
+            className="input__inputfield"
             id="stock"
-            value={ stockID }
+            value={stockID}
             onChange={nextValue => {
               setStockID(nextValue.id);
             }}
             dataKey="id"
             textField="stock"
-            data={ stockData }
+            data={stockData}
           />
         </div>
         <br />
 
-        <p className="input__title" >{ date }</p>
-
-        <p className="input__hidden">RecordID: { recordID }</p>
+        <p className="input__hidden">RecordID: {recordID}</p>
         <br />
-        
-        <section className="button__submit">
-          <button
-            className="button__submit__delete"
-            type="submit"
-            onClick={ deleteRecord }
-          >Delete</button>
 
+        <section className="button__submit">
           <button
             className="button__submit__submit"
             type="submit"
-            onClick={ submit }
+            onClick={submit}
           >Submit</button>
+          <button
+            className="button__submit__delete"
+            type="submit"
+            onClick={deleteRecord}
+          >Delete</button>
+
         </section>
       </form>
     </div>

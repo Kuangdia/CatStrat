@@ -273,13 +273,12 @@ const Profile = ({setCoins, coins}) => {
       <div className="profile-container-side">
         <img src={getData.avatar_url} className="avatar" alt="avatar"/>
         <div className="profile-social">
-          <p className="icons-s"><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarOutlineIcon/></p>
+          <p className="">Investment Bracket: {getData.money_bracket}</p>
           <p className="icons-i"><FaFacebook className="fb1"/>facebook/Catstreetbets</p>
           <p className="icons-i"><FaInstagram className="fb1"/>instagram/Catstreetbets</p>
           <p className="icons-i"><FaTwitter className="fb1"/>Twitter/Catstreetbets</p>
           {/* <p className="icons-i"><FaLinkedin />LinkedIn/Catstreetbets</p> */}
           <p className="icons-i" onClick={navigateCoins}><img className="catecoin" src={coin} alt="catecoin" onClick={navigateCoins}/>{`X ${getData.coins}`}</p>
-          <p className="icons-t"><Trophy className="icons-t-inside"/>X1</p>
         </div>
       </div>
       <div className="profile-container-main">
@@ -341,7 +340,7 @@ const Profile = ({setCoins, coins}) => {
             <div className="table-container">
               <tr className="table-columns">
                 {/* <th className="one-a">Strategy Name</th> */}
-                <th className="one-b">Strategies</th>
+                <th className="one-b">{getData.username}'s  Custom  Strategies</th>
               </tr>
               {showStrat ? 
                 <ProfileStrategy 

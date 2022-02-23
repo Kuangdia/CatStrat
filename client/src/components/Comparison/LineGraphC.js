@@ -53,7 +53,7 @@ export default function LineGraph({ data }) {
 
 
     return (
-        <Paper elevation={3} className="line-graphC" style={{ borderRadius: '30px' }}>
+        <Paper elevation={3} className="line-graphC" style={{ borderRadius: '30px', marginLeft:'40px'}}>
             <h1 className="title"> Overview </h1>
             <Divider className="divider" style={{ height: '2px', color: 'black' }} />
             <div>

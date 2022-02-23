@@ -8,6 +8,7 @@ import { useState } from 'react';
 import useVisualMode from './useVisualMode';
 import OpenStrategy from './OpenStrategy';
 import Axios from 'axios';
+import Confirm from './Confirm';
 
 export default function Strategy(props) {
 
@@ -23,6 +24,7 @@ export default function Strategy(props) {
     const EDIT = "EDIT";
     const ADD = "ADD";
     const SHOWOPEN = "SHOWOPEN";
+    const CONFIRM = "CONFIRM"
     // const SAVING = "SAVING";
     // const DELETING = "DELETING";
     // const CONFIRM = "CONFIRM";
@@ -77,7 +79,7 @@ export default function Strategy(props) {
                 description={description}
                 type={type}
                 onEdit={() => transition(EDIT)}
-                onDelete={deleteStrategy} />}
+                onDelete={() => transition(CONFIRM)} />}
 
             {mode === ADD && <AddStrategy onAdd={() => transition(CREATE)} />}
 
@@ -86,7 +88,7 @@ export default function Strategy(props) {
                 description={editDescription}
                 type={type}
                 onEdit={() => transition(EDIT)}
-                onDelete={deleteStrategy}
+                onDelete={() => transition(CONFIRM)}
             />}
 
             {mode === EDIT && <WriteStrategy
@@ -97,6 +99,11 @@ export default function Strategy(props) {
                 type={type}
                 save={save}
                 cancel={cancel}
+            />}
+
+            {mode === CONFIRM && <Confirm
+                onDelete={deleteStrategy}
+                cancel={back}
             />}
 
 

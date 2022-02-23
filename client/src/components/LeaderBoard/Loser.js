@@ -10,7 +10,7 @@ export default function Loser(props) {
     if (order % 2 == 0) {
       classname += " even-tr";
     } else {
-      classname += " odd-tr";
+      classname += " odd-tr-rank";
     }
      
   }

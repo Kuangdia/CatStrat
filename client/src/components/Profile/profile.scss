@@ -11,7 +11,8 @@
 }
 
 .profile-container-side {
-  border-radius: 15px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
   z-index: 5;
   display: flex;
   flex-direction: column;
@@ -21,35 +22,49 @@
   width: 350px;
   position: relative;
   background-color: #fff;
+  padding-left: 15px;
+  padding-top: 15px;
 
   .avatar {
     margin: 15px 15px 15px 15px;
     box-sizing: border-box;
     // border: 3px solid rgb(108, 108, 17);
     height: 200px;
+    width:220px;
   }
   
   .profile-social {
     display: flex;
     font-size: 18px;
     flex-direction: column;
-    justify-content: space-around;
-    margin: 0 15px 0 15px;
+    // justify-content: space-evenly;
+    margin: 15px;
+    // margin-bottom: 10px;
+    // margin-left:15px;
+    // margin-top:15px;
+    font-size:18px;
+
     box-sizing: border-box;
     // border: 3px solid rgb(125, 125, 16);
     height: 420px;
     position: relative;
     background-color: #fff;
   }
+
+  p {
+    margin-bottom: 2.5rem;
+  }
 }
 
 .profile-container-main {
-  border-radius: 15px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 30px 30px 30px 0;
   box-sizing: border-box;
+  padding-left:15px;
   // border: 3px solid blue;
   width: 100%;
   position: relative;
@@ -99,8 +114,9 @@
       .follow-separator {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-evenly;
         box-sizing: border-box;
+        padding-right:240px;
         // border: 3px solid rgb(19, 113, 46);
         position: relative;
         width: 100%;
@@ -199,6 +215,8 @@
 .table-container {
   // overflow: scroll;
   padding-top: 40px;
+  margin-left:40px;
+  margin-right: 40px;
   position: relative;
   box-sizing: 1px solid black;
   width: 100%;
@@ -211,9 +229,10 @@
     //   width: 35%;
     // }
     .one-b {
-      padding-left: 260px;
+      // padding-left: 260px;
       font-size: 20px;
-      width: 65%;
+      padding-bottom: 10px;
+      // width: 65%;
     }
   }
 
@@ -296,6 +315,8 @@
 .profile-username {
   font-size: 26px;
   font-weight: 400;
+  margin-top: 10px;
+  margin-right: 5px;
 }
 
 .progressbar {
@@ -363,7 +384,7 @@
   color: white;
   float: right;
   background-color: rgb(179, 179, 179);
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 #follow-btn-id {
@@ -410,6 +431,9 @@
 .accordian-content {
   display: flex;
   justify-content: end;
+  padding-bottom:10px;
+  padding-right:10px;
+  font-size: 30px;
 }
 
 .typography-upvote {
