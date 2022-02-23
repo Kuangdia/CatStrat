@@ -8,7 +8,7 @@ const Footer = () => {
       <FooterWrap>
         <FooterLinksContainer>
           <FooterLinksWrapper>
-            <FooterLinkItems>
+            {/* <FooterLinkItems>
               <FooterLinkTitle>About Us</FooterLinkTitle>
               <FooterLink to="/signin">Products</FooterLink>
               <FooterLink to="/signin">Investors</FooterLink>
@@ -41,7 +41,7 @@ const Footer = () => {
               <FooterLink to="/signin">Careers</FooterLink>
               <FooterLink to="/signin">Contact Us</FooterLink>
               <FooterLink to="/signin">About us</FooterLink>
-            </FooterLinkItems>
+            </FooterLinkItems> */}
           </FooterLinksWrapper>
         </FooterLinksContainer>
       </FooterWrap>

@@ -5,11 +5,9 @@ import {Link as LinkS} from 'react-scroll'
 export const Nav = styled.nav`
   visibility: hidden;
   height: 80px;
-  // margin-top: -80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
   position: fixed;
   width: 100%;
   top: 0;
@@ -21,18 +19,20 @@ export const Nav = styled.nav`
 export const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   z-index: 1;
-  font-size: 18px;
+  font-size: 20px;
   padding: 0 24px;
   max-width: 1100px;
 `
 
 export const NavLogo = styled(LinkR)`
+  font-family: "Redressed";
   display: flex;
   justify-self: flex-start;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 30px;
   font-weight: bold;
   margin-left: -104px;
   text-decoration: none;
@@ -41,7 +41,7 @@ export const NavLogo = styled(LinkR)`
 
   &:hover {
     transition: all 0.2s ease-in-out;
-    color: #06ab19;
+    color: #74c947;
   }
 `
 
@@ -50,10 +50,12 @@ export const NavMenu = styled.ul`
   align-items: center;
   list-style: none;
   text-align: center;
-  margin-right: -22px;
+  margin-right: 60px;
 `
 
 export const NavItem = styled.li`
+  font-family: "Roboto Slab";
+  padding-top: 15px;
   height: 80px;
 `
 
@@ -67,7 +69,12 @@ export const NavLinks = styled(LinkS)`
   cursor: pointer;
 
   &.active {
+    margin-top: 10px;
     border-bottom: 5px solid #74c947;
+  }
+
+  &:hover {
+    color: #74c947;
   }
 `
 
@@ -77,6 +84,7 @@ export const NavBtn = styled.nav`
 `
 
 export const NavBtnLink = styled(LinkR)`
+  font-family: "Roboto Slab";
   border-radius: 50px;
   background: #74c947;
   color: white;
@@ -91,6 +99,7 @@ export const NavBtnLink = styled(LinkR)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
+  margin-right: -50px;
 
   &:hover {
     transition: all 0.2s ease-in-out;

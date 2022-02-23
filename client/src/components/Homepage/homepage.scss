@@ -16,17 +16,17 @@
       height: 100vh;
       .hero-content {
         width: 90%;
-        margin-bottom: 25px;
+        // margin-bottom: 25px;
         .hero-content-inner {
-          margin-right: 50px;
-          margin-left: 200px;
-          width: 400px;
+          margin-left: 195px;
+          width: 500px;
           color: #232222;
           // margin: 0 auto;
           // margin-top: 20px;
           h1 {
+            font-family: "Vollkorn";
             font-weight: 600;
-            font-size: 44px;
+            font-size: 46px;
             margin-bottom: 24px;
             .hero-content-line {
               // color: white;
@@ -36,13 +36,12 @@
             }
           }
           p {
-            font-family: "DM Serif Text";
-            font-size: 24px;
+            font-family: "Vollkorn";
+            font-size: 22px;
             line-height: 24px;
-            font-weight: 100;
-            color: rgb(126, 126, 126);
+            color: rgb(158, 158, 158);
             padding-right: 28px;
-            margin-bottom: 50px;
+            margin-bottom: 35px;
             // color: white;
           }
           .btn-row {
@@ -61,7 +60,7 @@
               color: #74c947;
               background: none;
               border: none;
-              font-size: 12px;
+              font-size: 15px;
               padding: 0;
               cursor: pointer;
               text-transform: uppercase;
@@ -71,9 +70,6 @@
               align-items: center;
               position: relative;
               left: 64px;
-              // &:hover {
-              //   font-size: 20px;;
-              // }
               &:focus {
                 outline: none;
               }
@@ -87,7 +83,7 @@
                 height: 48px;
                 width: 48px;
                 border-radius: 100px;
-                margin-left: 24px;
+                margin-left: 40px;
                 left: 65px;
                 transform-origin: center center;
                 // &:hover {
@@ -109,7 +105,7 @@
             overflow: hidden;
             &.phone {
               bottom: 12px;
-              left: -1400px;
+              left: -1600px;
               width: 78%;
               height: 80%;
               // margin-bottom: 50px;
@@ -130,3 +126,12 @@
   }
 }
 
+.videohome {
+  margin-top: 125px;
+  z-index: 100;
+  height: 630px;
+  max-width: 580px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  color: rgb(64, 158, 64)
+}

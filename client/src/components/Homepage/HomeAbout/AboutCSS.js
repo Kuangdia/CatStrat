@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
 export const AboutContainer = styled.div`
-  height: 800px;
+  height: 880px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("https://www.wallpaperflare.com/static/658/837/172/minimalism-cat-simple-background-abstract-wallpaper.jpg");
+  background-image: url("https://wallpaperaccess.com/full/1550291.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 `
@@ -24,7 +24,9 @@ export const AboutWrapper = styled.div`
 
 export const AboutCard = styled.div`
   background: #fff;
-  border: 2px solid rgba(102, 135, 105, 0.77);
+  border: 2px double rgb(64, 158, 64);
+  font-family: "Roboto";
+  font-weight: 500;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,15 +49,19 @@ export const AboutCard = styled.div`
 export const AboutIcon = styled.img`
   height: 160px;
   width: 160px;
+  box-sizing: border-box;
+  border: 1px solid gray;
   margin-top: 40px;
 `
 
 export const AboutH1 = styled.h1`
-  font-size: 2.5rem;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 4.0rem;
   color: #fff;
   margin-bottom: 34px;
   margin-top: 64px;
-  text-shadow: 5px 5px 7px rgb(10, 74, 17);
+  text-shadow: 3px 3px 25px rgb(7, 107, 7);
 `
 
 export const AboutH2 = styled.h2`

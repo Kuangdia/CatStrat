@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useRef, useState } from 'react';
-import phonepic from '../../images/phonepic.png'
 import "./homepage.scss";
 import { gsap, Power3 } from 'gsap';
 import { FaArrowAltCircleRight } from "react-icons/fa";
@@ -8,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import HomeNavbar from "./HomeNav";
 import ReactPlayer from "react-player"
 import {BrowserRouter as Link} from "react-router-dom"
+import Video2 from "../../videos/1.mp4"
 
 function Homepage({Video}) {
   let navigate = useNavigate();
@@ -62,18 +62,18 @@ function Homepage({Video}) {
             <div className="hero-content-inner" ref={el => content = el}>
               <h1>
                 <div className="hero-content-line">
-                  <div className="hero-content-line-inner"></div>
+                  <div className="hero-content-line-inner-topline"></div>
                 </div>
                 <div className="hero-content-line">
-                  <div className="hero-content-line-inner">Earn, Strategize &</div>
+                  <div className="hero-content-line-inner">Use Your Strategies</div>
                 </div>
                 <div className="hero-content-line">
-                  <div className="hero-content-line-inner">Grow Your Portfolio</div>
+                  <div className="hero-content-line-inner">To Beat The Market</div>
                 </div>
                 {/* h1 is children[0] */}
               </h1>
               {/* p is children[1] */}
-              <p>Trade with confidence.</p>
+              <p>Realize your gains. Realize your potential.</p>
               <div className="btn-row">
                 <button className="explore-button" onClick={toLogin}>Get Started
                   <div className="arrow-icon">
@@ -87,7 +87,8 @@ function Homepage({Video}) {
             <div className="hero-images-inner" ref={el => images = el}>
               <div className="hero-image phone">
               </div>
-              <ReactPlayer
+              <video className="videohome" autoPlay loop muted src={Video2} type='video/mp4' />
+              {/* <ReactPlayer
               url={Video}
               playing={true}
               width={600}
@@ -95,7 +96,7 @@ function Homepage({Video}) {
               loop={true} 
               muted
               controls
-              />
+              /> */}
             </div>
           </div>
         </div>
