@@ -6,6 +6,6 @@ VALUES
 ('Joe', '$2b$10$vTX7afCDZkLU97kpGBn04OrifZi5EMvVrAijacvqj4QnNvbrZaBvW', '444@gmail.com', '5', 'https://ih1.redbubble.net/image.805767906.8098/st,small,507x507-pad,600x600,f8f8f8.u1.jpg', 200),
 ('Billy', '$2b$10$vTX7afCDZkLU97kpGBn04OrifZi5EMvVrAijacvqj4QnNvbrZaBvW', '555@gmail.com', '6', 'https://ih1.redbubble.net/image.805767906.8098/st,small,507x507-pad,600x600,f8f8f8.u1.jpg', 129),
 ('Luke', '$2b$10$vTX7afCDZkLU97kpGBn04OrifZi5EMvVrAijacvqj4QnNvbrZaBvW', '666@gmail.com', '6', 'https://ih1.redbubble.net/image.805767906.8098/st,small,507x507-pad,600x600,f8f8f8.u1.jpg', 54),
-('Helga', '$2b$10$vTX7afCDZkLU97kpGBn04OrifZi5EMvVrAijacvqj4QnNvbrZaBvW', '777@gmail.com', '8', 'https://ih1.redbubble.net/image.805767906.8098/st,small,507x507-pad,600x600,f8f8f8.u1.jpg', 90);
+('Karen', '$2b$10$vTX7afCDZkLU97kpGBn04OrifZi5EMvVrAijacvqj4QnNvbrZaBvW', '777@gmail.com', '8', 'https://ih1.redbubble.net/image.805767906.8098/st,small,507x507-pad,600x600,f8f8f8.u1.jpg', 90);
 
 
