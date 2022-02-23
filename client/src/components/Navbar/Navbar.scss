@@ -3,10 +3,12 @@
 .navbar {
   width: 100%;
   background-color: lighten($navbar-background, 15%);
-  height: 6rem;
+  min-height: 5rem;
   display: flex;
   justify-content: flex-end;
   z-index: 10;
+  position:relative;
+
 
   button {
     margin: 0;
@@ -68,7 +70,7 @@
     align-items: center;
     img {
       display: block;
-      margin-right: 0.5rem;
+      margin-right: 0.3rem;
 
       &:hover {
         cursor: pointer;
@@ -82,6 +84,10 @@
   &__user {
     display: flex;
     align-items: center;
+    margin-left:20px;
+    margin-right:10px;
+    cursor: pointer;
+
 
     &__name {
       margin: 0 1rem 0 0.5rem;
@@ -101,4 +107,11 @@
 
 .logout {
   cursor: pointer;
+  border-radius: 20px;
+  color: $navbar-background;
+  background-color:black;
+
+  &:hover {
+    color:red;
+  }
 }

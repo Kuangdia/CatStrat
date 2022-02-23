@@ -20,7 +20,7 @@ export default function PieChart({ data }) {
     labels: pieLabels,
     datasets: [
       {
-        label: 'Rainfall',
+        label: 'Data',
         backgroundColor: colors,
         hoverBackgroundColor: '#651e3e',
         data: pieData

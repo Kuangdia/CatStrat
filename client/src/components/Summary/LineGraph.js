@@ -60,7 +60,7 @@ export default function LineGraph({ data }) {
                 <Line
                     options={options}
                     data={lineGraphData}
-                    width={875}
+                    width={925}
                     height={500}
                 />
             </div>

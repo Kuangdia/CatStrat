@@ -8,12 +8,14 @@ import SearchBar from "./SearchBar/SearchBar";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FcSmartphoneTablet } from "react-icons/fc";
 
-export default function Navbar({coins, setCoins}) {
+export default function Navbar({coins, setCoins, tab, setTab}) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   const userID = localStorage.getItem("userID")
+  const username = localStorage.getItem("username")
 
   useEffect(() => {
     axios.get("/username")
@@ -32,8 +34,15 @@ export default function Navbar({coins, setCoins}) {
   }
 
   const navigateCoins = () => {
+    setTab('coins')
     navigate(`/catecoins/${userID}`)
   }
+
+  const profileRoute = (userID) => {
+    setTab('Profile')
+    navigate(`/profile/${userID}`)
+  }
+
 
   return (
     <section className="navbar">
@@ -41,18 +50,6 @@ export default function Navbar({coins, setCoins}) {
           <SearchBar placeholder="Search" data={data}/>
       </div>
       <div className="navbar__button">
-
-        <div className="navbar__notice">
-          <button>
-          <Badge badgeContent={88} color="success">
-            {/* <NotificationsNoneIcon className="navbar__icon"/> */}
-            <NotificationsIcon className="navbar__icon"/>
-          </Badge>
-          </button>
-        </div>
-        <div onClick= { logout }>
-          <button className="logout"> Logout</button>
-        </div>
           <div className="navbar__coin">
             <img 
               src={cate}
@@ -63,12 +60,14 @@ export default function Navbar({coins, setCoins}) {
             <p>X<span>{ coins }</span></p>
 
           </div>
-        </div>
-
-      <div className="navbar__user">
+      <div onClick={() => { profileRoute(userID) }} className="navbar__user">
         <IoLogoOctocat className="navbar__avatar navbar__icon" />
-        <p className="navbar__user__name">John Doe</p>
+        <p className="navbar__user__name">{username}</p>
       </div>
+        <div onClick= { logout }>
+          <button className="logout"> Logout</button>
+        </div>
+        </div>
     </section>
   );
 

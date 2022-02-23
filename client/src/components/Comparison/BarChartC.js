@@ -14,35 +14,22 @@ ChartJS.register(
 
 export default function BarChart({ data }) {
 
-    const { barData, barLabels } = getBarChartData(data)
+    const { barData, barLabels, colors } = getBarChartData(data)
 
     const dataset = {
         labels: barLabels,
         datasets: [
             {
-                backgroundColor: [
-                    '#B21F00',
-                    '#C9DE00',
-                    '#2FDE00',
-                    '#00A6B4',
-                    // '#6800B4'
-                ],
-                hoverBackgroundColor: [
-                    '#501800',
-                    '#4B5000',
-                    '#175000',
-                    '#003350',
-                    // '#35014F'
-                ],
+                backgroundColor: colors,
+                hoverBackgroundColor: '#651e3e',
                 data: barData,
-                label: 'label remove me!'
             }
         ]
     }
 
     return (
 
-        <div className="pie">
+        <div className="pie-comparison__bar">
             <Bar
                 width={450}
                 height={400}
@@ -50,31 +37,15 @@ export default function BarChart({ data }) {
                 options={{
                     responsive: true,
                     maintainAspectRatio: false,
-                    // title: {
-                    //   display: true,
-                    //   text: 'Average Rainfall per month',
-                    //   fontSize: 20
-                    // },
-                    legend: {
+                    datalabels: {
                         display: false,
-                        position: 'top'
+                        color: "white",
                     },
                     plugins: {
                         legend: {
                           display: false
                         }
                       },
-                    // animation: {
-                    //   animateScale: true,
-                    //   animateRotate: true
-                    // },
-                    datalabels: {
-                        display: false,
-                        color: "white",
-                    },
-                    tooltips: {
-                        backgroundColor: "#FFFFFF",
-                    },
                     layout: {
                         padding: {
                             top: 0,

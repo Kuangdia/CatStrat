@@ -9,28 +9,15 @@ Chart.register(...registerables);
 
 export default function PieChart({ data }) {
 
-  const { pieData, pieLabels } = getPieChartData(data)
-  let random = randomColor();
+  const { pieData, pieLabels, colors } = getPieChartData(data)
 
   const dataset = {
     labels: pieLabels,
     datasets: [
       {
-        label: 'Rainfall',
-        backgroundColor: [
-          '#B21F00',
-          '#C9DE00',
-          '#2FDE00',
-          '#00A6B4',
-          // '#6800B4'
-        ],
-        // hoverBackgroundColor: [
-        //   '#501800',
-        //   '#4B5000',
-        //   '#175000',
-        //   '#003350',
-        //   // '#35014F'
-        // ],
+        label: 'Data',
+        backgroundColor: colors,
+        hoverBackgroundColor: '#651e3e',
         data: pieData
       }
     ]
@@ -40,7 +27,7 @@ export default function PieChart({ data }) {
       <div className="pie">
         <Pie
           width={350}
-          height={380}
+          height={400}
           data={dataset}
           options={{
             responsive: true,
@@ -61,7 +48,7 @@ export default function PieChart({ data }) {
               padding: {
                 top: 40,
                 bottom: 0,
-                left: -30,
+                left: 30,
                 right: 0
               }
             }
