@@ -10,7 +10,6 @@ Chart.register(...registerables);
 export default function PieChart({ data }) {
 
   const { pieData, pieLabels, colors } = getPieChartData(data)
-  let random = randomColor();
 
   const dataset = {
     labels: pieLabels,
