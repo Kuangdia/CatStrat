@@ -1,6 +1,7 @@
 import ListTabs from "./ListTabs";
 import "./Sidebar.scss";
-import logo from "../../images/logo192.png"
+import cat from "../../images/cat.png"
+
 
 
 export default function Sidebar({tab, setTab}) {
@@ -10,7 +11,7 @@ export default function Sidebar({tab, setTab}) {
       <div className="sidebar__head">
         <img 
             className="sidebar--centered sidebar__logo"
-            src={logo}
+            src={cat}
             alt="CatStrat"
         />
         <p className="sidebar__title">CatStrat</p>
