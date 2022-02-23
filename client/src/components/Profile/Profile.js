@@ -205,7 +205,7 @@ const Profile = ({setCoins, coins}) => {
   
     Promise.all([
       Axios.post(`/strategy/${item_id}`, {userID, id}),
-      Axios.post("/upvotecoins", {userID})
+      Axios.post("/upvotecoins", {userID, id})
     ]).then(res => {
       setCoins(coins - 1)
       setAddLike(!addLike)

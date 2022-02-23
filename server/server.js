@@ -107,11 +107,14 @@ app.post("/strategy/:id", (req, res) => {
 
 app.post("/upvotecoins", (req, res) => {
   const userID = req.body.userID;
+  const targetUserID = req.body.id;
 
   db.query(`update users set coins = (select coins from users where id = $1) - 1 where id = $1`, [userID])
     .then((result) => {
       res.send(result.rows);
-    }).catch(err => console.log(err))
+    }).catch(err => console.log(err));
+  
+  db.query(`UPDATE users SET coins = (SELECT coins FROM users WHERE id = $1) + 1 WHERE id = $1`, [targetUserID]);
 })
 
 app.post("/purchase/catecoins/:amount", (req, res) => {
