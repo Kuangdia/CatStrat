@@ -46,7 +46,7 @@ export default function PieChart({ data }) {
             },
             layout: {
               padding: {
-                top: 40,
+                top: 0,
                 bottom: 0,
                 left: 30,
                 right: 0

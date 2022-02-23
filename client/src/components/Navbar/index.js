@@ -47,7 +47,7 @@ export default function Navbar({coins, setCoins, tab, setTab}) {
   return (
     <section className="navbar">
       <div className="searchbar-placement">
-          <SearchBar placeholder="Search" data={data}/>
+          <SearchBar tab={tab} setTab={setTab} placeholder="Search" data={data}/>
       </div>
       <div className="navbar__button">
           <div className="navbar__coin">

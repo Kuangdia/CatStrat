@@ -13,9 +13,9 @@ export default function DashboardProfile({coins, setCoins, tab, setTab}) {
     <>
       <main className="layout">
         <Sidebar tab={tab} setTab={setTab} />
-        <div className="layout__right other_layout">
+        <div className="layout__right">
           <Navbar coins={coins} setCoins={setCoins} tab={tab} setTab={setTab}/>
-          <Profile setCoins={setCoins} coins={coins}/>
+          <Profile setCoins={setCoins} coins={coins} tab={tab} setTab={setTab}/>
         </div>
       </main>
     </>

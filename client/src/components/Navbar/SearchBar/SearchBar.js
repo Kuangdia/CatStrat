@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Avatar from '@mui/material/Avatar';
 import { useNavigate } from 'react-router-dom';
 
-const SearchBar = ({placeholder, data}) => {
+const SearchBar = ({placeholder, data, tab, setTab}) => {
   let navigate = useNavigate();
   const [filteredData, setFilteredData] = useState([])
   const [onSearch, setOnSearch] = useState("")
@@ -29,6 +29,11 @@ const SearchBar = ({placeholder, data}) => {
     setOnSearch("");
   }
 
+  const profileRoute = (userID) => {
+    setTab('Profile')
+    navigate(`/profile/${userID}`)
+  }
+
   return (
     <div className="search">
       <div className="searchInputs">
@@ -46,7 +51,7 @@ const SearchBar = ({placeholder, data}) => {
       </div>
       {filteredData.length !== 0 && (<div className="dataResult">
         {filteredData.slice(0, 15).map((item) => {
-          return <a className="dataItem" href="" onClick={() => {navigate(`/profile/${item.id}`)}}>
+          return <a className="dataItem" href="" onClick={() => { profileRoute(item.id)}}>
                     <p className="search-row"><Avatar id="img-id" src={`${item.avatar_url}`}/>{item.username}</p>
                   </a>
         })}

@@ -19,7 +19,7 @@ import ProfileStrategy from './ProfileStrategy';
 import 'devextreme/dist/css/dx.material.blue.dark.compact.css';
 import { ProgressBar } from 'devextreme-react/progress-bar';
 
-const Profile = ({setCoins, coins}) => {
+const Profile = ({setCoins, coins, tab, setTab}) => {
   const navigate = useNavigate();
 
   // const [loginID, setLoginID] = useState("")
@@ -58,6 +58,7 @@ const Profile = ({setCoins, coins}) => {
       Axios.get("/likers", {params: {id, userID}}),
       Axios.get("/dislikers", {params: {id, userID}}),
       Axios.get("/stratsellers", {params: {id, userID}}),
+      setTab('Profile')
     ]).then((all) => {
       
       setGetData(all[0].data[0]);
@@ -169,7 +170,7 @@ const Profile = ({setCoins, coins}) => {
       Axios.post("/like/user", {id, userID}),
       Axios.post("/buylike", {id, userID})
     ]).then(res => {
-        alert("You liked this profile and sent 1 CateCoin!")
+        // alert("You liked this profile and sent 1 CatCoin!")
         setAddLike(!addLike)
         setCoins(coins-1)
       })
@@ -248,7 +249,7 @@ const Profile = ({setCoins, coins}) => {
       Axios.post("/purchase/strategies", {id, userID}),
       Axios.post("/buystrat", {id, userID}),
     ]).then(res => {
-      alert("Strategies are now unlocked!")
+      // alert("Strategies are now unlocked!")
       setAddLike(!addLike)
       setShowStrat(true);
       setCoins(coins-15)
@@ -257,14 +258,17 @@ const Profile = ({setCoins, coins}) => {
   }
 
   const navigateCompare = (id) => {
+    setTab('Comparison')
     navigate(`/comparison/${id}`)
   }
 
   const navigateCoins = () => {
+    setTab('')
     navigate(`/catecoins/${userID}`)
   }
 
   const navigateTransaction = () => {
+    setTab('Transaction')
     navigate(`/transaction`)
   }
 
@@ -333,6 +337,7 @@ const Profile = ({setCoins, coins}) => {
         </div> 
         <div className="profile-graph">
           <div className="graph1">
+            <div className="purchase-g1-graph">Strategy Chart</div>
             <div className={graphClass}><PieChart id="graph-chart" data={graphData}/></div>
            {bought ? <></> : <Button className="graph1-btn" variant="contained" size="small" onClick={purchase}>Purchase</Button>}
           </div>

@@ -19,6 +19,7 @@ export default function History(props) {
   if (unlock_chart || unlock_strategies || username || strategy_name) {
     descText = descText.replace("other", username);
   } 
+  
   if (strategy_name) {
     descText = descText.replace("strat_place_holder", strategy_name);
   }
