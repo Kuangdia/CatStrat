@@ -1,6 +1,5 @@
 import React from 'react'
 import { FcDown, FcUp } from "react-icons/fc";
-
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';

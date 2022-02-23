@@ -33,7 +33,7 @@ export default function Summary({ data }) {
 
 
   return (
-    <section className="full-container">
+    <section className="summary-full-container">
         <div className="stats">
 
           <Statistic

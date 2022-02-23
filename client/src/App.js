@@ -1,20 +1,23 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Axios from 'axios';
+
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Landing from './pages/Landing';
 import DashboardCalendar from './pages/DashboardCalendar';
 import DashboardComparison from './pages/DashboardComparison';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React from 'react';
 import DashboardProfile from './pages/DashboardProfile';
 import DashboardCoins from './pages/DashboardCoins';
 import DashboardStrategyInfo from './pages/DashboardStrategyInfo';
 import DashboardLeaderBoard from './pages/DashboardLeaderBoard';
 import DashboardFAQ from './pages/DashboardFAQ';
 import DashboardTransaction from './pages/DashboardTransaction';
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Axios from 'axios';
+
+import "./styles/dashboard.scss";
 
 function App() {
   const [coins, setCoins] = useState(0);

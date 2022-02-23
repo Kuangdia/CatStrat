@@ -2,10 +2,6 @@ import React from 'react'
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import LeaderBoard from "../components/LeaderBoard";
-import "../components/LeaderBoard/LeaderBoard.scss";
-import {useParams} from 'react-router-dom'
-import { useState, useEffect } from 'react';
-import Axios from 'axios';
 
 export default function DashboardLeaderBoard({coins, setCoins}) {
 

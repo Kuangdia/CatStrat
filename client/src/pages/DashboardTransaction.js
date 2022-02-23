@@ -9,6 +9,7 @@ export default function DashboardTransaction({coins, setCoins}) {
     <>
       <main className="layout">
         <Sidebar />
+        
         <div className="layout__right">
           <Navbar coins={coins} setCoins={ setCoins }/>
           <div className='content'>

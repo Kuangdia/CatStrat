@@ -2,10 +2,6 @@ import React from 'react';
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile/Profile";
-import "../styles/dashboard.scss";
-import {useState, useEffect} from 'react';
-import Axios from 'axios';
-import {useParams} from 'react-router-dom'
 
 export default function DashboardProfile({coins, setCoins}) {
 
@@ -15,7 +11,9 @@ export default function DashboardProfile({coins, setCoins}) {
         <Sidebar />
         <div className="layout__right">
           <Navbar coins={coins} setCoins={setCoins}/>
-          <Profile setCoins={setCoins} coins={coins}/>
+          <div className='content'>
+            <Profile setCoins={setCoins} coins={coins}/>
+          </div>
         </div>
       </main>
     </>

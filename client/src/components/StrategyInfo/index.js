@@ -1,7 +1,6 @@
 import './StrategyInfo.scss';
 import Strategy from './Strategy';
 import AddStrategy from './AddStrategy';
-import useVisualMode from './useVisualMode';
 import { useState, useEffect } from 'react';
 import WriteStrategy from './WriteStrategy';
 import Axios from 'axios';
@@ -82,7 +81,7 @@ export default function StrategyInfo({ loginUserID }) {
 
 
   return (
-    <section className="full-container">
+    <section className="strategy-full-container">
       <div className="strategies">
         <h1>Strategies Explained</h1>
         <ul>{parsedStrategies}</ul>

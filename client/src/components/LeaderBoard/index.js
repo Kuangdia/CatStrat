@@ -5,17 +5,7 @@ import Top3List from './Top3List';
 import LoserList from './LoserList';
 import LoserListCoin from './LoserListCoin';
 import Top3ListCoin from './Top3ListCoin';
-/*
-3 divs
-  1) toggle bar
-  2) top 3
-  3) losers
-3 components
-  1) toggle bar
-  2) top container
-  3) loser lists
-  4) container
-*/
+import "./LeaderBoard.scss";
 
 export default function LeaderBoard() {
 

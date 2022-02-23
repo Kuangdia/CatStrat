@@ -9,7 +9,6 @@ import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 
 import "./ListTabs.scss";
-import "./Sidebar.scss";
 
 import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -19,14 +18,6 @@ export default function ListTabs(props) {
   let navigate = useNavigate();
 
   const userID = localStorage.getItem("userID");
-
-  const sendGetReq = (target, userID) => {
-    Axios.get(`/${target}`, { params: { userID } })
-      .then(res => {
-        console.log("records data", res.data);
-      })
-      .catch(err => console.log(err));
-  }
 
   const profileRoute = (userID) => {
     navigate(`/profile/${userID}`)
@@ -71,7 +62,7 @@ export default function ListTabs(props) {
   };
 
   return (
-    <div className='sidebar'>
+    <div className='sidebar__menu'>
       <div onClick={() => { dashboardRoute(userID) }} className="nav-item" >
         <div > 
         <DashboardIcon style={{ width: '1.5em', height: '1.5em'}} className="icon" /> </div>

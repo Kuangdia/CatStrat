@@ -10,6 +10,9 @@ export default function HistoryList(props) {
   const { historyData } = props;
 
   const historyComponents = historyData.map(historyObj => {
+    let historyDateList = new Date(historyObj.created_at).toString().split(" ");
+    const historyDate = `${historyDateList[1]} ${historyDateList[2]}, ${historyDateList[3]} ${historyDateList[4]}`;
+    // console.log("new date data", historyDate);
     return (
       <History
         key={ historyObj.id }
@@ -17,7 +20,7 @@ export default function HistoryList(props) {
         is_spending={ historyObj.is_spending }
         desc={ historyObj.description }
         amount={ historyObj.amount }
-        date={ historyObj.created_at.replace("T", " ").split(".")[0] }
+        date={ historyDate }
         username={ historyObj.username }
         strategy_name={ historyObj.strategy_name }
         unlock_chart={ historyObj.unlock_chart }
