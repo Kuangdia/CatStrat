@@ -7,15 +7,15 @@ import {useState, useEffect} from 'react';
 import Axios from 'axios';
 import {useParams} from 'react-router-dom'
 
-export default function DashboardProfile({coins, setCoins}) {
+export default function DashboardProfile({coins, setCoins, tab, setTab}) {
 
   return(
     <>
       <main className="layout">
-        <Sidebar />
+        <Sidebar tab={tab} setTab={setTab} />
         <div className="layout__right other_layout">
-          <Navbar coins={coins} setCoins={ setCoins }/>
-          <CateCoins coins= { coins } setCoins={ setCoins } />
+          <Navbar coins={coins} setCoins={ setCoins } />
+          <CateCoins coins= { coins } setCoins={ setCoins } tab={tab} setTab={setTab} />
         </div>
       </main>
     </>

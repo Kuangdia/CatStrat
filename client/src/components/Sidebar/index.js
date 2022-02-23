@@ -3,7 +3,7 @@ import "./Sidebar.scss";
 import logo from "../../images/logo192.png"
 
 
-export default function Sidebar(props) {
+export default function Sidebar({tab, setTab}) {
 
   return (
     <div className="sidebar">
@@ -17,7 +17,7 @@ export default function Sidebar(props) {
       </div>
       <hr className="sidebar__separator sidebar--centered"/>
       <nav className="siderbar__menu">
-        <ListTabs />
+        <ListTabs tab={tab} setTab={setTab} />
       </nav>
     </div>
   );

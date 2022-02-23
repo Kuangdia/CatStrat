@@ -8,12 +8,12 @@ import "../components/Calendar/Calendar.scss";
 import Calendar from '../components/Calendar';
 import {useParams} from 'react-router-dom'
 
-export default function DashboardCalendar({coins, setCoins}) {
+export default function DashboardCalendar({coins, setCoins, tab, setTab}) {
 
   return(
     <>
       <main className="layout">
-        <Sidebar />
+        <Sidebar tab={tab} setTab={setTab}/>
         <div className="layout__right">
           <Navbar coins={coins} setCoins={setCoins} />
           <div className="content">
@@ -21,7 +21,6 @@ export default function DashboardCalendar({coins, setCoins}) {
           </div>
         </div>
       </main>
-      {/* <button onClick={log}></button> */}
     </>
   );
 }

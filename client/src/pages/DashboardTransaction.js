@@ -4,12 +4,12 @@ import Navbar from "../components/Navbar";
 import Transaction from "../components/Transaction";
 import "../components/Transaction/Transaction.scss";
 
-export default function DashboardTransaction({coins, setCoins}) {
+export default function DashboardTransaction({coins, setCoins, tab, setTab}) {
 
   return(
     <>
       <main className="layout">
-        <Sidebar />
+        <Sidebar tab={tab} setTab={setTab}/>
         <div className="layout__right other_layout">
           <Navbar coins={coins} setCoins={ setCoins }/>
           <div className='content'>

@@ -8,8 +8,9 @@ import SearchBar from "./SearchBar/SearchBar";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FcSmartphoneTablet } from "react-icons/fc";
 
-export default function Navbar({coins, setCoins}) {
+export default function Navbar({coins, setCoins, tab, setTab}) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
@@ -33,6 +34,7 @@ export default function Navbar({coins, setCoins}) {
   }
 
   const navigateCoins = () => {
+    // setTab('coins')
     navigate(`/catecoins/${userID}`)
   }
 

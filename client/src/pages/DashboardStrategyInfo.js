@@ -8,12 +8,12 @@ import "../components/Calendar/Calendar.scss";
 import StrategyInfo from '../components/StrategyInfo';
 import {useParams} from 'react-router-dom'
 
-export default function DashboardStrategyInfo({coins, setCoins}) {
+export default function DashboardStrategyInfo({coins, setCoins, tab, setTab}) {
 
   return(
     <>
       <main className="layout">
-        <Sidebar />
+        <Sidebar tab={tab} setTab={setTab}/>
         <div className="layout__right">
           <Navbar coins={coins} setCoins={ setCoins } />
           <div className="content">
