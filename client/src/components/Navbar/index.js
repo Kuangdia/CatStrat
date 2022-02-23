@@ -46,12 +46,6 @@ export default function Navbar({coins, setCoins, tab, setTab}) {
       <div className="navbar__button">
 
         <div className="navbar__notice">
-          <button>
-          <Badge badgeContent={88} color="success">
-            {/* <NotificationsNoneIcon className="navbar__icon"/> */}
-            <NotificationsIcon className="navbar__icon"/>
-          </Badge>
-          </button>
         </div>
         <div onClick= { logout }>
           <button className="logout"> Logout</button>
