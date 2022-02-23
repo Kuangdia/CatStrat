@@ -25,7 +25,7 @@ function HomeNavbar() {
           <NavItem>
             <NavLinks to='about' 
               smooth={true}
-              duration={500}
+              duration={200}
               spy={true}
               exact='true'
               offset={10}
@@ -34,7 +34,7 @@ function HomeNavbar() {
           <NavItem>
             <NavLinks to='discover'
               smooth={true}
-              duration={500}
+              duration={200}
               spy={true}
               exact='true'
               offset={10}
@@ -43,7 +43,7 @@ function HomeNavbar() {
           <NavItem>
             <NavLinks to='manage'
               smooth={true}
-              duration={500}
+              duration={200}
               spy={true}
               exact='true'
               offset={15}  
@@ -52,7 +52,7 @@ function HomeNavbar() {
           <NavItem>
             <NavLinks to='signup'
               smooth={true}
-              duration={500}
+              duration={200}
               spy={true}
               exact='true'
               offset={15}

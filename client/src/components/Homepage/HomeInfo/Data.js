@@ -4,10 +4,11 @@ export const discover = {
   lightText: false,
   lightTextDesc: false,
   topLine: 'Discover',
-  Headline: 'Use Your Strategies To Beat The Market',
+  Headline: 'Find The Right Strategies For You',
   description: 'Share, Follow and Customize Your Strategies',
   buttonLabel: 'Get started',
   imgStart: false,
+  img: require('../../../images/biggu.png'),
   primary: true,
   darkText: true,
 }

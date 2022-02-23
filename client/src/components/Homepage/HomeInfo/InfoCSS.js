@@ -15,7 +15,7 @@ export const VideoBg = styled.div`
 export const InfoWrapper = styled.div`
   display: grid;
   z-index: 1;
-  height: 860px;
+  height: 940px;
   width: 100%;
   max-width: 1100px;
   margin-right: auto;
@@ -25,7 +25,7 @@ export const InfoWrapper = styled.div`
 `
 
 export const InfoRow = styled.div`
-  margin-top: 200px;
+  margin-top: 50px;
   display: grid;
   align-items: center;
   grid-auto-columns: auto;
@@ -39,7 +39,7 @@ export const Column1 = styled.div`
 `
 
 export const Column2 = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 150px;
   padding: 0 15px;
   grid-area: col2;
 `
@@ -51,21 +51,22 @@ export const TextWrapper = styled.div`
 `
 
 export const TopLine = styled.p`
-  font-family: sans serif;
+  font-family: "Sans Serif";
   color: #74c947;
   font-size: 22px;
   line-height: 16px;
   font-weight: 700;
   letter-spacing: 1.4px;
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 22px;
 `
 
 export const Heading = styled.h1`
-  margin-bottom: 24px;
+  font-family: "Vollkorn";
+  margin-bottom: 18px;
   font-size: 48px;
   // line-height: 11px;
-  font-weight: 600px;
+  font-weight: 800px;
   color: ${({lightText}) => (lightText ? '#f7f8fa' : '#010606' )};
 `
 
@@ -89,6 +90,24 @@ export const ImgWrap = styled.div`
 
 export const Img = styled.img`
   width: 100%;
-  margin: 0;
+  height: 100%;
+  padding-top: 100px;
   padding-right: 0;
+  position: relative;
+`
+
+export const Discover = styled.img`
+  margin-top: 75px;
+  width: 600px;
+  height: 380px;
+  padding-right: 0;
+  position: relative;
+`
+
+export const Signup = styled.img`
+  width: 100%;
+  height: 100%;
+  margin-right: 200px;
+  position: relative;
+
 `
