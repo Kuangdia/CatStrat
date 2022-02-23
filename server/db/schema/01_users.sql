@@ -7,7 +7,7 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   money_bracket INTEGER NOT NULL,
   coins INTEGER DEFAULT 100,
-  profit_goal INTEGER DEFAULT 0,
+  profit_goal INTEGER DEFAULT 10000,
   likes INTEGER DEFAULT 0,
   dislikes INTEGER DEFAULT 0,
   avatar_url VARCHAR(255) DEFAULT 'https://i.pinimg.com/originals/5c/72/cf/5c72cf8cf5184e9f9e8a1bf22ff039f5.png',
