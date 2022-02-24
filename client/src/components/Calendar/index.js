@@ -101,9 +101,6 @@ export default function Calendar() {
           <RecordInput 
             setShowForm={ setShowForm }
             date={ date }
-            // setCalendarData={ 
-            //   setCalendarData 
-            // }
             netBalance={ netBalance }
             setNetBalance = { setNetBalance }
             investAmount={ investAmount }
