@@ -1,5 +1,5 @@
 # CatStrat
-CatStrat is an investment tracking app which allows you to record and analyze your daily trading progress. We provide both default and customized trading strategies for you to include in daily investment records. Moreover, you can reveal other users' customized trading strategies by spending CatCoins. Oh right, CatCoins is a feature of our loyalty program, you can get 100 coins right after you registered an account with us! For more info, please refer to the following promotion.
+CatStrat is an investment tracking app which allows you to record and analyze your daily trading progress. We provide both default and customized trading strategies for you to include in your daily investment records. Moreover, you can reveal other users' customized trading strategies by spending CatCoins. Oh right, CatCoins is a feature of our loyalty program. You can get 100 CatCoins for free if you register an account with us right now! For more info, please refer to the following promotion.
 
 !["catcoin promotion"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/catcoin-promotion.png)
 
