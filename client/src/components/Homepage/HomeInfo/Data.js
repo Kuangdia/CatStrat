@@ -35,7 +35,7 @@ export const signup = {
   lightText: false,
   lightTextDesc: false,
   topLine: 'PROMOTION',
-  Headline: 'Sign Up Now For 100 Bonus CateCoins',
+  Headline: 'Sign Up Now For 100 Bonus CatCoins',
   description: 'Offer Valid Until 02/28/22 at 11:59pm EST or While Supplies Last. Restrictions May apply.',
   buttonLabel: 'Get started',
   imgStart: false,

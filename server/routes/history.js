@@ -11,7 +11,8 @@ const history = (db) => {
       ON target_user = users.id
       LEFT JOIN strategies
       ON target_strategy = strategies.id
-      WHERE user_id = $1 ORDER BY id desc;
+      WHERE user_id = $1 ORDER BY id desc
+      LIMIT 10;
     `, [userID])
       .then((result) => {
         res.send(result.rows);
