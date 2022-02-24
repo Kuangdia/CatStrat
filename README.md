@@ -46,8 +46,10 @@ where you should go whenever you have questions regarding how to use our app.
 ## Coins Shop
 last but not least, here is where you can purchase coins!
 
-!["coins-shop"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/coin-shop.png)
+!["coins-shop"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/cat-shop.png)
 
+
+# Tech Stack
 
 
 
