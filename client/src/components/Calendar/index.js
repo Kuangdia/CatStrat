@@ -59,6 +59,11 @@ export default function Calendar() {
 
   const handleDateClick = (arg) => {
     setDate(arg.dateStr);
+    setNetBalance(0);
+    setInvestAmount(0);
+    setStrategyID("");
+    setStockID("");
+    setRecordID("");
     setShowForm(true);
   }
 
