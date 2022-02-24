@@ -49,8 +49,20 @@ last but not least, here is where you can purchase coins!
 !["coins-shop"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/cat-shop.png)
 
 
-# Tech Stack
 
+## Tech Stack
+
+* React
+* Express
+* PostgreSQL
+* Axios
+* JQuery
+* SASS
+* Finnhub
+* Stripe
+* FullCalendar
+* ChartJS
+* Bootstrap
 
 
 
