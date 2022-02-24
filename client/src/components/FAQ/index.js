@@ -35,8 +35,8 @@ export default function FAQ({ loginUserID }) {
                 </details>
 
                 <details className="faq">
-                    <summary>How can I see my CatCoin purchase history?</summary>
-                    <p>Click on the CatCoin history tab on the sidebar to see a list of your CatCoin transactions.</p>
+                    <summary>What is the mystery box in the CatCoin Shop?</summary>
+                    <p>Purchasing the mystery box will give you a randomized amount of coins between 1 to 200.</p>
                 </details>
 
                 <details className="faq">
