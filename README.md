@@ -1,50 +1,50 @@
 # CatStrat
-CatStrat is an investment tracking app which allows you to make record for your daily trading, no matter you are trading in stock or option. We provide both default and customized trading strategies for you to include in daily investment records. Moreover, you can reveal other users' customized trading strategies by spending CatCoins. Oh right, CatCoin is a feature of our loyalty program, you can get 100 coins right after you registered an account with us! For more info, please refer to the following promotion.
+CatStrat is an investment tracking app which allows you to record and analyze your daily trading progress. We provide both default and customized trading strategies for you to include in daily investment records. Moreover, you can reveal other users' customized trading strategies by spending CatCoins. Oh right, CatCoins is a feature of our loyalty program, you can get 100 coins right after you registered an account with us! For more info, please refer to the following promotion.
 
 !["catcoin promotion"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/catcoin-promotion.png)
 
 ## Dashboard Page
-when you login successfully, you can see a sort of summarized information regarding your investment journey so far.
+When you log in, you are directed to a dashboard page that provides a top-level overview of your investment journey so far.
 
 !["Dashboard screenshot"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/dashboard-page.png)
 
 ## Profile Page
-where you can see your own profile and other users' by searching thier usernames with the above searching bar.
+You can see your own profile by clicking the profile tab on the sidebar. To view other users' profiles, search their username in the search bar located on the top of the page.
 
 !["Profile page"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/profile-page.png)
 
 ## Calendar Page
-where you can input new trading record for today and review histroy trading records.
+This page allows you to input new trading records that you would like to log. You can also review previous trading records using the calendar.
 
 !["Calendar Page"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/calendar-page.png)
 
 ## Strategy Info Page
-where you can review, create, edit and delete your custom investment strategies.
+Here, you can can review, create, edit, and delete your custom investment strategies.
 
 !["Strategy info"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/strategy-info-page.png)
 
 ## Comparison Page
-where you can compare your performance on investment with other users.
+The Comparison Page is where you can compare your investment performance with other users.
 
 !["Comparison Page"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/comparison-page1.png)
 
 ## LeaderBoard Page
-where you can see the top performed trading strategies and people who have the most catcoins across the app
+The Leaderboard Page shows the top performing trading strategies in the app. Clicking on the 'Top Coins Owner' button will render another leaderboard that showcases which users currently have the most CatCoins in the app.
 
 !["Leaderboard-page"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/leaderboard-page.png)
 
 ## Transaction Page
-where you can track each purchasing and spending of catcoins.
+This page shows your transaction history of purchasing and spending CatCoins.
 
 !["transaction-page"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/transaction-page.png)
 
 ## FAQ Page
-where you should go whenever you have questions regarding how to use our app.
+The FAQ Page is where you should go if you have questions about the app.
 
 !["faq-page"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/FAQ-page.png)
 
 ## Coins Shop
-last but not least, here is where you can purchase coins!
+Last but not least, here is where you can purchase CatCoins!
 
 !["coins-shop"](https://github.com/Kuangdia/CatStrat/blob/main/public/docs/cat-shop.png)
 
